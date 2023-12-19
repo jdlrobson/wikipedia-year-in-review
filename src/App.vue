@@ -314,12 +314,7 @@ export default {
 			currentPage: -1,
 			pages: [],
 			project: 'en.wikipedia.org',
-			//project: 'www.mediawiki.org',
-			//yir('BilledMammal', 2023);
-			// Jevansen - extreme example
-			//TheDj
-			//username: 'Jdlrobson'
-			username: 'Jevansen'
+			username: ''
 		}
 	}
 };
