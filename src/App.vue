@@ -20,6 +20,7 @@
 			<div>Retrieving data for <span>{{  status }}</span> 2023.</div>
 		</div>
 		<cdx-message v-if="error" type="error">An error occurred while trying to check that. Did you use the correct username?</cdx-message>
+		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a></footer>
 	</page>
 	<div v-if="activePage">
 		<page
