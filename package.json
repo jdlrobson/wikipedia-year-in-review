@@ -1,0 +1,23 @@
+{
+  "name": "wikiinreview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build",
+    "start": "parcel index.html "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-vue": "^2.10.3",
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "@wikimedia/codex": "^1.1.1",
+    "@wikimedia/codex-icons": "^1.1.1",
+    "html-to-image": "^1.11.11",
+    "vue": "^3.3.9"
+  }
+}
