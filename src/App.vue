@@ -141,7 +141,6 @@ export default {
 					// pass.
 				}
 				if ( navigator.share ) {
-					window.debugBlob = blob;
 					const file = new File([blob], 'share.png', blob)
 					if ( navigator.canShare( { files: [ file ] } ) ) {
 						const shareData = {
