@@ -463,5 +463,6 @@ footer a {
 }
 .mainImg {
 	max-height: 20vh;
+	width: auto;
 }
 </style>
