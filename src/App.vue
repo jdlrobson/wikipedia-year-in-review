@@ -30,6 +30,9 @@
 			:qualifier="activePage.qualifier"
 			:messageSuffix="activePage.messageSuffix">
 			<hr/>
+			<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous">
+				<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
+			</cdx-button>
 			<cdx-button @click="incrementPage" action="progressive" weight="primary">
 				<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
 				<span>{{ currentPage + 1 }} / {{ pages.length + 1 }} </span>
@@ -37,6 +40,9 @@
 		</page>
 	</div>
 	<page v-if="pages.length && currentPage >= pages.length">
+		<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous">
+			<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
+		</cdx-button>
 		<div class="sharebox" id="statBox">
 			<h2>
 				<strong>@{{ username }}</strong>
@@ -170,6 +176,10 @@ export default {
 			.catch(function (error) {
 				this.error = true;
 			});
+		},
+		decrementPage() {
+			this.currentPage--;
+			this.activePage = this.pages[this.currentPage];
 		},
 		incrementPage() {
 			this.currentPage++;
@@ -377,6 +387,13 @@ h1, h2, h3 {
 	position: fixed;
 	bottom: 0;
 	font-size: 1rem;
+}
+.cdx-button.previous {
+	top: 0;
+	bottom: auto;
+}
+.previousIcon {
+	transform: rotate(270deg);
 }
 .happy {
 	font-size: 2rem;
