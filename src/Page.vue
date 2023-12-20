@@ -1,6 +1,7 @@
 <template>
 <div class="page">
     <div class="main">
+        <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
         <p v-if="messagePrefix">{{messagePrefix}}</p>
         <p class="message">
             <strong v-if="value" :class="class">{{value}}</strong>
@@ -17,6 +18,7 @@
 export default {
     name: 'Page',
     props: {
+        image: Object,
         class: String,
         messageSuffix: String,
         messagePrefix: String,
@@ -63,6 +65,12 @@ export default {
 .main strong {
     font-weight: bold;
     font-size: 7rem;
+}
+img {
+    width: auto;
+	max-height: 20vh;
+    background-size: cover;
+    margin-bottom: 10px;
 }
 
 .main strong.smaller {

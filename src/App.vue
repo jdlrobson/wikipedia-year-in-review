@@ -3,6 +3,7 @@
 	<page v-if="currentPage <= 0 && !activePage">
 		<h1>Wikipedia</h1>
 		<h2>Year in Review</h2>
+		<img class="mainImg" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
 		<p>Let's look back at all the good work you have been doing this year in helping build the best place on the Internet!</p>
 		<label>Your Wikipedia:</label>
 		<cdx-text-input required
@@ -26,6 +27,7 @@
 		<page
 			:messagePrefix="activePage.messagePrefix"
 			:value="activePage.value"
+			:image="activePage.image"
 			:class="activePage.class"
 			:qualifier="activePage.qualifier"
 			:messageSuffix="activePage.messageSuffix">
@@ -50,6 +52,7 @@
 			<h3>
 				<span>{{ project }}</span>
 			</h3>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
 			<div class="stats">
 				<stat-box :value="editCount" label="edits"
 					:icon="editIcon"></stat-box>
@@ -80,12 +83,49 @@ import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { cdxIconArrowNext, cdxIconShare,
 	cdxIconOngoingConversation,
 	cdxIconUserTalk,
-	cdxIconEdit } from '@wikimedia/codex-icons';
+	cdxIconEdit
+} from '@wikimedia/codex-icons';
 import yir from './yir.js';
 import Page from './Page.vue';
 import StatBox from './StatBox.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage } from '@wikimedia/codex';
 import '@wikimedia/codex';
+
+const WIKIPEDIA = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
+	width: 512,
+	height: 401
+};
+const PUZZLE = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/6/65/WP20Symbols_puzzleglobe1.svg',
+	width: 512,
+	height: 401
+};
+const PUZZLE_COLLAB = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Adapted_Wikipedia20symbol_collaboration.svg',
+	width: 512,
+	height: 401
+};
+const PEN_PAPER = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/WP20Symbols_PENANDPAPER.svg',
+	width: 512,
+	height: 401
+};
+const MEETING = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Adapted_Wikipedia20symbol_meeting.svg',
+	width: 512,
+	height: 401
+};
+const FRIENDSHIP = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Adapted_Wikipedia20symbol_friendship.svg',
+	width: 512,
+	height: 401
+};
+const COMMUNITY = {
+	source: 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Adapted_Wikipedia20symbol_community.svg',
+	width: 512,
+	height: 401
+};
 
 const humanDay = ( day ) => {
 	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays' ][ day ];
@@ -228,6 +268,7 @@ export default {
 				this.pages = [];
 				if ( stats.totalEdits ) {
 					this.pages.push( {
+						image: WIKIPEDIA,
 						messagePrefix: 'You made',
 						value: toReadable( stats.totalEdits ),
 						qualifier: 'edits',
@@ -235,6 +276,7 @@ export default {
 					} );
 				} else {
 					this.pages.push( {
+						image: WIKIPEDIA,
 						messagePrefix: 'You didn\'t edit this project this year, but...',
 						qualifier: '2024',
 						messageSuffix: 'is another year to contribute to the sum of all human knowledge!'
@@ -242,6 +284,7 @@ export default {
 				}
 				if ( stats.paragraphs ) {
 					this.pages.push({
+						image: PUZZLE,
 						messagePrefix: 'Editing approximately',
 						value: toReadable( stats.paragraphs ),
 						qualifier: 'paragraphs',
@@ -253,11 +296,13 @@ export default {
 						messagePrefix: 'You made',
 						value: toReadable( stats.articleEdits ),
 						qualifier: 'edits',
+						image: PEN_PAPER,
 						messageSuffix: `in ${toReadable(stats.articlesNumber)} different articles`
 					},
 					{
 						messagePrefix: 'You edited the most on',
 						class: 'smaller',
+						image: PUZZLE_COLLAB,
 						value: humanDay( parseInt( topDay.day, 10 ) ),
 						messageSuffix: `${topDay.count} edits`
 					} ] );
@@ -266,10 +311,12 @@ export default {
 					this.pages = this.pages.concat( [
 						{
 							messagePrefix: 'You made contributions to',
+							image: stats.thumbs[0],
 							messageSuffix: `[[${stats.top5[0].title}]]`
 						},
-						...stats.top5.slice(1).map((t) => {
+						...stats.top5.slice(1).map((t, i) => {
 							return {
+								image: stats.thumbs[i+1],
 								messagePrefix: 'and',
 								messageSuffix: `[[${t.title}]]`
 							};
@@ -280,6 +327,7 @@ export default {
 				if ( stats.talkEdits > 0 ) {
 					this.pages.push({
 						messagePrefix: 'You contributed',
+						image: MEETING,
 						value: toReadable( stats.talkEdits ),
 						qualifier: 'times',
 						messageSuffix: 'to discussions.'
@@ -292,6 +340,7 @@ export default {
 					this.pages = this.pages.concat( [
 						{
 							messagePrefix: 'You were appreciated by',
+							image: FRIENDSHIP,
 							value: toReadable( stats.thanksCount ),
 							qualifier: 'editors'
 						}
@@ -302,6 +351,7 @@ export default {
 						{
 							messagePrefix: wasThanked ? 'And you showed appreciation to' :
 								'You showed appreciation to',
+							image: COMMUNITY,
 							value: toReadable( stats.thankedCount ),
 							qualifier: 'other humans'
 						},
@@ -373,6 +423,11 @@ export default {
 	padding: 20px 8px;
 	color: white;
 }
+.sharebox img {
+	margin: 12px 0 0;
+    height: 100px;
+    width: auto;
+}
 .sharebox h3 span {
 	display: block;
 }
@@ -405,5 +460,8 @@ footer {
 footer a {
 	color: inherit;
 	display: block;
+}
+.mainImg {
+	max-height: 20vh;
 }
 </style>
