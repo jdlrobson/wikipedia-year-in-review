@@ -177,7 +177,7 @@ const summarize = ( contribs ) => {
 };
 
 const yir = ( username, year, project ) => {
-    if ( !project.match( /[^\.]*\.(wikipedia|mediawiki|wikidata)\.org/ ) || !username.match(  /^[^:]*$/ ) ) {
+    if ( !project.match( /[^\.]*\.(wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !username.match(  /^[^:]*$/ ) ) {
         return Promise.reject();
     }
     const cacheKey = `${username}:${year}:${project}`;
