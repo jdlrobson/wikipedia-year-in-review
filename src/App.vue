@@ -182,6 +182,7 @@ export default {
 				this.loading++;
 			}, 1000 );
 			const err = ( er ) => {
+				console.log('error', er);
 				this.error = true;
 				this.currentPage = -1;
 				clearInterval( loader );
@@ -220,14 +221,18 @@ export default {
 						value: toReadable( stats.totalEdits ),
 						qualifier: 'edits',
 						messageSuffix: 'across the project'
-					},
-					{
+					}
+				];
+				if ( stats.paragraphs ) {
+					this.pages.push({
 						messagePrefix: 'Editing approximately',
 						value: toReadable( stats.paragraphs ),
 						qualifier: 'paragraphs',
 						messageSuffix: 'of text!'
-					},
-					{
+					} );
+				}
+				if ( stats.articleEdits > 0 ) {
+					this.pages = this.pages.concat( [ {
 						messagePrefix: 'You made',
 						value: toReadable( stats.articleEdits ),
 						qualifier: 'edits',
@@ -238,8 +243,8 @@ export default {
 						class: 'smaller',
 						value: humanDay( parseInt( topDay.day, 10 ) ),
 						messageSuffix: `${topDay.count} edits`
-					}
-				];
+					} ] );
+				}
 				if ( stats.top5[0] ) {
 					this.pages = this.pages.concat( [
 						{
@@ -264,18 +269,20 @@ export default {
 					});
 				}
 
-				this.pages = this.pages.concat( [
-					{
-						messagePrefix: 'You were appreciated by',
-						value: toReadable( stats.thanksCount ),
-						qualifier: 'editors'
-					},
-					{
-						messagePrefix: 'And you showed appreciation to',
-						value: toReadable( stats.thankedCount ),
-						qualifier: 'other humans'
-					}
-				] );
+				if ( stats.thanksCount > 0 ) {
+					this.pages = this.pages.concat( [
+						{
+							messagePrefix: 'You were appreciated by',
+							value: toReadable( stats.thanksCount ),
+							qualifier: 'editors'
+						},
+						{
+							messagePrefix: 'And you showed appreciation to',
+							value: toReadable( stats.thankedCount ),
+							qualifier: 'other humans'
+						}
+					] );
+				}
 				this.pages = this.pages.concat( [
 					{
 						messagePrefix: 'Thank you caring!',

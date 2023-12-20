@@ -57,13 +57,15 @@ const continueFetch = ( url, params, list ) => {
             ( r.query[ list ] || [] ).filter(r=>r)
         );
         const c = result[result.length-1];
-        status = toReadableMonth(c.timestamp);
+        if ( c ) {
+            status = toReadableMonth(c.timestamp);
+        }
         if ( r.continue ) {
             Object.keys( r.continue ).forEach( ( key ) => {
                 params[key] = r.continue[key];
             } );
             return continueFetch(url, params, list).then( (r) => {
-                return result.concat( r );
+                return result.concat( r ).filter(r=>r);
             } );
         } else {
             return Promise.resolve( result )
