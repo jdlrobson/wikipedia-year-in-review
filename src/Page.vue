@@ -47,7 +47,7 @@ export default {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px;
+    padding: 20px 10px;
     font-family: sans-serif;
     font-weight: bold;
 }
@@ -69,6 +69,9 @@ export default {
     font-size: 4rem;
 }
 @media ( min-width: 1000px ) {
+    .page {
+        padding: 20px;
+    }
     .main strong {
         font-weight: bold;
         font-size: 10rem;
