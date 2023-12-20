@@ -200,7 +200,7 @@ export default {
 				this.thanksCount = stats.thanksCount;
 				this.thankedCount = stats.thankedCount;
 				if ( !this.editCount || this.editCount === 0 ) {
-					return err();
+					//return err();
 				}
 				
 				const toReadable = ( num ) => {
@@ -215,14 +215,21 @@ export default {
 
 				}
 				const topDay = stats.dayofweek[ 0 ];
-				this.pages = [
-					{
+				this.pages = [];
+				if ( stats.totalEdits ) {
+					this.pages.push( {
 						messagePrefix: 'You made',
 						value: toReadable( stats.totalEdits ),
 						qualifier: 'edits',
 						messageSuffix: 'across the project'
-					}
-				];
+					} );
+				} else {
+					this.pages.push( {
+						messagePrefix: 'You didn\'t edit this project this year, but...',
+						qualifier: '2024',
+						messageSuffix: 'is another year to contribute to the sum of all human knowledge!'
+					} );
+				}
 				if ( stats.paragraphs ) {
 					this.pages.push({
 						messagePrefix: 'Editing approximately',
@@ -280,15 +287,13 @@ export default {
 							messagePrefix: 'And you showed appreciation to',
 							value: toReadable( stats.thankedCount ),
 							qualifier: 'other humans'
+						},
+						{
+							messagePrefix: 'Thank you caring!',
+							messageSuffix: 'We appreciate you!'
 						}
 					] );
 				}
-				this.pages = this.pages.concat( [
-					{
-						messagePrefix: 'Thank you caring!',
-						messageSuffix: 'We appreciate you!'
-					}
-				] );
 				if ( stats.topThanksFrom.length && stats.topThanksTo.length  ) {
 					this.pages = this.pages.concat( [
 						{
