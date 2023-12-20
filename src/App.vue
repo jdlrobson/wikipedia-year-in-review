@@ -70,7 +70,7 @@
 		<p class="happy">Happy 2024!</p>
 		<cdx-message v-if="feedback" type="success">{{ feedback }}</cdx-message>
 		<cdx-message v-if="error" type="error">An error occurred while trying to share.</cdx-message>
-		<cdx-button @click="shareIt" action="progressive" weight="primary">
+		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
 			<cdx-icon :icon="shareIcon"></cdx-icon>
 			<span>Share stats</span>
 		</cdx-button>
@@ -149,6 +149,10 @@ export default {
 		}
 	},
 	props: {
+		shareable: {
+			type: Boolean,
+			default: navigator.clipboard !== undefined || navigator.share !== undefined
+		},
 		thankIcon: {
 			type: Object,
 			default: cdxIconUserTalk
@@ -176,6 +180,7 @@ export default {
 	},
 	methods: {
 		shareIt() {
+			const SHARE_TEXT = 'Here is how I have been contributing to Wikipedia in 2023!';
 			const share = (blob) => {
 				let msg = '';
 				try {
@@ -187,17 +192,25 @@ export default {
 					msg = 'An image has been shared to your clipboard.';
 				} catch (error) {
 					// pass.
+					try {
+						navigator.clipboard.writeText( `${SHARE_TEXT} Edits: ${this.editCount}, Discussions: ${this.talkCount}, Thanks: ${this.thanksCount}, Thanked: ${this.thankedCount} #wikipediaYIR` );
+						msg = 'Text has been shared to your clipboard.';
+					} catch (error) {
+						console.log('clipboard text error', error);
+					}
 				}
 				if ( navigator.share ) {
 					const file = new File([blob], 'share.png', blob)
 					if ( navigator.canShare( { files: [ file ] } ) ) {
 						const shareData = {
 							title: 'Wikipedia Year In Review (2023)',
-							text: 'Here is how I have been contributing to Wikipedia in 2023!',
+							text: SHARE_TEXT,
 							files: [ file ],
 							url: `https://${location.host}`
 						};
-						return navigator.share(shareData).then(() => msg);
+						return navigator.share(shareData).then(() => msg, (err) => {
+							console.log('share error',err)
+						});
 					}
 				}
 				return msg ? Promise.resolve( msg ) : Promise.reject();
