@@ -10,7 +10,7 @@
 			pattern="[^\.]*\.(wikipedia|mediawiki)\.org" type="text" v-model="project"></cdx-text-input>
 		<label>Your Username</label>
 		<cdx-text-input required
-			pattern="[^:]*"
+			pattern="^[^:]+$/"
 			type="text" v-model="username"></cdx-text-input>
 		<cdx-button :disabled="disableBtn" @click="start" action="progressive" weight="primary">
 			<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
@@ -142,8 +142,10 @@ export default {
 	},
 	computed: {
 		disableBtn() {
-			const $refs = this.$refs;
-			return this.currentPage === 0 || ( $refs && $refs.projectInput && $refs.projectInput.matches(':invalid'));
+			if ( !this.project.match( /[^\.]*\.(wikipedia|mediawiki)\.org/ ) || !this.username.match(  /^[^:]+$/ ) ) {
+				return true;
+			}
+			return this.currentPage === 0;
 		}
 	},
 	props: {
@@ -412,9 +414,6 @@ export default {
 	max-width: 400px;
 	align-content: center;
 	justify-content: center;
-}
-.cdx-input:invalid {
-	background: pink!important;
 }
 .sharebox {
 	border-radius: 15px;

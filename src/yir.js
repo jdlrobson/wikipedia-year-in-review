@@ -174,6 +174,9 @@ const summarize = ( contribs ) => {
 };
 
 const yir = ( username, year, project ) => {
+    if ( !project.match( /[^\.]*\.(wikipedia|mediawiki)\.org/ ) || !username.match(  /^[^:]*$/ ) ) {
+        return Promise.reject();
+    }
     const cacheKey = `${username}:${year}:${project}`;
     if ( summaryCache[cacheKey] ) {
         return Promise.resolve( summaryCache[cacheKey] );
