@@ -7,10 +7,10 @@
 		<p>Let's look back at all the good work you have been doing this year in helping build the best place on the Internet!</p>
 		<label>Your Wikipedia:</label>
 		<cdx-text-input required
-			pattern="[^\.]*\.(wikipedia|mediawiki)\.org" type="text" v-model="project"></cdx-text-input>
+			pattern="[^\.]*\.(wikipedia|mediawiki|wikidata)\.org" type="text" v-model="project"></cdx-text-input>
 		<label>Your Username</label>
 		<cdx-text-input required
-			pattern="^[^:]+$/"
+			pattern="^[^:]+$"
 			type="text" v-model="username"></cdx-text-input>
 		<cdx-button :disabled="disableBtn" @click="start" action="progressive" weight="primary">
 			<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
@@ -142,7 +142,7 @@ export default {
 	},
 	computed: {
 		disableBtn() {
-			if ( !this.project.match( /[^\.]*\.(wikipedia|mediawiki)\.org/ ) || !this.username.match(  /^[^:]+$/ ) ) {
+			if ( !this.project.match( /[^\.]*\.(wikipedia|mediawiki|wikidata)\.org/ ) || !this.username.match(  /^[^:]+$/ ) ) {
 				return true;
 			}
 			return this.currentPage === 0;
