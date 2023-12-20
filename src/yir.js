@@ -10,7 +10,7 @@ const summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
 const pruneCache = () => {
     keys = Object.keys( shortTermCache );
     if ( keys.length > 50 ) {
-        keys.slice( 0, 10 ).forEach(( key ) => {
+        keys.slice( 0, 50 ).forEach(( key ) => {
             delete shortTermCache[key];
         } );
     }
@@ -33,7 +33,10 @@ const cacheFetch = ( url ) => {
                         localStorage.setItem('cache-short', JSON.stringify(shortTermCache));
                     } catch (e) {
                         pruneCache();
-                        localStorage.setItem('cache-short', JSON.stringify(shortTermCache));
+                        try {
+                            localStorage.setItem('cache-short', JSON.stringify(shortTermCache));
+                        } catch ( e ) {
+                        }
                     }
                 } else {
                     reject();
