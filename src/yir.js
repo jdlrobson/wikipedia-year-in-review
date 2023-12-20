@@ -8,7 +8,7 @@ const shortTermCache = JSON.parse( localStorage.getItem( 'cache-short' ) || '{}'
 const summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
 
 const pruneCache = () => {
-    keys = Object.keys( shortTermCache );
+    const keys = Object.keys( shortTermCache );
     if ( keys.length > 50 ) {
         keys.slice( 0, 50 ).forEach(( key ) => {
             delete shortTermCache[key];
