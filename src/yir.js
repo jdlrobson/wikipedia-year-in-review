@@ -131,6 +131,16 @@ const thankedSummary = ( username, year, project ) => {
     })
 };
 
+const addThumbs = ( titles ) => {
+    return Promise.all(
+        titles.map(
+            ( t ) => fetch( `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(t)}`)
+                .then((r) => r.json())
+                .then((p)=>p.thumbnail)
+        )
+    );
+}
+
 const summarize = ( contribs ) => {
     const articles = contribs.filter((c) => c && c.ns === 0);
     const top = topArticles(articles);
@@ -147,17 +157,20 @@ const summarize = ( contribs ) => {
         }
         return a + s;
     }, 0 );
-    return {
-        // @todo: new pages?
-        totalBytes,
-        paragraphs: parseInt( totalBytes / 1000, 10 ),
-        dayofweek: topArticles( dayofweek, 'day' ),
-        top5: top.slice(0, 5),
-        articlesNumber: top.length,
-        totalEdits: contribs.length,
-        articleEdits: articles.length,
-        talkEdits: contribs.filter((c) => c && c.ns % 2 !== 0 ).length
-    };
+    const top5 = top.slice(0, 5);
+    return addThumbs(top5.map((t) => t.title)).then((thumbs) => {
+        return {
+            thumbs,
+            totalBytes,
+            paragraphs: parseInt( totalBytes / 1000, 10 ),
+            dayofweek: topArticles( dayofweek, 'day' ),
+            top5,
+            articlesNumber: top.length,
+            totalEdits: contribs.length,
+            articleEdits: articles.length,
+            talkEdits: contribs.filter((c) => c && c.ns % 2 !== 0 ).length
+        };
+    });
 };
 
 const yir = ( username, year, project ) => {
