@@ -276,15 +276,22 @@ export default {
 					});
 				}
 
+				let wasThanked = false;
 				if ( stats.thanksCount > 0 ) {
+					wasThanked = true;
 					this.pages = this.pages.concat( [
 						{
 							messagePrefix: 'You were appreciated by',
 							value: toReadable( stats.thanksCount ),
 							qualifier: 'editors'
-						},
+						}
+					] );
+				}
+				if ( stats.thanksCount > 0 ) {
+					this.pages = this.pages.concat( [
 						{
-							messagePrefix: 'And you showed appreciation to',
+							messagePrefix: wasThanked ? 'And you showed appreciation to' :
+								'You showed appreciation to',
 							value: toReadable( stats.thankedCount ),
 							qualifier: 'other humans'
 						},
@@ -294,17 +301,19 @@ export default {
 						}
 					] );
 				}
-				if ( stats.topThanksFrom.length && stats.topThanksTo.length  ) {
+				if ( stats.topThanksTo.length  ) {
 					this.pages = this.pages.concat( [
 						{
 							messagePrefix: `@${stats.topThanksTo[0].title}`,
 							//value: stats.topThanksTo[0].count,
 							//qualifier: 'User'
 							messageSuffix: 'was the user you thanked the most'
-						},
+						}
+					] );
+				}
+				if ( stats.topThanksFrom.length ) {
+					this.pages = this.pages.concat( [
 						{
-							//value: stats.topThanksFrom[0].count,
-							// 
 							messagePrefix: `@${stats.topThanksFrom[0].user}`,
 							messageSuffix: 'was your biggest fan'
 						}
