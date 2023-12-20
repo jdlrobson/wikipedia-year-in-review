@@ -74,7 +74,7 @@ img {
 }
 
 .main strong.smaller {
-    font-size: 4rem;
+    font-size: 3.8rem;
 }
 @media ( min-width: 1000px ) {
     .page {

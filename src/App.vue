@@ -52,7 +52,7 @@
 			<h3>
 				<span>{{ project }}</span>
 			</h3>
-			<img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adapted_Wikipedia20symbol_puzzleglobe.svg" width="512" height="401">
 			<div class="stats">
 				<stat-box :value="editCount" label="edits"
 					:icon="editIcon"></stat-box>
