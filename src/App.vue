@@ -347,7 +347,7 @@ export default {
 						{
 							messagePrefix: 'You were appreciated by',
 							image: FRIENDSHIP,
-							value: toReadable( stats.thanksCount ),
+							value: toReadable( stats.thankedCount ),
 							qualifier: 'editors'
 						}
 					] );
@@ -358,7 +358,7 @@ export default {
 							messagePrefix: wasThanked ? 'And you showed appreciation to' :
 								'You showed appreciation to',
 							image: COMMUNITY,
-							value: toReadable( stats.thankedCount ),
+							value: toReadable( stats.thanksCount ),
 							qualifier: 'other humans'
 						},
 						{
