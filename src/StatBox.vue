@@ -13,9 +13,13 @@ export default {
         CdxIcon
     },
     props: {
-        icon: String,
-        value: Number,
-        label: String
+        icon: String|Object,
+        value: {
+            type: Number
+        },
+        label: {
+            type: String
+        }
     }
 };
 </script>

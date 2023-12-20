@@ -32,7 +32,7 @@
 			:qualifier="activePage.qualifier"
 			:messageSuffix="activePage.messageSuffix">
 			<hr/>
-			<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous">
+			<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous" aria-label="previous">
 				<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
 			</cdx-button>
 			<cdx-button @click="incrementPage" action="progressive" weight="primary">
@@ -42,7 +42,7 @@
 		</page>
 	</div>
 	<page v-if="pages.length && currentPage >= pages.length">
-		<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous">
+		<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous" aria-label="previous">
 			<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
 		</cdx-button>
 		<div class="sharebox" id="statBox">
@@ -148,7 +148,7 @@ export default {
 	},
 	props: {
 		thankIcon: {
-			type: String,
+			type: Object,
 			default: cdxIconUserTalk
 		},
 		host: {
@@ -160,11 +160,11 @@ export default {
 			default: cdxIconEdit
 		},
 		talkIcon: {
-			type: String,
+			type: Object,
 			default: cdxIconOngoingConversation
 		},
 		nextIcon: {
-			type: String,
+			type: Object,
 			default: cdxIconArrowNext
 		},
 		shareIcon:  {
@@ -261,7 +261,7 @@ export default {
 							msg = `${thousands}K+`;
 						}
 					}
-					return msg;
+					return `${msg}`;
 
 				}
 				const topDay = stats.dayofweek[ 0 ];
