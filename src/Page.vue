@@ -107,4 +107,13 @@ p {
 .subtitle {
     font-size: 2rem;
 }
+
+@media ( max-width: 400px ) {
+    .page {
+        font-size: 2rem;
+    }
+    .main strong.smaller {
+        font-size: 3rem;
+    }
+}
 </style>
