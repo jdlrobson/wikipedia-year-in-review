@@ -1,8 +1,11 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
 const DELAY = 300;
 
+const OLD_CACHE_KEY = 'cache-summaries';
+const CACHE_KEY = 'cache-summaries-1';
+localStorage.removeItem(OLD_CACHE_KEY);
 const shortTermCache = JSON.parse( localStorage.getItem( 'cache-short' ) || '{}' );
-const summaryCache = JSON.parse( localStorage.getItem( 'cache-summaries' ) || '{}' );
+const summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
 
 const pruneCache = () => {
     keys = Object.keys( shortTermCache );
@@ -83,7 +86,6 @@ const topArticles = (articles, field = 'title') => {
     });
     return Object.keys( titles )
         .map( ( title ) => ({ [field]: title, count: titles[title] }) )
-        .filter((t) => t.count > 1)
         .sort((a,b) => a.count > b.count ? -1 : 1)
 };
 
@@ -182,7 +184,7 @@ const yir = ( username, year, project ) => {
     ] ).then( ( results ) => {
         const summary = Object.assign.apply({},results);
         summaryCache[cacheKey] = summary;
-        localStorage.setItem( 'cache-summaries', JSON.stringify(summaryCache) );
+        localStorage.setItem(CACHE_KEY, JSON.stringify(summaryCache) );
         return summary;
     } );
 }
