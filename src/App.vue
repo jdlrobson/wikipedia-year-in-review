@@ -309,18 +309,22 @@ export default {
 						messageSuffix: `${topDay.count} edits`
 					} ] );
 				}
+				const wikiUrl = (t) => {
+					return `https://${this.project}/wiki/${encodeURIComponent(t)}`;
+				};
 				if ( stats.top5[0] ) {
+					let topTitle = stats.top5[0].title;
 					this.pages = this.pages.concat( [
 						{
 							messagePrefix: 'You made contributions to',
 							image: stats.thumbs[0],
-							messageSuffix: `[[${stats.top5[0].title}]]`
+							messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(topTitle)}">${topTitle}</a>]]`
 						},
 						...stats.top5.slice(1).map((t, i) => {
 							return {
 								image: stats.thumbs[i+1],
 								messagePrefix: 'and',
-								messageSuffix: `[[${t.title}]]`
+								messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(t.title)}">${t.title}</a>]]`
 							};
 						} )
 					] );
@@ -464,4 +468,5 @@ footer a {
 	max-height: 20vh;
 	width: auto;
 }
+
 </style>

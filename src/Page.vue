@@ -4,10 +4,10 @@
         <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
         <p v-if="messagePrefix">{{messagePrefix}}</p>
         <p class="message">
-            <strong v-if="value" :class="class">{{value}}</strong>
+            <strong v-if="value" :class="class">{{ value }}</strong>
             <span>{{ qualifier}}</span>
         </p>
-        <p class="subtitle" v-if="messageSuffix">{{messageSuffix}}</p>
+        <p class="subtitle" v-if="messageSuffix"  v-html="messageSuffix"></p>
     </div>
     <div class="text">
         <slot></slot>
@@ -104,9 +104,11 @@ p {
     margin-top: -18px;
     font-family: sans-serif;
 }
+
 .subtitle {
     font-size: 2rem;
 }
+
 
 @media ( max-width: 400px ) {
     .page {
