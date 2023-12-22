@@ -21,7 +21,8 @@
 			<div>Retrieving data for <span>{{  status }}</span> 2023.</div>
 		</div>
 		<cdx-message v-if="error" type="error">An error occurred while trying to check that. Did you use the correct username?</cdx-message>
-		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a></footer>
+		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>.</footer>
+		<div class="license">All illustrations CC0 1.0 adapted from <a href="https://commons.wikimedia.org/wiki/Category:Adapted_Wikipedia_20">Jasmina El Bouamraoui and Karabo Poppy Moletsane for Wikipedia 20</a> unless stated.</div>
 	</page>
 	<div v-if="activePage">
 		<page
@@ -64,7 +65,14 @@
 					:icon="thankIcon"></stat-box>
 			</div>
 			<h3 class="year"><span>2023</span></h3>
-			<footer>Generate your own Year in Review at <a :href="`https://${host}`">{{host}}</a></footer>
+			<footer>Generate your own Year in Review at <a :href="`https://${host}`">{{host}}</a>
+				<div class="license-logo">
+					<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">
+						<img src="./Cc.logo.circle.svg.webp">
+						<img src="./Cc-zero.svg.png">
+					</a>
+				</div>
+			</footer>
 		</div>
 		<p>Thank you for viewing your year in review and for contributing to the sum of all human knowledge.</p>
 		<p class="happy">Happy 2024!</p>
@@ -484,5 +492,22 @@ footer a {
 	max-height: 20vh;
 	width: auto;
 }
-
+.license {
+	text-align: center;
+	font-size: 0.75rem;
+	color: #333;
+	margin-top: 30px;
+	font-weight: normal;
+}
+footer a,
+.license a { display: inline; }
+.license-logo {
+    margin-top: 10px;
+}
+.license-logo img {
+    width: 20px;
+    height: 20px;
+    display: inline;
+	filter: invert(1);
+}
 </style>
