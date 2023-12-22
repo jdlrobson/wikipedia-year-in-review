@@ -494,6 +494,7 @@ h1, h2, h3 {
 	position: fixed;
 	bottom: 0;
 	font-size: 1rem;
+	z-index: 1;
 }
 .cdx-button.previous {
 	top: 0;
