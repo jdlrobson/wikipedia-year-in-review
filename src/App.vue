@@ -23,6 +23,10 @@
 		<cdx-message v-if="error" type="error">An error occurred while trying to check that. Did you use the correct username?</cdx-message>
 		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>.</footer>
 		<div class="license">All illustrations CC0 1.0 adapted from <a href="https://commons.wikimedia.org/wiki/Category:Adapted_Wikipedia_20">Jasmina El Bouamraoui and Karabo Poppy Moletsane for Wikipedia 20</a> unless stated.</div>
+		<div class="yearSwitcher">
+			<label>Show me another year!</label>
+			<cdx-select :menu-items="lastFiveYears" :selected="previousYear" @update:selected="updateYear"></cdx-select>
+		</div>
 	</page>
 	<div v-if="activePage">
 		<page
@@ -96,7 +100,7 @@ import { cdxIconArrowNext, cdxIconShare,
 import yir from './yir.js';
 import Page from './Page.vue';
 import StatBox from './StatBox.vue';
-import { CdxButton, CdxIcon, CdxTextInput, CdxMessage } from '@wikimedia/codex';
+import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
 
 const WIKIPEDIA = {
@@ -144,12 +148,15 @@ const MONTH = currentDate.getMonth();
 const CURRENT_YEAR = currentDate.getFullYear();
 const YEAR = MONTH === 11 ? CURRENT_YEAR + 1 : CURRENT_YEAR;
 const PREVIOUS_YEAR = YEAR - 1;
-
+const LAST_FIVE = [ YEAR - 1, YEAR - 2, YEAR - 3, YEAR - 4, YEAR - 5 ].map( ( year ) => ( {
+	label: `${year}`, value: year
+} ) );
 export default {
 	name: 'App',
 	components: {
 		Page,
 		CdxButton,
+		CdxSelect,
 		CdxIcon,
 		StatBox,
 		CdxMessage,
@@ -167,13 +174,9 @@ export default {
 		}
 	},
 	props: {
-		previousYear: {
-			type: Number,
-			default: PREVIOUS_YEAR
-		},
-		nextYear: {
-			type: Number,
-			default: YEAR
+		lastFiveYears: {
+			type: Array,
+			default: LAST_FIVE
 		},
 		shareable: {
 			type: Boolean,
@@ -205,6 +208,10 @@ export default {
 		}
 	},
 	methods: {
+		updateYear(y) {
+			this.previousYear = y;
+			this.nextYear = y + 1;
+		},
 		shareIt() {
 			const SHARE_TEXT = `Here is how I have been contributing to Wikipedia in ${PREVIOUS_YEAR}!`;
 			const share = (blob) => {
@@ -430,6 +437,8 @@ export default {
 	},
 	data() {
 		return {
+			previousYear: PREVIOUS_YEAR,
+			nextYear: YEAR,
 			feedback: '',
 			loading: 0,
 			status: '',
@@ -524,5 +533,19 @@ footer a,
     height: 20px;
     display: inline;
 	filter: invert(1);
+}
+
+.yearSwitcher {
+	color: #333;
+	font-size: 0.75rem;
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	flex-flow: column;
+	font-weight: normal;
+}
+.yearSwitcher select {
+	display: block;
+	margin-top: 10px;
 }
 </style>
