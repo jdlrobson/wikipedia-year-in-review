@@ -145,6 +145,9 @@ export default {
 			if ( !this.project.match( /[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !this.username.match(  /^[^:]+$/ ) ) {
 				return true;
 			}
+			if ( this.project.match ( /(foundation|office)\.wikimedia\.org$/ ) ) {
+				return true;
+			}
 			return this.currentPage === 0;
 		}
 	},
