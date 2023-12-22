@@ -7,6 +7,9 @@ localStorage.removeItem(OLD_CACHE_KEY);
 const shortTermCache = JSON.parse( localStorage.getItem( 'cache-short' ) || '{}' );
 const summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
 
+// A week cache is fine.
+const CACHE_TIME = 7 * 24 * 60 * 60;
+
 const pruneCache = () => {
     const keys = Object.keys( shortTermCache );
     if ( keys.length > 50 ) {
@@ -95,6 +98,8 @@ const topArticles = (articles, field = 'title') => {
 const thanksSummary = ( username, year, project ) => {
     return continueFetch(`https://${project}/w/api.php`, {
         leend: `${year - 1}-12-31T23:59:59.000Z`,
+        maxage: CACHE_TIME,
+        smaxage: CACHE_TIME,
         lestart: `${year + 1}-01-01T00:00:00.000Z`,
         lelimit: 500,
         origin: '*',
@@ -118,6 +123,8 @@ const thankedSummary = ( username, year, project ) => {
     return continueFetch(`https://${project}/w/api.php`, {
         leend: `${year - 1}-12-31T23:59:59.000Z`,
         lestart: `${year + 1}-01-01T00:00:00.000Z`,
+        maxage: CACHE_TIME,
+        smaxage: CACHE_TIME,
         lelimit: 500,
         origin: '*',
         action: 'query',
