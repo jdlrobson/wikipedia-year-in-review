@@ -86,7 +86,7 @@ img {
     }
 
     .main strong.smaller {
-        font-size: 10rem;
+        font-size: 8rem;
     }
 }
 .text {
