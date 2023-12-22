@@ -544,6 +544,7 @@ footer a,
 	align-items: center;
 	flex-flow: column;
 	font-weight: normal;
+	padding-bottom: 50px;
 }
 .yearSwitcher select {
 	display: block;
