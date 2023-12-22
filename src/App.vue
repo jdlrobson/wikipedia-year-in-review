@@ -2,7 +2,7 @@
 <div>
 	<page v-if="currentPage <= 0 && !activePage">
 		<h1>Wikipedia</h1>
-		<h2>Year in Review</h2>
+		<h2>{{ previousYear }} Year in Review</h2>
 		<img class="mainImg" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
 		<p>Let's look back at all the good work you have been doing this year in helping build the best place on the Internet!</p>
 		<label>Your Wikipedia:</label>
@@ -18,7 +18,7 @@
 		</cdx-button>
 		<div v-if="loading > 0">
 			<span v-for="i in Array(loading)" :key="`l-${i}`">✏️</span>
-			<div>Retrieving data for <span>{{  status }}</span> 2023.</div>
+			<div>Retrieving data for <span>{{  status }}</span> {{ previousYear }}.</div>
 		</div>
 		<cdx-message v-if="error" type="error">An error occurred while trying to check that. Did you use the correct username?</cdx-message>
 		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>.</footer>
@@ -64,7 +64,7 @@
 				<stat-box :value="thankedCount" label="thanked"
 					:icon="thankIcon"></stat-box>
 			</div>
-			<h3 class="year"><span>2023</span></h3>
+			<h3 class="year"><span>{{ previousYear }}</span></h3>
 			<footer>Generate your own Year in Review at <a :href="`https://${host}`">{{host}}</a>
 				<div class="license-logo">
 					<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">
@@ -75,7 +75,7 @@
 			</footer>
 		</div>
 		<p>Thank you for viewing your year in review and for contributing to the sum of all human knowledge.</p>
-		<p class="happy">Happy 2024!</p>
+		<p class="happy">Happy {{ nextYear }}!</p>
 		<cdx-message v-if="feedback" type="success">{{ feedback }}</cdx-message>
 		<cdx-message v-if="error" type="error">An error occurred while trying to share.</cdx-message>
 		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
@@ -138,6 +138,13 @@ const COMMUNITY = {
 const humanDay = ( day ) => {
 	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays' ][ day ];
 }
+
+const currentDate = ( new Date() );
+const MONTH = currentDate.getMonth();
+const CURRENT_YEAR = currentDate.getFullYear();
+const YEAR = MONTH === 11 ? CURRENT_YEAR + 1 : CURRENT_YEAR;
+const PREVIOUS_YEAR = YEAR - 1;
+
 export default {
 	name: 'App',
 	components: {
@@ -160,6 +167,14 @@ export default {
 		}
 	},
 	props: {
+		previousYear: {
+			type: Number,
+			default: PREVIOUS_YEAR
+		},
+		nextYear: {
+			type: Number,
+			default: YEAR
+		},
 		shareable: {
 			type: Boolean,
 			default: navigator.clipboard !== undefined || navigator.share !== undefined
@@ -191,7 +206,7 @@ export default {
 	},
 	methods: {
 		shareIt() {
-			const SHARE_TEXT = 'Here is how I have been contributing to Wikipedia in 2023!';
+			const SHARE_TEXT = `Here is how I have been contributing to Wikipedia in ${PREVIOUS_YEAR}!`;
 			const share = (blob) => {
 				let msg = '';
 				try {
@@ -214,7 +229,7 @@ export default {
 					const file = new File([blob], 'share.png', blob)
 					if ( navigator.canShare( { files: [ file ] } ) ) {
 						const shareData = {
-							title: 'Wikipedia Year In Review (2023)',
+							title: `Wikipedia Year In Review (${PREVIOUS_YEAR})`,
 							text: SHARE_TEXT,
 							files: [ file ],
 							url: `https://${location.host}`
@@ -267,7 +282,7 @@ export default {
 			const statuschecker = setInterval(() => {
 				this.status = yir.getStatus()
 			}, 300);
-			yir( this.username, 2023, this.project ).then((stats) => {
+			yir( this.username, this.previousYear, this.project ).then((stats) => {
 				clearInterval( loader );
 				clearInterval( statuschecker );
 				this.loading = 0;
@@ -304,7 +319,7 @@ export default {
 					this.pages.push( {
 						image: WIKIPEDIA,
 						messagePrefix: 'You didn\'t edit this project this year, but...',
-						qualifier: '2024',
+						qualifier: YEAR,
 						messageSuffix: 'is another year to contribute to the sum of all human knowledge!'
 					} );
 				}
