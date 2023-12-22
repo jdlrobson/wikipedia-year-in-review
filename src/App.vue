@@ -11,6 +11,7 @@
 		<label>Your Username</label>
 		<cdx-text-input required
 			pattern="^[^:]+$"
+			@keyup.enter="start"
 			type="text" v-model="username"></cdx-text-input>
 		<cdx-button :disabled="disableBtn" @click="start" action="progressive" weight="primary">
 			<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
