@@ -19,7 +19,7 @@ const pruneCache = () => {
     }
 };
 
-let status = 'December';
+let status = '31st December';
 const cacheFetch = ( url ) => {
     return new Promise( ( resolve, reject ) => {
         const cached = shortTermCache[url];
@@ -50,9 +50,24 @@ const cacheFetch = ( url ) => {
 
 };
 
+const getDateSuffix = ( day ) => {
+    if ( day === 1 ) {
+        return 'st';
+    } else if ( day === 2 ) {
+        return 'nd';
+    } else if ( day === 3 ) {
+        return 'rd';
+    } else {
+        return 'th';
+    }
+}
+
+const toDate = ( timestamp ) => {
+    return new Date( timestamp );
+};
 
 const toReadableMonth = ( timestamp ) => {
-    const date = new Date( timestamp );
+    const date = toDate( timestamp );
     const m = date.getMonth();
     const months = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     return `${months[m]}`;
@@ -67,7 +82,10 @@ const continueFetch = ( url, params, list ) => {
         );
         const c = result[result.length-1];
         if ( c ) {
-            status = toReadableMonth(c.timestamp);
+            const d = toDate( c.timestamp );
+            const day = d.getDate();
+            const suffix = getDateSuffix( day );
+            status = `${day}${suffix} ${toReadableMonth(c.timestamp)}`;
         }
         if ( r.continue ) {
             Object.keys( r.continue ).forEach( ( key ) => {
