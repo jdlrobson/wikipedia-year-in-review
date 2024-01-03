@@ -22,7 +22,7 @@
 			<div>Retrieving data for <span>{{  status }}</span> {{ previousYear }}.</div>
 		</div>
 		<cdx-message v-if="error" type="error">An error occurred while trying to check that. Did you use the correct username?</cdx-message>
-		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>.</footer>
+		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>. This tool is a personal project and not affiliated or sponsored by the Wikimedia Foundation.</footer>
 		<div class="license">All illustrations CC0 1.0 adapted from <a href="https://commons.wikimedia.org/wiki/Category:Adapted_Wikipedia_20">Jasmina El Bouamraoui and Karabo Poppy Moletsane for Wikipedia 20</a> unless stated.</div>
 		<div class="yearSwitcher">
 			<label>Show me another year!</label>
