@@ -106,21 +106,6 @@ import StatBox from './StatBox.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
 
-const PUZZLE = {
-	source: 'https://upload.wikimedia.org/wikipedia/commons/6/65/WP20Symbols_puzzleglobe1.svg',
-	width: 512,
-	height: 401
-};
-const PUZZLE_COLLAB = {
-	source: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Adapted_Wikipedia20symbol_collaboration.svg',
-	width: 512,
-	height: 401
-};
-const PEN_PAPER = {
-	source: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/WP20Symbols_PENANDPAPER.svg',
-	width: 512,
-	height: 401
-};
 const MEETING = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Adapted_Wikipedia20symbol_meeting.svg',
 	width: 512,
@@ -136,10 +121,6 @@ const COMMUNITY = {
 	width: 512,
 	height: 401
 };
-
-const humanDay = ( day ) => {
-	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays' ][ day ];
-}
 
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
@@ -298,34 +279,10 @@ export default {
 				if ( !this.editCount || this.editCount === 0 ) {
 					//return err();
 				}
-				const topDay = stats.dayofweek[ 0 ];
 				this.pages = [];
 				this.pages.push( facts.main( stats, YEAR, this.project ) )
-				if ( stats.paragraphs ) {
-					this.pages.push({
-						image: PUZZLE,
-						messagePrefix: 'Editing approximately',
-						value: toReadable( stats.paragraphs ),
-						qualifier: 'paragraphs',
-						messageSuffix: 'of text!'
-					} );
-				}
-				if ( stats.articleEdits > 0 ) {
-					this.pages = this.pages.concat( [ {
-						messagePrefix: 'You made',
-						value: toReadable( stats.articleEdits ),
-						qualifier: 'edits',
-						image: PEN_PAPER,
-						messageSuffix: `in ${toReadable(stats.articlesNumber)} different articles`
-					},
-					{
-						messagePrefix: 'You edited the most on',
-						class: 'smaller',
-						image: PUZZLE_COLLAB,
-						value: humanDay( parseInt( topDay.day, 10 ) ),
-						messageSuffix: `${topDay.count} edits`
-					} ] );
-				}
+				this.pages = this.pages.concat( facts.paragraphs( stats, YEAR, this.project ) );
+				this.pages = this.pages.concat( facts.habits( stats, YEAR, this.project ) );
 				const wikiUrl = (t) => {
 					return `https://${this.project}/wiki/${encodeURIComponent(t)}`;
 				};
