@@ -286,6 +286,7 @@ export default {
 				const wikiUrl = (t) => {
 					return `https://${this.project}/wiki/${encodeURIComponent(t)}`;
 				};
+				// FIXME: Move to facts/topArticles
 				if ( stats.top5[0] ) {
 					let topTitle = stats.top5[0].title;
 					this.pages = this.pages.concat( [
@@ -304,6 +305,7 @@ export default {
 					] );
 				}
 
+				// FIXME: Move to facts/talkEdits
 				if ( stats.talkEdits > 0 ) {
 					this.pages.push({
 						messagePrefix: 'You contributed',
@@ -315,6 +317,7 @@ export default {
 				}
 
 				let wasThanked = false;
+				// FIXME: Move to facts/thanks
 				if ( stats.thanksCount > 0 ) {
 					wasThanked = true;
 					this.pages = this.pages.concat( [
