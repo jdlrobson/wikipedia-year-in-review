@@ -171,6 +171,7 @@ const addThumbs = ( titles ) => {
 
 const summarize = ( contribs ) => {
     const articles = contribs.filter((c) => c && c.ns === 0);
+    const fileUploads = contribs.filter((c) => c && c.ns === 6).length;
     const top = topArticles(articles);
     const dayofweek = contribs.filter((c)=>c).map((c) => {
         const t = new Date( c.timestamp );
@@ -195,6 +196,7 @@ const summarize = ( contribs ) => {
             top5,
             articlesNumber: top.length,
             totalEdits: contribs.length,
+            fileUploads,
             articleEdits: articles.length,
             talkEdits: contribs.filter((c) => c && c.ns % 2 !== 0 ).length
         };

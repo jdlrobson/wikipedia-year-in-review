@@ -91,6 +91,8 @@
 </div>
 </template>
 <script>
+import toReadable from './facts/toReadable.js';
+import facts from './facts';
 import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { cdxIconArrowNext, cdxIconShare,
@@ -104,11 +106,6 @@ import StatBox from './StatBox.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
 
-const WIKIPEDIA = {
-	source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
-	width: 512,
-	height: 401
-};
 const PUZZLE = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/6/65/WP20Symbols_puzzleglobe1.svg',
 	width: 512,
@@ -301,36 +298,9 @@ export default {
 				if ( !this.editCount || this.editCount === 0 ) {
 					//return err();
 				}
-				
-				const toReadable = ( num ) => {
-					let msg = num;
-					if ( num > 1000 ) {
-						const thousands = parseInt( num / 1000, 10 )
-						if ( thousands > 0 ) {
-							msg = `${thousands}K+`;
-						}
-					}
-					return `${msg}`;
-
-				}
 				const topDay = stats.dayofweek[ 0 ];
 				this.pages = [];
-				if ( stats.totalEdits ) {
-					this.pages.push( {
-						image: WIKIPEDIA,
-						messagePrefix: 'You made',
-						value: toReadable( stats.totalEdits ),
-						qualifier: 'edits',
-						messageSuffix: 'across the project'
-					} );
-				} else {
-					this.pages.push( {
-						image: WIKIPEDIA,
-						messagePrefix: 'You didn\'t edit this project this year, but...',
-						qualifier: YEAR,
-						messageSuffix: 'is another year to contribute to the sum of all human knowledge!'
-					} );
-				}
+				this.pages.push( facts.main( stats, YEAR, this.project ) )
 				if ( stats.paragraphs ) {
 					this.pages.push({
 						image: PUZZLE,
@@ -551,4 +521,4 @@ footer a,
 	display: block;
 	margin-top: 10px;
 }
-</style>
+</style>./facts/facts.js
