@@ -229,6 +229,8 @@ const yir = ( username, year, project ) => {
         }, 'usercontribs' ).then((r) => summarize(r) )
     ] ).then( ( results ) => {
         const summary = Object.assign.apply({},results);
+        summary.year = year + 1;
+        summary.project = project;
         summaryCache[cacheKey] = summary;
         localStorage.setItem(CACHE_KEY, JSON.stringify(summaryCache) );
         return summary;

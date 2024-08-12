@@ -91,7 +91,6 @@
 </div>
 </template>
 <script>
-import toReadable from './facts/toReadable.js';
 import facts from './facts';
 import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
@@ -263,13 +262,8 @@ export default {
 				if ( !this.editCount || this.editCount === 0 ) {
 					//return err();
 				}
-				this.pages = [];
-				this.pages.push( facts.main( stats, YEAR, this.project ) )
-				this.pages = this.pages.concat( facts.paragraphs( stats, YEAR, this.project ) );
-				this.pages = this.pages.concat( facts.habits( stats, YEAR, this.project ) );
-				this.pages = this.pages.concat( facts.topArticles( stats ) );
-				this.pages = this.pages.concat( facts.talk( stats ) );
-				this.pages = this.pages.concat( facts.thanks( stats ) );
+				stats.year = YEAR;
+				this.pages = facts( stats );
 				this.activePage = this.pages[this.currentPage];
 			}, err );
 		}
@@ -389,4 +383,4 @@ footer a,
 	display: block;
 	margin-top: 10px;
 }
-</style>./facts/facts.js
+</style>
