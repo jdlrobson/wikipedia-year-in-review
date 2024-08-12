@@ -283,27 +283,7 @@ export default {
 				this.pages.push( facts.main( stats, YEAR, this.project ) )
 				this.pages = this.pages.concat( facts.paragraphs( stats, YEAR, this.project ) );
 				this.pages = this.pages.concat( facts.habits( stats, YEAR, this.project ) );
-				const wikiUrl = (t) => {
-					return `https://${this.project}/wiki/${encodeURIComponent(t)}`;
-				};
-				// FIXME: Move to facts/topArticles
-				if ( stats.top5[0] ) {
-					let topTitle = stats.top5[0].title;
-					this.pages = this.pages.concat( [
-						{
-							messagePrefix: 'You made contributions to',
-							image: stats.thumbs[0],
-							messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(topTitle)}">${topTitle}</a>]]`
-						},
-						...stats.top5.slice(1).map((t, i) => {
-							return {
-								image: stats.thumbs[i+1],
-								messagePrefix: 'and',
-								messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(t.title)}">${t.title}</a>]]`
-							};
-						} )
-					] );
-				}
+				this.pages = this.pages.concat( facts.topArticles( stats ) );
 
 				// FIXME: Move to facts/talkEdits
 				if ( stats.talkEdits > 0 ) {
