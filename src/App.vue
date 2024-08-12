@@ -106,12 +106,6 @@ import StatBox from './StatBox.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
 
-const MEETING = {
-	source: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Adapted_Wikipedia20symbol_meeting.svg',
-	width: 512,
-	height: 401
-};
-
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
 const CURRENT_YEAR = currentDate.getFullYear();
@@ -274,18 +268,7 @@ export default {
 				this.pages = this.pages.concat( facts.paragraphs( stats, YEAR, this.project ) );
 				this.pages = this.pages.concat( facts.habits( stats, YEAR, this.project ) );
 				this.pages = this.pages.concat( facts.topArticles( stats ) );
-
-				// FIXME: Move to facts/talkEdits
-				if ( stats.talkEdits > 0 ) {
-					this.pages.push({
-						messagePrefix: 'You contributed',
-						image: MEETING,
-						value: toReadable( stats.talkEdits ),
-						qualifier: 'times',
-						messageSuffix: 'to discussions.'
-					});
-				}
-
+				this.pages = this.pages.concat( facts.talk( stats ) );
 				this.pages = this.pages.concat( facts.thanks( stats ) );
 				this.activePage = this.pages[this.currentPage];
 			}, err );
