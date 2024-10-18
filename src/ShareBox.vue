@@ -9,6 +9,15 @@
 	<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adapted_Wikipedia20symbol_puzzleglobe.svg" width="512" height="401">
 	<div class="stats">
 		<stat-box
+			v-if="project === 'commons.wikimedia.org'"
+			:value="stats.fileUploads" label="file uploads"
+			:icon="uploadIcon"></stat-box>
+		<stat-box
+			v-else-if="project === 'www.wikidata.org'"
+			:value="stats.totalEdits" label="claims"
+			:icon="wikidataIcon"></stat-box>
+		<stat-box
+			v-else
 			:value="stats.totalEdits" label="edits"
 			:icon="editIcon"></stat-box>
 		<stat-box :value="stats.talkEdits" label="talk page edits"
@@ -33,6 +42,8 @@
 import StatBox from './StatBox.vue';
 import { defineComponent } from 'vue';
 import {
+	cdxIconLogoWikidata,
+	cdxIconUpload,
 	cdxIconOngoingConversation,
 	cdxIconUserTalk,
 	cdxIconEdit
@@ -50,6 +61,14 @@ export default defineComponent( {
 		},
 		project: {
 			type: String
+		},
+		wikidataIcon: {
+			type: String,
+			default: cdxIconLogoWikidata
+		},
+		uploadIcon: {
+			type: String,
+			default: cdxIconUpload
 		},
 		editIcon: {
 			type: String,
