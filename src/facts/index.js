@@ -5,6 +5,9 @@ import topArticles from './topArticles';
 import thanks from './thanks';
 import talk from './talk';
 
+/**
+ * @param {YIRStats} stats
+ */
 function facts( stats ) {
     const year = stats.year;
     const project = stats.project;

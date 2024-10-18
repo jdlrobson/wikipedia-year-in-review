@@ -203,6 +203,12 @@ const summarize = ( contribs ) => {
     });
 };
 
+/**
+ * @param {string} username
+ * @param {number} year
+ * @param {string} project
+ * @return {Promise<YIRStats>}
+ */
 const yir = ( username, year, project ) => {
     if ( !project.match( /[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !username.match(  /^[^:]*$/ ) ) {
         return Promise.reject();
@@ -223,7 +229,6 @@ const yir = ( username, year, project ) => {
             format: 'json',
             formatversion: 2,
             list: 'usercontribs',
-            formatversion: 2,
             ucuser: username,
             ucprop: 'title|timestamp|sizediff'
         }, 'usercontribs' ).then((r) => summarize(r) )

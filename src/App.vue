@@ -60,13 +60,13 @@
 			</h3>
 			<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adapted_Wikipedia20symbol_puzzleglobe.svg" width="512" height="401">
 			<div class="stats">
-				<stat-box :value="editCount" label="edits"
+				<stat-box :value="stats.totalEdits" label="edits"
 					:icon="editIcon"></stat-box>
-				<stat-box :value="talkCount" label="talk page edits"
+				<stat-box :value="stats.talkEdits" label="talk page edits"
 					:icon="talkIcon"></stat-box>
-				<stat-box :value="thanksCount" label="thanks"
+				<stat-box :value="stats.thanksCount" label="thanks"
 					:icon="thankIcon"></stat-box>
-				<stat-box :value="thankedCount" label="thanked"
+				<stat-box :value="stats.thankedCount" label="thanked"
 					:icon="thankIcon"></stat-box>
 			</div>
 			<h3 class="year"><span>{{ previousYear }}</span></h3>
@@ -92,6 +92,7 @@
 </template>
 <script>
 import facts from './facts';
+import toText from './facts/toText.js';
 import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { cdxIconArrowNext, cdxIconShare,
@@ -104,6 +105,7 @@ import Page from './Page.vue';
 import StatBox from './StatBox.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
+import { defineComponent } from "vue";
 
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
@@ -113,7 +115,7 @@ const PREVIOUS_YEAR = YEAR - 1;
 const LAST_FIVE = [ YEAR - 1, YEAR - 2, YEAR - 3, YEAR - 4, YEAR - 5 ].map( ( year ) => ( {
 	label: `${year}`, value: year
 } ) );
-export default {
+export default defineComponent( {
 	name: 'App',
 	components: {
 		Page,
@@ -175,7 +177,6 @@ export default {
 			this.nextYear = y + 1;
 		},
 		shareIt() {
-			const SHARE_TEXT = `Here is how I have been contributing to Wikipedia in ${PREVIOUS_YEAR}!`;
 			const share = (blob) => {
 				let msg = '';
 				try {
@@ -188,7 +189,7 @@ export default {
 				} catch (error) {
 					// pass.
 					try {
-						navigator.clipboard.writeText( `${SHARE_TEXT} Edits: ${this.editCount}, Discussions: ${this.talkCount}, Thanks: ${this.thanksCount}, Thanked: ${this.thankedCount} #wikipediaYIR` );
+						navigator.clipboard.writeText( toText( this.stats ) );
 						msg = 'Text has been shared to your clipboard.';
 					} catch (error) {
 						console.log('clipboard text error', error);
@@ -255,14 +256,7 @@ export default {
 				clearInterval( loader );
 				clearInterval( statuschecker );
 				this.loading = 0;
-				this.editCount = stats.totalEdits;
-				this.talkCount = stats.talkEdits;
-				this.thanksCount = stats.thanksCount;
-				this.thankedCount = stats.thankedCount;
-				if ( !this.editCount || this.editCount === 0 ) {
-					//return err();
-				}
-				stats.year = YEAR;
+				this.stats = stats;
 				this.pages = facts( stats );
 				this.activePage = this.pages[this.currentPage];
 			}, err );
@@ -276,15 +270,22 @@ export default {
 			loading: 0,
 			status: '',
 			error: false,
-			editCount: 0,
 			activePage: null,
 			currentPage: -1,
 			pages: [],
+			/* @type YIRStats */
+			stats: {
+				year: YEAR,
+				thankedCount: 0,
+				talkEdits: 0,
+				thanksCount: 0,
+				totalEdits: 0
+			},
 			project: 'en.wikipedia.org',
 			username: ''
 		}
 	}
-};
+} );
 </script>
 <style scoped>
 .nextIcon {
