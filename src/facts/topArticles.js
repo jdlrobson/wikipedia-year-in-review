@@ -1,7 +1,17 @@
+/**
+ * @param {string} project
+ * @param {string} title
+ * @return {string}
+ */
 const wikiUrl = (project, title) => {
 	return `https://${project}/wiki/${encodeURIComponent(title)}`;
 };
 
+/**
+ * @param {YIRStats} stats
+ * @param {string} project
+ * @return {YIRFact[]}
+ */
 export default ( stats, project ) => {
    if ( stats.top5[0] ) {
 		let topTitle = stats.top5[0].title;

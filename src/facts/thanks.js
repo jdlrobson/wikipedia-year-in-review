@@ -9,9 +9,14 @@ const COMMUNITY = {
 	width: 512,
 	height: 401
 };
+
+/**
+ * @param {YIRStats} stats
+ * @return {YIRFact[]}
+ */
 export default ( stats ) => {
 	let wasThanked = false;
-	let pages = [];
+	let /** @type YIRFact[] */pages = [];
 	if ( stats.thanksCount > 0 ) {
 		wasThanked = true;
 		pages = pages.concat( [

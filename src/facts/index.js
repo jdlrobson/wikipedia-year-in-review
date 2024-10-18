@@ -7,15 +7,16 @@ import talk from './talk';
 
 /**
  * @param {YIRStats} stats
+ * @return {YIRFact[]}
  */
 function facts( stats ) {
     const year = stats.year;
     const project = stats.project;
     let pages = [];
     pages.push( main( stats, year, project ) )
-    pages = pages.concat( paragraphs( stats, year, project ) );
-    pages = pages.concat( habits( stats, year, project ) );
-    pages = pages.concat( topArticles( stats ) );
+    pages = pages.concat( paragraphs( stats ) );
+    pages = pages.concat( habits( stats ) );
+    pages = pages.concat( topArticles( stats, project ) );
     pages = pages.concat( talk( stats ) );
     pages = pages.concat( thanks( stats ) );
     return pages;

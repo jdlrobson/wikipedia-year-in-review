@@ -11,10 +11,18 @@ const PEN_PAPER = {
 	height: 401
 };
 
+/**
+ * @param {number} day
+ * @return {string}
+ */
 const humanDay = ( day ) => {
 	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays' ][ day ];
 }
 
+/**
+ * @param {YIRStats} stats
+ * @return {YIRFact[]}
+ */
 export default ( stats ) => {
     const topDay = stats.dayofweek[ 0 ];
     if ( stats.articleEdits === 0 ) {
@@ -31,7 +39,7 @@ export default ( stats ) => {
         messagePrefix: 'You edited the most on',
         class: 'smaller',
         image: PUZZLE_COLLAB,
-        value: humanDay( parseInt( topDay.day, 10 ) ),
+        value: humanDay( topDay.day ),
         messageSuffix: `${topDay.count} edits`
     } ];
 }

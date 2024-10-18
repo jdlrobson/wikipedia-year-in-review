@@ -20,6 +20,10 @@ const pruneCache = () => {
 };
 
 let status = '31st December';
+/**
+ * @param {string} url
+ * @return {Promise<ApiRawResponse>}
+ */
 const cacheFetch = ( url ) => {
     return new Promise( ( resolve, reject ) => {
         const cached = shortTermCache[url];
@@ -50,6 +54,10 @@ const cacheFetch = ( url ) => {
 
 };
 
+/**
+ * @param {number} day
+ * @return {string}
+ */
 const getDateSuffix = ( day ) => {
     if ( day === 1 ) {
         return 'st';
@@ -62,10 +70,18 @@ const getDateSuffix = ( day ) => {
     }
 }
 
+/**
+ * @param {string} timestamp
+ * @return {Date}
+ */
 const toDate = ( timestamp ) => {
     return new Date( timestamp );
 };
 
+/**
+ * @param {string} timestamp
+ * @return {string}
+ */
 const toReadableMonth = ( timestamp ) => {
     const date = toDate( timestamp );
     const m = date.getMonth();
@@ -73,12 +89,20 @@ const toReadableMonth = ( timestamp ) => {
     return `${months[m]}`;
 }
 
+/**
+ * @param {string} url
+ * @param {Record<string, string>} params
+ * @param {'logevents'|'usercontribs'} list
+ * @return {Promise<ApiListObj[]>}
+ */
 const continueFetch = ( url, params, list ) => {
     const q = new URLSearchParams( params ).toString()
-    let result = [];
+    let /** @type ApiListObj[] */result = [];
     return cacheFetch( `${url}?${q}` ).then( (r) => {
         result = result.concat(
-            ( r.query[ list ] || [] ).filter(r=>r)
+            ( r.query[ list ] || [] )
+                // @ts-ignore
+                .filter((/** @type ApiListObj[] */r)=>r)
         );
         const c = result[result.length-1];
         if ( c ) {
@@ -91,7 +115,7 @@ const continueFetch = ( url, params, list ) => {
             Object.keys( r.continue ).forEach( ( key ) => {
                 params[key] = r.continue[key];
             } );
-            return continueFetch(url, params, list).then( (r) => {
+            return continueFetch(url, params, list).then( (/** @type ApiListObj[] */r) => {
                 return result.concat( r ).filter(r=>r);
             } );
         } else {
@@ -100,30 +124,53 @@ const continueFetch = ( url, params, list ) => {
     })
 };
 
+/**
+ * @param {*} articles
+ * @param {'title'|'user'|'day'} field
+ * @return {YIRPage[]}
+ */
 const topArticles = (articles, field = 'title') => {
-    const titles = {};
+    const /** @type Record<string,number> */titles = {};
+    // @ts-ignore
     articles.forEach((t) => {
         if ( titles[t[field]] === undefined ) {
             titles[t[field]] = 0;
         }
         titles[t[field]]++;
     });
+    // @ts-ignore
     return Object.keys( titles )
         .map( ( title ) => ({ [field]: title, count: titles[title] }) )
         .sort((a,b) => a.count > b.count ? -1 : 1)
 };
 
+/**
+ * @param {YIRDay[]} days
+ * @return {YIRDay[]}
+ */
+const topDays = (days) => {
+    // @ts-ignore
+    /** @type YIRDay[] */const top = topArticles(days, 'day');
+    return top;
+};
+
+/**
+ * @param {string} username
+ * @param {number} year
+ * @param {string} project
+ * @return {Promise<YIRStatsThanks>}
+ */
 const thanksSummary = ( username, year, project ) => {
     return continueFetch(`https://${project}/w/api.php`, {
         leend: `${year - 1}-12-31T23:59:59.000Z`,
-        maxage: CACHE_TIME,
-        smaxage: CACHE_TIME,
+        maxage: `${CACHE_TIME}`,
+        smaxage: `${CACHE_TIME}`,
         lestart: `${year + 1}-01-01T00:00:00.000Z`,
-        lelimit: 500,
+        lelimit: '500',
         origin: '*',
         action: 'query',
         format: 'json',
-        formatversion: 2,
+        formatversion: '2',
         list: 'logevents',
         letype: 'thanks',
         leuser: username
@@ -137,21 +184,27 @@ const thanksSummary = ( username, year, project ) => {
     })
 };
 
+/**
+ * @param {string} username
+ * @param {number} year
+ * @param {string} project
+ * @return {Promise<YIRStatsThanked>}
+ */
 const thankedSummary = ( username, year, project ) => {
     return continueFetch(`https://${project}/w/api.php`, {
         leend: `${year - 1}-12-31T23:59:59.000Z`,
         lestart: `${year + 1}-01-01T00:00:00.000Z`,
-        maxage: CACHE_TIME,
-        smaxage: CACHE_TIME,
-        lelimit: 500,
+        maxage: `${CACHE_TIME}`,
+        smaxage: `${CACHE_TIME}`,
+        lelimit: '500',
         origin: '*',
         action: 'query',
         format: 'json',
-        formatversion: 2,
+        formatversion: '2',
         list: 'logevents',
         letype: 'thanks',
         letitle: `User:${username}`
-    }, 'logevents' ).then((thanks) => {
+    }, 'logevents' ).then((/** @type {ApiListObj[]} */thanks) => {
         return {
             topThanksFrom: topArticles( thanks, 'user' ),
             thankedCount: thanks.length
@@ -159,6 +212,10 @@ const thankedSummary = ( username, year, project ) => {
     })
 };
 
+/**
+ * @param {string[]} titles
+ * @return {Promise<YIRImage[]>}
+ */
 const addThumbs = ( titles ) => {
     return Promise.all(
         titles.map(
@@ -169,13 +226,18 @@ const addThumbs = ( titles ) => {
     );
 }
 
+/**
+ * @param {ApiListObj[]} contribs
+ * @return {Promise<YIRStatsContribs>}
+ */
 const summarize = ( contribs ) => {
     const articles = contribs.filter((c) => c && c.ns === 0);
     const fileUploads = contribs.filter((c) => c && c.ns === 6).length;
     const top = topArticles(articles);
-    const dayofweek = contribs.filter((c)=>c).map((c) => {
+    const contribDayofweek = contribs.filter((c)=>c).map((c) => {
         const t = new Date( c.timestamp );
         return {
+            count: 0,
             day: t.getDay()
         };
     });
@@ -188,17 +250,20 @@ const summarize = ( contribs ) => {
     }, 0 );
     const top5 = top.slice(0, 5);
     return addThumbs(top5.map((t) => t.title)).then((thumbs) => {
+        const dayofweek = topDays( contribDayofweek );
         return {
             thumbs,
             totalBytes,
-            paragraphs: parseInt( totalBytes / 1000, 10 ),
-            dayofweek: topArticles( dayofweek, 'day' ),
+            paragraphs: totalBytes / 1000,
+            dayofweek,
             top5,
             articlesNumber: top.length,
             totalEdits: contribs.length,
             fileUploads,
             articleEdits: articles.length,
-            talkEdits: contribs.filter((c) => c && c.ns % 2 !== 0 ).length
+            talkEdits: contribs.filter(
+                (/** @type {ApiListObj} */ c) => c && c.ns % 2 !== 0
+            ).length
         };
     });
 };
@@ -223,17 +288,17 @@ const yir = ( username, year, project ) => {
         continueFetch(`https://${project}/w/api.php`, {
             ucend: `${year - 1}-12-31T23:59:59.000Z`,
             ucstart: `${year + 1}-01-01T00:00:00.000Z`,
-            uclimit: 500,
+            uclimit: '500',
             origin: '*',
             action: 'query',
             format: 'json',
-            formatversion: 2,
+            formatversion: '2',
             list: 'usercontribs',
             ucuser: username,
             ucprop: 'title|timestamp|sizediff'
-        }, 'usercontribs' ).then((r) => summarize(r) )
+        }, 'usercontribs' ).then((/** @type {ApiListObj[]} */r) => summarize(r) )
     ] ).then( ( results ) => {
-        const summary = Object.assign.apply({},results);
+        const summary = Object.assign.apply( {}, results );
         summary.year = year + 1;
         summary.project = project;
         summaryCache[cacheKey] = summary;

@@ -94,7 +94,6 @@
 import facts from './facts';
 import toText from './facts/toText.js';
 import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { cdxIconArrowNext, cdxIconShare,
 	cdxIconOngoingConversation,
 	cdxIconUserTalk,
@@ -105,7 +104,7 @@ import Page from './Page.vue';
 import StatBox from './StatBox.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
@@ -242,8 +241,7 @@ export default defineComponent( {
 			const loader = setInterval( () => {
 				this.loading++;
 			}, 1000 );
-			const err = ( er ) => {
-				console.log('error', er);
+			const err = () => {
 				this.error = true;
 				this.currentPage = -1;
 				clearInterval( loader );
@@ -272,6 +270,7 @@ export default defineComponent( {
 			error: false,
 			activePage: null,
 			currentPage: -1,
+			/* @type YIRFact[] */
 			pages: [],
 			/* @type YIRStats */
 			stats: {

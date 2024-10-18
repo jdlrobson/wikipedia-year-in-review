@@ -5,6 +5,12 @@ const WIKIPEDIA = {
 	height: 401
 };
 
+/**
+ * @param {YIRStats} stats
+ * @param {number} year
+ * @param {string} project
+ * @return {YIRFact}
+ */
 export default ( stats, year, project ) => {
     let contribs, qualifier, messagePrefix, messageSuffix;
     switch( project ) {

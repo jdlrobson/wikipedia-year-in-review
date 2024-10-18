@@ -6,6 +6,10 @@ const PUZZLE = {
 	height: 401
 };
 
+/**
+ * @param {YIRStats} stats
+ * @return {YIRFact[]}
+ */
 export default ( stats ) => {
     if ( stats.paragraphs ) {
         return [ {

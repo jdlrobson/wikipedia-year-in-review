@@ -5,6 +5,10 @@ const MEETING = {
 	height: 401
 };
 
+/**
+ * @param {YIRStats} stats
+ * @return {YIRFact[]}
+ */
 export default ( stats ) => {
 	if ( stats.talkEdits > 0 ) {
 		return [ {
