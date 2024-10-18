@@ -6,7 +6,9 @@
 	<h3>
 		<span>{{ project }}</span>
 	</h3>
-	<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Adapted_Wikipedia20symbol_puzzleglobe.svg" width="512" height="401">
+	<img
+		:src="imageLogo"
+		width="512" height="401">
 	<div class="stats">
 		<stat-box
 			v-if="project === 'commons.wikimedia.org'"
@@ -55,6 +57,20 @@ export default defineComponent( {
 		StatBox
 	},
 	name: 'ShareBox',
+	computed: {
+		imageLogo() {
+			switch ( this.project ) {
+				case 'www.mediawiki.org':
+					return 'https://www.wikidata.org/static/images/icons/mediawikiwiki.svg';
+				case 'www.wikidata.org':
+					return 'https://www.wikidata.org/static/images/icons/wikidatawiki.svg';
+				case 'commons.wikimedia.org':
+					return 'https://commons.wikimedia.org/static/images/icons/commonswiki.svg';
+				default:
+					return 'https://upload.wikimedia.org/wikipedia/commons/a/a7/Adapted_Wikipedia20symbol_puzzleglobe.svg';
+			}
+		}
+	},
 	props: {
 		username: {
 			type: String
