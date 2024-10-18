@@ -72,6 +72,10 @@ export default defineComponent( {
 		}
 	},
 	props: {
+		host: {
+			type: String,
+			default: window.location.host
+		},
 		username: {
 			type: String
 		},
