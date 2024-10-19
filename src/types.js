@@ -13,6 +13,12 @@
 /**
  * @typedef {Object} YIRDay
  * @property {number} day
+ * @property {number} hour
+ * @property {number} count
+ */
+/**
+ * @typedef {Object} YIRTimeSlot
+ * @property {string} timespan
  * @property {number} count
  */
 /**
@@ -46,6 +52,7 @@
  * @property {number} fileUploads
  * @property {YIRPage[]} top5
  * @property {YIRDay[]} dayofweek
+ * @property {YIRTimeSlot[]} hourofweek
  * @property {YIRImage[]} thumbs
  */
 /**

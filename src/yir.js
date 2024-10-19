@@ -155,6 +155,39 @@ const topDays = (days) => {
 };
 
 /**
+ * @param {YIRDay[]} days
+ * @return {YIRTimeSlot[]}
+ */
+const topHours = (days) => {
+    const /** @type Record<string,number> */timeslot = {};
+    const slots = [ 0, 6, 10, 12, 14, 17, 22 ];
+    slots.forEach( ( hour ) => timeslot[`${hour}`] = 0 );
+    days.forEach((t) => {
+        const hour = t.hour;
+        let i = 0;
+        while ( slots[ i ] < hour ) {
+            i++;
+        }
+        if ( i >= slots.length ) {
+            i = slots.length - 1;
+        }
+        timeslot[`${slots[i]}`]++;
+    } );
+    return Object.keys( timeslot )
+        .map( ( hour ) => {
+            let nextHourIndex = slots.indexOf( parseInt( hour, 10 ) ) + 1;
+            if ( nextHourIndex >= slots.length ) {
+                nextHourIndex = 0;
+            }
+            return {
+                timespan: `${hour}:00 - ${slots[nextHourIndex]}:00`,
+                count: timeslot[ hour ]
+            };
+        } )
+        .sort((a,b) => a.count > b.count ? -1 : 1)
+};
+
+/**
  * @param {string} username
  * @param {number} year
  * @param {string} project
@@ -238,6 +271,7 @@ const summarize = ( contribs ) => {
         const t = new Date( c.timestamp );
         return {
             count: 0,
+            hour: t.getHours(),
             day: t.getDay()
         };
     });
@@ -251,11 +285,13 @@ const summarize = ( contribs ) => {
     const top5 = top.slice(0, 5);
     return addThumbs(top5.map((t) => t.title)).then((thumbs) => {
         const dayofweek = topDays( contribDayofweek );
+        const hourofweek = topHours( contribDayofweek );
         return {
             thumbs,
             totalBytes,
             paragraphs: totalBytes / 1000,
             dayofweek,
+            hourofweek,
             top5,
             articlesNumber: top.length,
             totalEdits: contribs.length,

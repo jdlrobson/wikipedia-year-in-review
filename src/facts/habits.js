@@ -1,4 +1,6 @@
 import toReadable from "./toReadable";
+import timeofday from './timeOfDay';
+import { humanDay } from './habitUtils';
 
 const PUZZLE_COLLAB = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Adapted_Wikipedia20symbol_collaboration.svg',
@@ -10,14 +12,6 @@ const PEN_PAPER = {
 	width: 512,
 	height: 401
 };
-
-/**
- * @param {number} day
- * @return {string}
- */
-const humanDay = ( day ) => {
-	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays' ][ day ];
-}
 
 /**
  * @param {YIRStats} stats
@@ -41,5 +35,5 @@ export default ( stats ) => {
         image: PUZZLE_COLLAB,
         value: humanDay( topDay.day ),
         messageSuffix: `${topDay.count} edits`
-    } ];
+    }, timeofday( stats.hourofweek )];
 }
