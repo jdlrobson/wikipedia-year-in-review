@@ -3,6 +3,7 @@
 	<h2>
 		<strong>@{{ username }}</strong>
 	</h2>
+	<div class="stat-note">{{ note }}</div>
 	<h3>
 		<span>{{ project }}</span>
 	</h3>
@@ -50,6 +51,7 @@ import {
 	cdxIconUserTalk,
 	cdxIconEdit
 } from '@wikimedia/codex-icons';
+import { getTimeslotNote, humanDay } from './facts/habitUtils';
 
 // @vue/component
 export default defineComponent( {
@@ -58,6 +60,11 @@ export default defineComponent( {
 	},
 	name: 'ShareBox',
 	computed: {
+		note() {
+			const topDay = this.stats.dayofweek[ 0 ];
+			const topSlot = this.stats.hourofweek[ 0 ];
+			return `${ humanDay( topDay.day )} / ${ getTimeslotNote( topSlot.timespan )}`;
+		},
 		imageLogo() {
 			switch ( this.project ) {
 				case 'www.mediawiki.org':
@@ -102,6 +109,9 @@ export default defineComponent( {
 			type: Object,
 			default: cdxIconUserTalk
 		},
+		/**
+		 * @type YIRStats
+		 */
 		stats: {
 			type: Object
 		}
@@ -109,6 +119,13 @@ export default defineComponent( {
 } );
 </script>
 <style scoped>
+h2, h3 {
+	margin: 0;
+}
+footer a {
+	color: inherit;
+	display: block;
+}
 .stats {
 	margin-top: 20px;
 	display: flex;
@@ -119,7 +136,10 @@ export default defineComponent( {
 	align-content: center;
 	justify-content: center;
 }
-
+.stat-note {
+	font-size: 0.7em;
+    color: #ccc;
+}
 .sharebox {
 	border-radius: 15px;
 	margin-top: 20px;
