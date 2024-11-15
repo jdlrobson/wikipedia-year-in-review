@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "parcel build index.html",
-    "start": "parcel index.html ",
+    "build": "npm run copy-assets && parcel build index.html",
+    "copy-assets": "cp -r src/assets/* dist",
+    "start": "npm run copy-assets && parcel index.html ",
     "test": "tsc"
   },
   "author": "",

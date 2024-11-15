@@ -29,8 +29,9 @@ const cacheFetch = ( url ) => {
         const cached = shortTermCache[url];
         if ( cached ) {
             setTimeout( () => {
-                resolve(JSON.parse(cached));
+                resolve(typeof cached === 'string' ? JSON.parse(cached) : cached);
             }, DELAY);
+            return;
         }
         fetch(url).then((r) => r.json())
             .then((json)=> {
@@ -93,11 +94,11 @@ const toReadableMonth = ( timestamp ) => {
  * @param {string} url
  * @param {Record<string, string>} params
  * @param {'logevents'|'usercontribs'} list
+ * @param {ApiListObj[]} [result] defaults to empty array
  * @return {Promise<ApiListObj[]>}
  */
-const continueFetch = ( url, params, list ) => {
-    const q = new URLSearchParams( params ).toString()
-    let /** @type ApiListObj[] */result = [];
+const continueFetch = ( url, params, list, result = [] ) => {
+    const q = new URLSearchParams( params ).toString();
     return cacheFetch( `${url}?${q}` ).then( (r) => {
         result = result.concat(
             ( r.query[ list ] || [] )
@@ -311,6 +312,62 @@ const summarize = ( contribs ) => {
 };
 
 /**
+ * @typedef UserCachePartial
+ * @property {ApiListObj[]} result
+ * @property {string|null} ucend
+ */
+/**
+ * @param {string} username
+ * @return {Promise<UserCachePartial>}
+ */
+const loadUserCache = ( username, year ) => {
+    return new Promise( ( resolve ) => {
+        const userCacheUrl = `data/shortcut/${year}/${encodeURIComponent( username.replace( / /g, '_' ) )}.json`;
+        fetch( userCacheUrl )
+            .then( ( r ) => r.json() )
+            .then( ( result ) => {
+                let ucend = null;
+                if ( result.length ) {
+                    const date = new Date( result[0].timestamp )
+                    date.setTime( date.getTime() + 1000 );
+                    ucend = date.toISOString();
+                }
+                resolve( {
+                    result,
+                    ucend
+                } )
+            }, () => {
+                resolve( {
+                    result: [],
+                    ucend: null
+                } )
+            } );
+    } );
+};
+
+/**
+ * @param {string} username
+ * @param {number} year
+ * @param {string} project
+ * @return {Promise<YIRStatsContribs>}
+ */
+const contributionsFetch = ( username, year, project ) => {
+    // first check the local cache
+    return loadUserCache( username, year ).then(( { result, ucend } ) => continueFetch(`https://${project}/w/api.php`, {
+        ucend: ucend || `${year - 1}-12-31T23:59:59.000Z`,
+        ucstart: `${year + 1}-01-01T00:00:00.000Z`,
+        uclimit: '500',
+        origin: '*',
+        action: 'query',
+        format: 'json',
+        formatversion: '2',
+        list: 'usercontribs',
+        ucuser: username,
+        ucprop: 'title|timestamp|sizediff'
+    }, 'usercontribs', result ).then((/** @type {ApiListObj[]} */r) => summarize(r) ) );
+};
+
+/**
  * @param {string} username
  * @param {number} year
  * @param {string} project
@@ -327,18 +384,7 @@ const yir = ( username, year, project ) => {
     return Promise.all( [
         thanksSummary( username, year, project ),
         thankedSummary( username, year, project ),
-        continueFetch(`https://${project}/w/api.php`, {
-            ucend: `${year - 1}-12-31T23:59:59.000Z`,
-            ucstart: `${year + 1}-01-01T00:00:00.000Z`,
-            uclimit: '500',
-            origin: '*',
-            action: 'query',
-            format: 'json',
-            formatversion: '2',
-            list: 'usercontribs',
-            ucuser: username,
-            ucprop: 'title|timestamp|sizediff'
-        }, 'usercontribs' ).then((/** @type {ApiListObj[]} */r) => summarize(r) )
+        contributionsFetch( username, year, project )
     ] ).then( ( results ) => {
         const summary = Object.assign.apply( {}, results );
         summary.year = year + 1;
