@@ -28,6 +28,10 @@
 			:icon="thankIcon"></stat-box>
 		<stat-box :value="stats.thankedCount" label="thanked"
 			:icon="thankIcon"></stat-box>
+		<stat-box v-if="stats.templateEdits" :value="stats.templateEdits" label="template edits"
+			:icon="templateIcon"></stat-box>
+		<stat-box v-if="stats.interfaceEdits" :value="stats.interfaceEdits" label="interface edits"
+			:icon="gadgetIcon"></stat-box>
 		<div class="sharebox-info-chips">
 			<cdx-info-chip v-for="note in notes">{{ note }}</cdx-info-chip>
 		</div>
@@ -47,6 +51,8 @@
 import StatBox from './StatBox.vue';
 import { defineComponent } from 'vue';
 import {
+	cdxIconLabFlask,
+	cdxIconTemplateAdd,
 	cdxIconLogoWikidata,
 	cdxIconUpload,
 	cdxIconOngoingConversation,
@@ -67,10 +73,19 @@ export default defineComponent( {
 		notes() {
 			const topDay = this.stats.dayofweek[ 0 ];
 			const topSlot = this.stats.hourofweek[ 0 ];
-			return [
+			const notes = [
 				humanDay( topDay.day ),
 				getTimeslotNote( topSlot.timespan )
 			];
+			if ( this.stats.templateEdits > 50 ) {
+				notes.push( 'template wizard' );
+			}
+			if ( this.stats.interfaceEdits > 20 ) {
+				notes.push( 'interface hero' );
+			}
+
+
+			return notes;
 		},
 		imageLogo() {
 			switch ( this.project ) {
@@ -99,6 +114,14 @@ export default defineComponent( {
 		wikidataIcon: {
 			type: String,
 			default: cdxIconLogoWikidata
+		},
+		templateIcon: {
+			type: String,
+			default: cdxIconTemplateAdd
+		},
+		gadgetIcon: {
+			type: String,
+			default: cdxIconLabFlask
 		},
 		uploadIcon: {
 			type: String,

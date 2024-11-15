@@ -4,6 +4,8 @@ import paragraphs from './paragraphs';
 import topArticles from './topArticles';
 import thanks from './thanks';
 import talk from './talk';
+import templates from './templates';
+import interfaces from './interface';
 
 /**
  * @param {YIRStats} stats
@@ -18,6 +20,8 @@ function facts( stats ) {
     pages = pages.concat( habits( stats ) );
     pages = pages.concat( topArticles( stats, project ) );
     pages = pages.concat( talk( stats ) );
+    pages = pages.concat( templates( stats ) );
+    pages = pages.concat( interfaces( stats ) );
     pages = pages.concat( thanks( stats ) );
     return pages;
 }

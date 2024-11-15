@@ -297,6 +297,12 @@ const summarize = ( contribs ) => {
             totalEdits: contribs.length,
             fileUploads,
             articleEdits: articles.length,
+            interfaceEdits: contribs.filter(
+                (/** @type {ApiListObj} */ c) => c && c.ns === 8
+            ).length,
+            templateEdits: contribs.filter(
+                (/** @type {ApiListObj} */ c) => c && ( c.ns === 828 || c.ns === 10 )
+            ).length,
             talkEdits: contribs.filter(
                 (/** @type {ApiListObj} */ c) => c && c.ns % 2 !== 0
             ).length

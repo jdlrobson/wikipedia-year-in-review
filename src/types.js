@@ -42,6 +42,8 @@
  */
 /**
  * @typedef {Object} YIRStatsContribs
+ * @property {number} templateEdits
+ * @property {number} interfaceEdits
  * @property {number} talkEdits
  * @property {number} totalEdits
  * @property {number} articlesNumber
