@@ -3,7 +3,7 @@
  * @return {string}
  */
 export const humanDay = ( day ) => {
-	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays' ][ day ];
+	return [ 'Sundays','Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays' ][ day ];
 }
 
 /**
