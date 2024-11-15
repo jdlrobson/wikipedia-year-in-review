@@ -10,7 +10,6 @@ const CHEMISTRY = {
  * @return {YIRFact[]}
  */
 export default ( stats ) => {
-	console.log('got',stats);
 	if ( stats.interfaceEdits > 0 ) {
 		return [ {
 			messagePrefix: 'You edited gadgets and interface messages',
