@@ -21,7 +21,13 @@
 			<span v-for="i in Array(loading)" :key="`l-${i}`">✏️</span>
 			<div>Retrieving data for <span>{{  status }}</span> {{ previousYear }}.</div>
 		</div>
-		<cdx-message v-if="error" type="error">An error occurred while trying to check that. Did you use the correct username?</cdx-message>
+		<cdx-message v-if="error" type="error">
+			<span v-if="errorMsg === 'share-error'">An unexpected error occurred during the share process.</span>
+			<span v-if="errorMsg === 'clipboard-error'">An unexpected error occurred while attempting to copy to the clipboard.</span>
+			<span v-else-if="errorMsg === 'username-disabled-error'">This username has too many edits.
+				Unfortunately it is not supported at the current time.</span>
+			<span v-else>An error occurred while trying to check that. Did you use the correct username?</span>
+		</cdx-message>
 		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>. This tool is a personal project and not affiliated or sponsored by the Wikimedia Foundation.</footer>
 		<div class="license">All illustrations CC0 1.0 adapted from <a href="https://commons.wikimedia.org/wiki/Category:Adapted_Wikipedia_20">Jasmina El Bouamraoui and Karabo Poppy Moletsane for Wikipedia 20</a> unless stated.</div>
 		<div class="yearSwitcher">
@@ -151,7 +157,7 @@ export default defineComponent( {
 						navigator.clipboard.writeText( toText( this.stats ) );
 						msg = 'Text has been shared to your clipboard.';
 					} catch (error) {
-						console.log('clipboard text error', error);
+						this.errorMsg = 'clipboard-error';
 					}
 				}
 				if ( navigator.share ) {
@@ -164,7 +170,8 @@ export default defineComponent( {
 							url: `https://${location.host}`
 						};
 						return navigator.share(shareData).then(() => msg, (err) => {
-							console.log('share error',err)
+							this.errorMsg = 'share-error';
+							this.error = true;
 						});
 					}
 				}
@@ -179,11 +186,12 @@ export default defineComponent( {
 						this.feedback = msg;
 						this.error = false;
 					}, (err) => {
-						console.log(err);
+						this.errorMsg = 'share-error';
 						this.error = true;
 					} );
 				})
 			.catch(function (error) {
+				this.errorMsg = 'share-error';
 				this.error = true;
 			});
 		},
@@ -201,7 +209,10 @@ export default defineComponent( {
 			const loader = setInterval( () => {
 				this.loading++;
 			}, 1000 );
-			const err = () => {
+			const err = ( err ) => {
+				if ( err.toString().indexOf( 'TOOMANYEDITS' ) > -1 ) {
+					this.errorMsg = 'username-disabled-error';
+				}
 				this.error = true;
 				this.currentPage = -1;
 				clearInterval( loader );
@@ -222,6 +233,7 @@ export default defineComponent( {
 	},
 	data() {
 		return {
+			errorMsg: '',
 			previousYear: PREVIOUS_YEAR,
 			nextYear: YEAR,
 			feedback: '',
@@ -303,5 +315,10 @@ footer a,
 .yearSwitcher select {
 	display: block;
 	margin-top: 10px;
+}
+.cdx-message {
+    min-width: 340px;
+	font-size: 14px;
+	text-align: left;
 }
 </style>
