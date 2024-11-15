@@ -7,8 +7,11 @@ export default ( num ) => {
     if ( num > 1000 ) {
         const thousands = num / 1000;
         if ( thousands > 0 ) {
-            msg = `${thousands}K+`;
+            msg = `${thousands.toFixed(1)}K+`;
         }
+    } else if ( num > 1000000 ) {
+        const millions = num / 1000000;
+        msg = `${millions.toFixed(1)}M+`;
     }
     return `${msg}`;
 }
