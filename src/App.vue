@@ -79,7 +79,9 @@ import ShareBox from './ShareBox.vue';
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
 const CURRENT_YEAR = currentDate.getFullYear();
-const YEAR = MONTH === 10 ? CURRENT_YEAR + 1 : CURRENT_YEAR;
+const isLocalhost = location.host.indexOf('localhost') > -1;
+const START_MONTH = isLocalhost ? 10 : 11;
+const YEAR = MONTH === START_MONTH ? CURRENT_YEAR + 1 : CURRENT_YEAR;
 const PREVIOUS_YEAR = YEAR - 1;
 const LAST_FIVE = [ YEAR - 1, YEAR - 2, YEAR - 3, YEAR - 4, YEAR - 5 ].map( ( year ) => ( {
 	label: `${year}`, value: year
