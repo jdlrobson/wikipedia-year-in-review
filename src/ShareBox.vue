@@ -106,7 +106,6 @@ export default defineComponent( {
 					label: '100K club',
 					tooltip: 'You edited more than 1,000,000 times'
 				} );
-				notes.push( '100K club' );
 			} else if ( this.stats.totalEdits > 10000 ) {
 				notes.push( {
 					label: '10K club',
