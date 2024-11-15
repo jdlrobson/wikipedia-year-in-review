@@ -129,6 +129,12 @@ export default defineComponent( {
 					tooltip: 'You edited talk pages more than 1000 times.'
 				} );
 			}
+			if ( this.stats.thankedCount > 100 ) {
+				notes.push( {
+					label: 'appreciated',
+					tooltip: 'You were appreciated a significant amount of times. You are a pillar to your community!'
+				} );
+			}
 			return notes;
 		},
 		imageLogo() {
