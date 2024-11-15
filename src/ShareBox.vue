@@ -3,7 +3,6 @@
 	<h2>
 		<strong>@{{ username }}</strong>
 	</h2>
-	<div class="stat-note">{{ note }}</div>
 	<h3>
 		<span>{{ project }}</span>
 	</h3>
@@ -29,6 +28,9 @@
 			:icon="thankIcon"></stat-box>
 		<stat-box :value="stats.thankedCount" label="thanked"
 			:icon="thankIcon"></stat-box>
+		<div class="sharebox-info-chips">
+			<cdx-info-chip v-for="note in notes">{{ note }}</cdx-info-chip>
+		</div>
 	</div>
 	<h3 class="year"><span>{{ previousYear }}</span></h3>
 	<footer>Generate your own Year in Review at <a :href="`https://${host}`">{{host}}</a>
@@ -51,19 +53,24 @@ import {
 	cdxIconUserTalk,
 	cdxIconEdit
 } from '@wikimedia/codex-icons';
+import { CdxInfoChip } from '@wikimedia/codex';
 import { getTimeslotNote, humanDay } from './facts/habitUtils';
 
 // @vue/component
 export default defineComponent( {
 	components: {
-		StatBox
+		StatBox,
+		CdxInfoChip
 	},
 	name: 'ShareBox',
 	computed: {
-		note() {
+		notes() {
 			const topDay = this.stats.dayofweek[ 0 ];
 			const topSlot = this.stats.hourofweek[ 0 ];
-			return `${ humanDay( topDay.day )} / ${ getTimeslotNote( topSlot.timespan )}`;
+			return [
+				humanDay( topDay.day ),
+				getTimeslotNote( topSlot.timespan )
+			];
 		},
 		imageLogo() {
 			switch ( this.project ) {
@@ -119,6 +126,10 @@ export default defineComponent( {
 } );
 </script>
 <style scoped>
+.cdx-info-chip {
+	background: white;
+	margin: 0 2px;
+}
 h2, h3 {
 	margin: 0;
 }
