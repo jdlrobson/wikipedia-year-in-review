@@ -3,9 +3,16 @@ const DELAY = 300;
 
 const OLD_CACHE_KEY = 'cache-summaries';
 const CACHE_KEY = 'cache-summaries-1';
-localStorage.removeItem(OLD_CACHE_KEY);
-const shortTermCache = JSON.parse( localStorage.getItem( 'cache-short' ) || '{}' );
-const summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
+let shortTermCache, summaryCache;
+// localStorage may not be available if running in Node.js
+try {
+    localStorage.removeItem(OLD_CACHE_KEY);
+    shortTermCache = JSON.parse( localStorage.getItem( 'cache-short' ) || '{}' );
+    summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
+} catch ( e ) {
+    shortTermCache = {};
+    summaryCache = {};
+}
 
 // A week cache is fine.
 const CACHE_TIME = 7 * 24 * 60 * 60;
@@ -95,9 +102,11 @@ const toReadableMonth = ( timestamp ) => {
  * @param {Record<string, string>} params
  * @param {'logevents'|'usercontribs'} list
  * @param {ApiListObj[]} [result] defaults to empty array
+ * @param {number|null} [maxQueries] limit the continue to a certain number of queries
+ * @param {number} [numQueries] tracks the number of queries so far
  * @return {Promise<ApiListObj[]>}
  */
-const continueFetch = ( url, params, list, result = [] ) => {
+const continueFetch = ( url, params, list, result = [], maxQueries = null, numQueries = 0 ) => {
     const q = new URLSearchParams( params ).toString();
     return cacheFetch( `${url}?${q}` ).then( (r) => {
         result = result.concat(
@@ -116,7 +125,22 @@ const continueFetch = ( url, params, list, result = [] ) => {
             Object.keys( r.continue ).forEach( ( key ) => {
                 params[key] = r.continue[key];
             } );
-            return continueFetch(url, params, list).then( (/** @type ApiListObj[] */r) => {
+            if ( maxQueries && numQueries > maxQueries ) {
+                return result;
+            }
+            // Check after 10 queries whether we have progressed beyond a day.
+            // If we haven't its an indication we probably shouldn't continue.
+            if ( numQueries > 10 && result.length ) {
+                const lastResultDate = new Date( result[ result.length - 1 ].timestamp );
+                const lastMonth = lastResultDate.getMonth();
+                const lastDate = lastResultDate.getDate();
+                if ( lastDate === 31 && lastMonth === 11 ) {
+                    throw new Error( 'TOOMANYEDITS' );
+                } else if ( lastDate === 1 && lastMonth === 0 ) {
+                    throw new Error( 'TOOMANYEDITS' );
+                }
+            }
+            return continueFetch(url, params, list, result, maxQueries, numQueries + 1 ).then( (/** @type ApiListObj[] */r) => {
                 return result.concat( r ).filter(r=>r);
             } );
         } else {
@@ -312,38 +336,53 @@ const summarize = ( contribs ) => {
 };
 
 /**
- * @typedef UserCachePartial
- * @property {ApiListObj[]} result
- * @property {string|null} ucend
- */
-/**
  * @param {string} username
- * @return {Promise<UserCachePartial>}
+ * @param {string|number} year
+ * @param {string} project
+ * @return {Promise<ApiListObj[]>}
  */
-const loadUserCache = ( username, year ) => {
+const loadUserCache = ( username, year, project ) => {
     return new Promise( ( resolve ) => {
-        const userCacheUrl = `data/shortcut/${year}/${encodeURIComponent( username.replace( / /g, '_' ) )}.json`;
+        const userCacheUrl = `data/shortcut/${year}/${project}/${encodeURIComponent( username.replace( / /g, '_' ) )}.json`;
         fetch( userCacheUrl )
             .then( ( r ) => r.json() )
             .then( ( result ) => {
-                let ucend = null;
-                if ( result.length ) {
-                    const date = new Date( result[0].timestamp )
-                    date.setTime( date.getTime() + 1000 );
-                    ucend = date.toISOString();
-                }
-                resolve( {
-                    result,
-                    ucend
-                } )
+                resolve( result )
             }, () => {
-                resolve( {
-                    result: [],
-                    ucend: null
-                } )
+                resolve( [] )
             } );
     } );
 };
+
+/**
+ * @param {string} username
+ * @param {number} year
+ * @param {string} project
+ * @param {ApiListObj[]} result
+ * @param {number|null} [maxQueries]
+ * @return {Promise<ApiListObj[]>}
+ */
+const resumeContributionsFetch = ( username, year, project, result, maxQueries = null ) => {
+    let ucstart = null;
+    if ( result.length ) {
+        const date = new Date( result[result.length - 1].timestamp )
+        date.setTime( date.getTime() + 1000 );
+        ucstart = date.toISOString();
+    }
+    return continueFetch(`https://${project}/w/api.php`, {
+        ucstart: ucstart || `${year - 1}-12-31T23:59:59.000Z`,
+        ucend: `${year + 1}-01-01T00:00:00.000Z`,
+        uclimit: '500',
+        origin: '*',
+        action: 'query',
+        format: 'json',
+        ucdir: 'newer',
+        formatversion: '2',
+        list: 'usercontribs',
+        ucuser: username,
+        ucprop: 'title|timestamp|sizediff'
+    }, 'usercontribs', result, maxQueries );
+}
 
 /**
  * @param {string} username
@@ -353,18 +392,9 @@ const loadUserCache = ( username, year ) => {
  */
 const contributionsFetch = ( username, year, project ) => {
     // first check the local cache
-    return loadUserCache( username, year ).then(( { result, ucend } ) => continueFetch(`https://${project}/w/api.php`, {
-        ucend: ucend || `${year - 1}-12-31T23:59:59.000Z`,
-        ucstart: `${year + 1}-01-01T00:00:00.000Z`,
-        uclimit: '500',
-        origin: '*',
-        action: 'query',
-        format: 'json',
-        formatversion: '2',
-        list: 'usercontribs',
-        ucuser: username,
-        ucprop: 'title|timestamp|sizediff'
-    }, 'usercontribs', result ).then((/** @type {ApiListObj[]} */r) => summarize(r) ) );
+    return loadUserCache( username, year, project ).then( ( result ) =>
+            resumeContributionsFetch( username, year, project, result )
+        .then((/** @type {ApiListObj[]} */r) => summarize(r) ) );
 };
 
 /**
@@ -398,5 +428,8 @@ const yir = ( username, year, project ) => {
 yir.getStatus = () => {
     return status;
 }
+
+yir.resumeContributionsFetch = resumeContributionsFetch;
+
 export default yir;
 
