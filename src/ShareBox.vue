@@ -80,7 +80,7 @@ export default defineComponent( {
 				},
 				{
 					label: getTimeslotNote( topSlot.timespan ),
-					tooltip: 'The day you were most likely to edit'
+					tooltip: `The time you were most likely to edit was ${topSlot.timespan}`
 				}
 			];
 			if ( this.stats.templateEdits > 50 ) {
