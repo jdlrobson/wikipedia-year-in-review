@@ -33,7 +33,7 @@
 		<stat-box v-if="stats.interfaceEdits" :value="stats.interfaceEdits" label="interface edits"
 			:icon="gadgetIcon"></stat-box>
 		<div class="sharebox-info-chips">
-			<cdx-info-chip v-for="note in notes">{{ note }}</cdx-info-chip>
+			<cdx-info-chip v-for="note in notes" :title="note.tooltip">{{ note.label }}</cdx-info-chip>
 		</div>
 	</div>
 	<h3 class="year"><span>{{ previousYear }}</span></h3>
@@ -74,17 +74,61 @@ export default defineComponent( {
 			const topDay = this.stats.dayofweek[ 0 ];
 			const topSlot = this.stats.hourofweek[ 0 ];
 			const notes = [
-				humanDay( topDay.day ),
-				getTimeslotNote( topSlot.timespan )
+				{
+					label: humanDay( topDay.day ),
+					tooltip: 'The day you were most likely to edit'
+				},
+				{
+					label: getTimeslotNote( topSlot.timespan ),
+					tooltip: 'The day you were most likely to edit'
+				}
 			];
 			if ( this.stats.templateEdits > 50 ) {
-				notes.push( 'template wizard' );
+				notes.push( {
+					label: 'template wizard',
+					tooltip: 'You edited more than 50 pages in the Module and Template namespace'
+
+				} );
 			}
 			if ( this.stats.interfaceEdits > 20 ) {
-				notes.push( 'interface hero' );
+				notes.push( {
+					label: 'interface hero',
+					tooltip: 'You edited more than 20 pages in the MediaWiki namespace'
+				} );
 			}
-
-
+			if ( this.stats.totalEdits > 1000000 ) {
+				notes.push( {
+					label: 'millionaires club',
+					tooltip: 'You edited more than a million times. Is that even possible!?'
+				} );
+			} else if ( this.stats.totalEdits > 100000 ) {
+				notes.push( {
+					label: '100K club',
+					tooltip: 'You edited more than 1,000,000 times'
+				} );
+				notes.push( '100K club' );
+			} else if ( this.stats.totalEdits > 10000 ) {
+				notes.push( {
+					label: '10K club',
+					tooltip: 'You edited more than 10,000 times'
+				} );
+			} else if ( this.stats.totalEdits > 1000 ) {
+				notes.push( {
+					label: '1K club',
+					tooltip: 'You edited more than 1000 times'
+				} );
+			} else if ( this.stats.totalEdits > 100 ) {
+				notes.push( {
+					label: '100 club',
+					tooltip: 'You edited more than 100 times'
+				} );
+			}
+			if ( this.stats.talkEdits > 1000 ) {
+				notes.push( {
+					label: 'chatterbox',
+					tooltip: 'You edited talk pages more than 1000 times.'
+				} );
+			}
 			return notes;
 		},
 		imageLogo() {
