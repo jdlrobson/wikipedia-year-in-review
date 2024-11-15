@@ -157,7 +157,7 @@ export default defineComponent( {
 					if ( navigator.canShare( { files: [ file ] } ) ) {
 						const shareData = {
 							title: `Wikipedia Year In Review (${PREVIOUS_YEAR})`,
-							text: SHARE_TEXT,
+							text: toText( this.stats ),
 							files: [ file ],
 							url: `https://${location.host}`
 						};
