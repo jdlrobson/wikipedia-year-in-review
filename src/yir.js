@@ -403,7 +403,7 @@ const contributionsFetch = ( username, year, project ) => {
  * @param {string} project
  * @return {Promise<YIRStats>}
  */
-const yir = ( username, year, project ) => {
+const yirRemoteFetch = ( username, year, project ) => {
     if ( !project.match( /[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !username.match(  /^[^:]*$/ ) ) {
         return Promise.reject();
     }
@@ -422,6 +422,25 @@ const yir = ( username, year, project ) => {
         summaryCache[cacheKey] = summary;
         localStorage.setItem(CACHE_KEY, JSON.stringify(summaryCache) );
         return summary;
+    } );
+}
+
+/**
+ * @param {string} username
+ * @param {number} year
+ * @param {string} project
+ * @return {Promise<YIRStats>}
+ */
+const yir = ( username, year, project ) => {
+    return new Promise( ( resolve ) => {
+
+        fetch( `data/shortcut/${year}/${project}/${encodeURIComponent( username.replace( / /g, '_' ) )}.summary.json` )
+        .then( ( r ) => r.json() )
+        .then(
+            ( summary ) => resolve( summary ),
+            () => {
+                yirRemoteFetch( username, year, project ).then( ( summary ) => resolve( summary ) )
+            } );
     } );
 }
 
