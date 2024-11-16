@@ -83,6 +83,19 @@ export default defineComponent( {
 					tooltip: `The time you were most likely to edit was ${topSlot.timespan}`
 				}
 			];
+
+			if ( this.stats.fileUploads > 364 ) {
+				notes.push( {
+					label: 'archivist',
+					tooltip: 'You uploaded more file than there were days in the year'
+				} );
+			}
+			if ( this.stats.pageEdits > 50 ) {
+				notes.push( {
+					label: 'proofreader',
+					tooltip: 'You proof read over 50 pages! Impressive!'
+				} );
+			}
 			if ( this.stats.templateEdits > 50 ) {
 				notes.push( {
 					label: 'template wizard',
