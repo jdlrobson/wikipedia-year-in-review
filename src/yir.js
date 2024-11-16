@@ -140,8 +140,8 @@ const continueFetch = ( url, params, list, result = [], maxQueries = null, numQu
                     throw new Error( 'TOOMANYEDITS' );
                 }
             }
-            return continueFetch(url, params, list, result, maxQueries, numQueries + 1 ).then( (/** @type ApiListObj[] */r) => {
-                return result.concat( r ).filter(r=>r);
+            return continueFetch(url, params, list, result, maxQueries, numQueries + 1 ).then( (/** @type ApiListObj[] */result2) => {
+                return result.concat( result2 ).filter( p => p );
             } );
         } else {
             return Promise.resolve( result )
@@ -322,6 +322,9 @@ const summarize = ( contribs ) => {
             totalEdits: contribs.length,
             fileUploads,
             articleEdits: articles.length,
+            pageEdits: contribs.filter(
+                (/** @type {ApiListObj} */ c) => c && c.ns === 104
+            ).length,
             interfaceEdits: contribs.filter(
                 (/** @type {ApiListObj} */ c) => c && c.ns === 8
             ).length,

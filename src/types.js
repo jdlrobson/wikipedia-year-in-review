@@ -50,6 +50,7 @@
  * @property {number} totalBytes
  * @property {number} [paragraphs]
  * @property {number} talkEdits
+ * @property {number} pageEdits non-zero on wikisource
  * @property {number} articleEdits
  * @property {number} fileUploads
  * @property {YIRPage[]} top5
