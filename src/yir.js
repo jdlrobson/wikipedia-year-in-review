@@ -1,12 +1,16 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
 const DELAY = 300;
 
-const OLD_CACHE_KEY = 'cache-summaries-1';
-const CACHE_KEY = 'cache-summaries-2';
+const CACHE_VERSION = 2
+const CACHE_KEY = `cache-summaries-${CACHE_VERSION}`;
 let shortTermCache, summaryCache;
 // localStorage may not be available if running in Node.js
 try {
-    localStorage.removeItem(OLD_CACHE_KEY);
+    let i = CACHE_VERSION - 1;
+    while ( i > 0 ) {
+        localStorage.removeItem(`cache-summaries-${i}`);
+        i--;
+    }
     shortTermCache = JSON.parse( localStorage.getItem( 'cache-short' ) || '{}' );
     summaryCache = JSON.parse( localStorage.getItem(CACHE_KEY) || '{}' );
 } catch ( e ) {
