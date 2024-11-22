@@ -39,7 +39,7 @@ export default {
 </script>
 <style>
 .statbox {
-    width: 100px;
+    width: 90px;
     background: white;
     padding: 8px;
     color: #333;

@@ -69,7 +69,7 @@ p {
 }
 .main strong {
     font-weight: bold;
-    font-size: 7rem;
+    font-size: 5rem;
 }
 img {
     width: auto;

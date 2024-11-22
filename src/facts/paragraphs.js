@@ -15,7 +15,7 @@ export default ( stats ) => {
         return [ {
             image: PUZZLE,
             messagePrefix: 'Editing approximately',
-            value: toReadable( stats.paragraphs ),
+            value: toReadable( Math.floor( stats.paragraphs ) ),
             qualifier: 'paragraphs',
             messageSuffix: 'of text!'
         } ];

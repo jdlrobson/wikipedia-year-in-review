@@ -213,7 +213,7 @@ export default defineComponent( {
 <style scoped>
 .cdx-info-chip {
 	background: white;
-	margin: 0 2px;
+	margin: 2px;
 }
 h2, h3 {
 	margin: 0;
