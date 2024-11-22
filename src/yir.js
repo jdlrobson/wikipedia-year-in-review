@@ -158,7 +158,7 @@ const continueFetch = ( url, params, list, result = [], maxQueries = null, numQu
  * @param {'title'|'user'|'day'} field
  * @return {YIRPage[]}
  */
-const topArticles = (articles, field = 'title') => {
+const topArticles = ( articles, field = 'title' ) => {
     const /** @type Record<string,number> */titles = {};
     // @ts-ignore
     articles.forEach((t) => {
@@ -187,7 +187,7 @@ const topDays = (days) => {
  * @param {YIRDay[]} days
  * @return {YIRTimeSlot[]}
  */
-const topHours = (days) => {
+const topHours = ( days ) => {
     const /** @type Record<string,number> */timeslot = {};
     const slots = [ 0, 6, 10, 12, 14, 17, 22 ];
     slots.forEach( ( hour ) => timeslot[`${hour}`] = 0 );
@@ -290,11 +290,47 @@ const addThumbs = ( titles ) => {
 
 /**
  * @param {ApiListObj[]} contribs
+ * @return {YIRStreak}
+ */
+const calculateStreak = ( contribs ) => {
+    // Extract unique contribution days
+    const uniqueDays = Array.from(
+        new Set(
+            contribs.map( ( c ) => new Date( c.timestamp ).toISOString().split( "T" )[0] ) // Extract date only
+        )
+    )
+        .map( ( dateString ) => new Date( dateString ) ) // Convert back to Date objects
+        .sort( ( a, b ) => a.getTime() - b.getTime() ); // Sort dates by time
+    if ( !uniqueDays.length ) {
+        return { currentStreak: 0, longestStreak: 0 };
+    }
+
+    let currentStreak = 1;
+    let longestStreak = 1;
+
+    for ( let i = 1; i < uniqueDays.length; i++ ) {
+        const daysDiff =
+            ( uniqueDays[i].getTime() - uniqueDays[i - 1].getTime() ) / ( 24 * 60 * 60 * 1000 ); // Difference in days
+        if ( daysDiff === 1 ) {
+            currentStreak++;
+            longestStreak = Math.max( longestStreak, currentStreak );
+        } else if ( daysDiff > 1 ) {
+            currentStreak = 1; // Reset streak
+        }
+    }
+
+    console.log( "Streak data calculated:", { currentStreak, longestStreak } );
+    return { currentStreak, longestStreak };
+};
+
+/**
+ * @param {ApiListObj[]} contribs
  * @return {Promise<YIRStatsContribs>}
  */
 const summarize = ( contribs ) => {
-    const articles = contribs.filter((c) => c && c.ns === 0);
-    const fileUploads = contribs.filter((c) => c && c.ns === 6).length;
+    const articles = contribs.filter( ( c ) => c && c.ns === 0 );
+    const fileUploads = contribs.filter( ( c ) => c && c.ns === 6 ).length;
+    const streakData = calculateStreak( articles );
     const top = topArticles(articles);
     const contribDayofweek = contribs.filter((c)=>c).map((c) => {
         const t = new Date( c.timestamp );
@@ -311,7 +347,7 @@ const summarize = ( contribs ) => {
         }
         return a + s;
     }, 0 );
-    const top5 = top.slice(0, 5);
+    const top5 = top.slice( 0, 5 );
     return addThumbs(top5.map((t) => t.title)).then((thumbs) => {
         const dayofweek = topDays( contribDayofweek );
         const hourofweek = topHours( contribDayofweek );
@@ -337,7 +373,8 @@ const summarize = ( contribs ) => {
             ).length,
             talkEdits: contribs.filter(
                 (/** @type {ApiListObj} */ c) => c && c.ns % 2 !== 0
-            ).length
+            ).length,
+            streak: streakData
         };
     });
 };
@@ -399,9 +436,14 @@ const resumeContributionsFetch = ( username, year, project, result, maxQueries =
  */
 const contributionsFetch = ( username, year, project ) => {
     // first check the local cache
-    return loadUserCache( username, year, project ).then( ( result ) =>
-            resumeContributionsFetch( username, year, project, result )
-        .then((/** @type {ApiListObj[]} */r) => summarize(r) ) );
+    return loadUserCache( username, year, project )
+        .then( ( result ) => {
+            return resumeContributionsFetch( username, year, project, result );
+        } )
+        .then( (/** @type {ApiListObj[]} */r ) => {
+            return summarize( r );
+        } );
+
 };
 
 /**
@@ -411,7 +453,7 @@ const contributionsFetch = ( username, year, project ) => {
  * @return {Promise<YIRStats>}
  */
 const yirRemoteFetch = ( username, year, project ) => {
-    if ( !project.match( /[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !username.match(  /^[^:]*$/ ) ) {
+    if ( !project.match( /[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !username.match( /^[^:]*$/ ) ) {
         return Promise.reject();
     }
     const cacheKey = `${username}:${year}:${project}`;
@@ -424,10 +466,11 @@ const yirRemoteFetch = ( username, year, project ) => {
         contributionsFetch( username, year, project )
     ] ).then( ( results ) => {
         const summary = Object.assign.apply( {}, results );
+        summary.streak = results[2].streak; // Include streak data from contributions
         summary.year = year + 1;
         summary.project = project;
         summaryCache[cacheKey] = summary;
-        localStorage.setItem(CACHE_KEY, JSON.stringify(summaryCache) );
+        localStorage.setItem( CACHE_KEY, JSON.stringify( summaryCache ) );
         return summary;
     } );
 }

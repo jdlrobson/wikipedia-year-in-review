@@ -41,6 +41,11 @@
  * @property {number} thankedCount
  */
 /**
+ * @typedef {Object} YIRStreak
+ * @property {number} currentStreak
+ * @property {number} longestStreak
+ */
+/**
  * @typedef {Object} YIRStatsContribs
  * @property {number} templateEdits
  * @property {number} interfaceEdits
@@ -57,6 +62,7 @@
  * @property {YIRDay[]} dayofweek
  * @property {YIRTimeSlot[]} hourofweek
  * @property {YIRImage[]} thumbs
+ * @property {YIRStreak} streak
  */
 /**
  * @typedef {Object} YIRStatsMeta
