@@ -110,7 +110,7 @@ p {
 }
 
 .subtitle {
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 
@@ -128,10 +128,10 @@ p {
 
 @media ( max-width: 400px ) {
     .page {
-        font-size: 2rem;
+        font-size: 1rem;
     }
     .main strong.smaller {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 </style>
