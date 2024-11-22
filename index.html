@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Wikipedia Year In Review</title>
+        <title>Wiki Year In Review</title>
         <base target="_blank">
         <link rel="stylesheet" href="./node_modules/@wikimedia/codex/dist/codex.style.css">
         <meta name="viewport" content="width=device-width">
@@ -9,7 +9,17 @@
             html, body {
                 margin: 0;
                 padding: 0;
-                background: #f6f0e1;
+                background: #e9e7c5;
+            }
+            #app {
+                margin-bottom: 10px;
+            }
+            #app-footer {
+                color: #000;
+                text-align: center;
+                background-color: #fff6;
+                padding: 2rem;
+                font-size: .8rem;
             }
             input:invalid {
                 background: pink!important;
@@ -22,6 +32,11 @@
     <body>
         <div id="app"></div>
         <script type="module" src="./index.js"></script>
+        <footer id="app-footer">
+            <p>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>. This tool is a personal project and not affiliated or sponsored by the Wikimedia Foundation.</p>
+		    <p class="license">All illustrations CC0 1.0 adapted from <a href="https://commons.wikimedia.org/wiki/Category:Adapted_Wikipedia_20">Jasmina El Bouamraoui and Karabo Poppy Moletsane for Wikipedia 20</a> unless stated.</div>
+            <a href="https://github.com/jdlrobson/wikipedia-year-in-review">source code</a> | <a href="https://github.com/jdlrobson/wikipedia-year-in-review/issues">bug reports</a> | <a href="https://yearinreview.toolforge.org/">toolforge version</a>
+        </footer>
     </body>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8016QD6WL"></script>

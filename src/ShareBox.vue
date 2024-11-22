@@ -264,4 +264,11 @@ footer a {
 	display: inline;
 	filter: invert(1);
 }
+footer {
+	font-size: 0.75rem;
+}
+
+footer a {
+	display: inline;
+}
 </style>

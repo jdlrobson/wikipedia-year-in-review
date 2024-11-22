@@ -1,15 +1,15 @@
 <template>
-<div>
+<div class="app-wrapper" :style="appStyle">
 	<page v-if="currentPage <= 0 && !activePage">
-		<h1>Wikipedia</h1>
-		<h2>{{ previousYear }} Year in Review</h2>
 		<img class="mainImg" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
-		<p>Let's look back at all the good work you have been doing this year in helping build the best place on the Internet!</p>
-		<label>Your Wikipedia:</label>
+		<h1>Wikipedia</h1>
+		<h2>Year in Review</h2>
+		<p class="intro">Let's look back at all the good work you have been doing this year in helping build the best place on the Internet!</p>
+		<label>Your Wikimedia project:</label>
 		<cdx-text-input required
 			pattern="[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org" type="text" v-model="project"></cdx-text-input>
-		<label>Your Username</label>
 		<cdx-text-input required
+			placeholder="What's your username?"
 			pattern="^[^:]+$"
 			@keyup.enter="start"
 			type="text" v-model="username"></cdx-text-input>
@@ -28,31 +28,28 @@
 				Unfortunately it is not supported at the current time.</span>
 			<span v-else>An error occurred while trying to check that. Did you use the correct username?</span>
 		</cdx-message>
-		<footer>Made lovingly by <a href="https://jdlrobson.com">Jon Robson</a>. This tool is a personal project and not affiliated or sponsored by the Wikimedia Foundation.</footer>
-		<div class="license">All illustrations CC0 1.0 adapted from <a href="https://commons.wikimedia.org/wiki/Category:Adapted_Wikipedia_20">Jasmina El Bouamraoui and Karabo Poppy Moletsane for Wikipedia 20</a> unless stated.</div>
 		<div class="yearSwitcher">
-			<label>Show me another year!</label>
-			<cdx-select :menu-items="lastFiveYears" :selected="previousYear" @update:selected="updateYear"></cdx-select>
+			<cdx-select
+				placeholder="Select year"
+				:menu-items="lastFiveYears" :selected="previousYear" @update:selected="updateYear"></cdx-select>
 		</div>
 	</page>
-	<div v-if="activePage">
-		<page
-			:messagePrefix="activePage.messagePrefix"
-			:value="activePage.value"
-			:image="activePage.image"
-			:class="activePage.class"
-			:qualifier="activePage.qualifier"
-			:messageSuffix="activePage.messageSuffix">
-			<hr/>
-			<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous" aria-label="previous">
-				<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
-			</cdx-button>
-			<cdx-button @click="incrementPage" action="progressive" weight="primary">
-				<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
-				<span>{{ currentPage + 1 }} / {{ pages.length + 1 }} </span>
-			</cdx-button>
-		</page>
-	</div>
+	<page
+			v-if="activePage"
+		:messagePrefix="activePage.messagePrefix"
+		:value="activePage.value"
+		:image="activePage.image"
+		:class="activePage.class"
+		:qualifier="activePage.qualifier"
+		:messageSuffix="activePage.messageSuffix">
+		<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous" aria-label="previous">
+			<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
+		</cdx-button>
+		<cdx-button @click="incrementPage" action="progressive" weight="primary">
+			<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
+			<span>{{ currentPage + 1 }} / {{ pages.length + 1 }} </span>
+		</cdx-button>
+	</page>
 	<page v-if="pages.length && currentPage >= pages.length">
 		<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous" aria-label="previous">
 			<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
@@ -104,6 +101,23 @@ export default defineComponent( {
 		CdxTextInput
 	},
 	computed: {
+		appStyle() {
+			const cp = this.currentPage;
+			const p = this.pages.length;
+			const colors = [
+				'transparent',
+				'rgb(247, 176, 206)',
+				'rgb(125, 211, 164)',
+				'rgb(248, 216, 102)',
+				'rgb(134, 132, 127)',
+				'rgb(173, 128, 86)',
+				'rgb(134, 132, 127)',
+				'rgb(0, 0, 0)'
+			];
+			const index = Math.floor( ( cp / p ) * colors.length ) - 1;
+			let bgColor = colors[ index ];
+			return `background: ${bgColor}`;
+		},
 		disableBtn() {
 			if ( !this.project.match( /[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org/ ) || !this.username.match(  /^[^:]+$/ ) ) {
 				return true;
@@ -259,12 +273,38 @@ export default defineComponent( {
 } );
 </script>
 <style scoped>
+.app-wrapper {
+	align-items: center;
+    min-height: 95vh;
+    margin: auto;
+    display: flex
+;
+}
 .nextIcon {
 	transform: rotate(90deg);
 }
 h1, h2, h3 {
 	margin: 0;
 }
+h1 {
+	margin: 10px auto 0;
+}
+p {
+	font-weight: normal;
+	margin: 20px auto;
+	width: 90%;
+}
+
+p,
+.cdx-text-input,
+label {
+	font-size: 1rem;
+}
+
+.cdx-text-input {
+	margin: 0 0 1rem;
+}
+
 .cdx-button {
 	position: fixed;
 	bottom: 0;
@@ -300,12 +340,9 @@ footer a {
 	margin-top: 30px;
 	font-weight: normal;
 }
-footer a,
-.license a { display: inline; }
 .yearSwitcher {
 	color: #333;
 	font-size: 0.75rem;
-	margin-top: 10px;
 	display: flex;
 	align-items: center;
 	flex-flow: column;

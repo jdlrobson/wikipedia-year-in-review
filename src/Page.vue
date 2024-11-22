@@ -36,22 +36,27 @@ export default {
 </script>
 <style scoped>
 .page {
-        max-width: 800px;
+    max-width: 800px;
+    width: 80%;
+    background: #fff;
     margin: auto;
     word-break: break-word;
     box-sizing: border-box;
-    color: #14866d;
-    width: 100vw;
-    height: 100vh;
     font-size: 3rem;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px 10px;
+    padding: 2rem 10px;
     font-family: sans-serif;
     font-weight: bold;
+    border-radius: 1rem;
+    min-height: 80vh;
+}
+p {
+    font-size: 1rem;
+    margin: 1rem;
 }
 .main .message {
     font-family: serif;
@@ -101,7 +106,6 @@ img {
 }
 
 p {
-    margin-top: -18px;
     font-family: sans-serif;
 }
 
@@ -109,6 +113,18 @@ p {
     font-size: 2rem;
 }
 
+
+@media ( max-width: 300px ) {
+    .page {
+        width: 100%;
+    }
+}
+
+@media ( max-width: 500px ) {
+    .page {
+        width: 90%;
+    }
+}
 
 @media ( max-width: 400px ) {
     .page {
