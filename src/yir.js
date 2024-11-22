@@ -139,9 +139,9 @@ const continueFetch = ( url, params, list, result = [], maxQueries = null, numQu
                 const lastMonth = lastResultDate.getMonth();
                 const lastDate = lastResultDate.getDate();
                 if ( lastDate === 31 && lastMonth === 11 ) {
-                    throw new Error( 'TOOMANYEDITS' );
+                    return Promise.reject( new Error( 'TOOMANYEDITS' ) );
                 } else if ( lastDate === 1 && lastMonth === 0 ) {
-                    throw new Error( 'TOOMANYEDITS' );
+                    return Promise.reject( new Error( 'TOOMANYEDITS' ) );
                 }
             }
             return continueFetch(url, params, list, result, maxQueries, numQueries + 1 ).then( (/** @type ApiListObj[] */result2) => {
@@ -429,6 +429,8 @@ const yirRemoteFetch = ( username, year, project ) => {
         summaryCache[cacheKey] = summary;
         localStorage.setItem(CACHE_KEY, JSON.stringify(summaryCache) );
         return summary;
+    }, (e) => {
+        return Promise.reject( e );
     } );
 }
 
@@ -439,14 +441,18 @@ const yirRemoteFetch = ( username, year, project ) => {
  * @return {Promise<YIRStats>}
  */
 const yir = ( username, year, project ) => {
-    return new Promise( ( resolve ) => {
+    return new Promise( ( resolve, reject ) => {
 
         fetch( `data/shortcut/${year}/${project}/${encodeURIComponent( username.replace( / /g, '_' ) )}.summary.json` )
         .then( ( r ) => r.json() )
         .then(
             ( summary ) => resolve( summary ),
             () => {
-                yirRemoteFetch( username, year, project ).then( ( summary ) => resolve( summary ) )
+                yirRemoteFetch( username, year, project ).then(
+                    ( summary ) => resolve( summary ),
+                ( e ) => {
+                    reject( e );
+                } )
             } );
     } );
 }

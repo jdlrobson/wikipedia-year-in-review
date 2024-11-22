@@ -370,7 +370,7 @@ footer a {
 	margin-top: 10px;
 }
 .cdx-message {
-    min-width: 340px;
+	width: 80%;
 	font-size: 14px;
 	text-align: left;
 }
