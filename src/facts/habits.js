@@ -34,6 +34,6 @@ export default ( stats ) => {
         class: 'smaller',
         image: PUZZLE_COLLAB,
         value: humanDay( topDay.day ),
-        messageSuffix: `${topDay.count} edits`
+        messageSuffix: `(${topDay.count} edits)`
     }, timeofday( stats.hourofweek )];
 }
