@@ -1,4 +1,6 @@
 import toReadable from "./toReadable";
+import message from '../message';
+
 const WIKIPEDIA = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
 	width: 512,
@@ -16,15 +18,15 @@ export default ( stats, year, project ) => {
     switch( project ) {
         case 'commons.wikimedia.org':
             contribs = stats.fileUploads;
-            qualifier = 'files';
-            messagePrefix = 'You uploaded';
-            messageSuffix = 'across the project';
+            qualifier = message.message( 'files' );
+            messagePrefix = message.message( 'you-uploaded' );
+            messageSuffix = message.message( 'across-project' );
             break;
         default:
             contribs = stats.totalEdits;
-            qualifier = 'edits';
-            messagePrefix = 'You made';
-            messageSuffix = 'across the project';
+            qualifier = message.message( 'edits' );
+            messagePrefix = message.message( 'you-made' );
+            messageSuffix = message.message( 'across-project' );
             break;
     }
     if ( contribs ) {
@@ -42,9 +44,9 @@ export default ( stats, year, project ) => {
     } else {
         return {
             image: WIKIPEDIA,
-            messagePrefix: 'You didn\'t edit this project this year, but...',
+            messagePrefix: message.message( 'no-contributions' ),
             qualifier: year,
-            messageSuffix: 'is another year to contribute to the sum of all human knowledge!'
+            messageSuffix: message.message( 'next-year' ),
         };
     }
 };

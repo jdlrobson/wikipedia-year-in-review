@@ -1,3 +1,5 @@
+import message from '../message';
+
 /**
  * @param {string} project
  * @param {string} title
@@ -17,14 +19,14 @@ export default ( stats, project ) => {
 		let topTitle = stats.top5[0].title;
 		return [
 			{
-				messagePrefix: 'You made contributions to',
+				messagePrefix: message.message( 'you-made-contributions-to' ),
 				image: stats.thumbs[0],
 				messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(project, topTitle)}">${topTitle}</a>]]`
 			},
 			...stats.top5.slice(1).map((t, i) => {
 				return {
 					image: stats.thumbs[i+1],
-					messagePrefix: 'and',
+					messagePrefix: message.message( 'and' ),
 					messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(project, t.title)}">${t.title}</a>]]`
 				};
 			} )

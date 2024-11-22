@@ -3,6 +3,7 @@ const PUZZLE_COLLAB = {
 	width: 512,
 	height: 401
 };
+import message from '../message';
 import { getTimeslotNote } from './habitUtils';
 
 /**
@@ -13,7 +14,7 @@ export default ( hours ) => {
     const value = hours[0].timespan;
     
     return {
-        messagePrefix: 'Most editing occurs between',
+        messagePrefix: message.message( 'most-edited-time' ),
         class: 'smaller',
         image: PUZZLE_COLLAB,
         value,

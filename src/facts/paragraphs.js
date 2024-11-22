@@ -1,4 +1,5 @@
 import toReadable from "./toReadable";
+import message from '../message';
 
 const PUZZLE = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/6/65/WP20Symbols_puzzleglobe1.svg',
@@ -14,10 +15,10 @@ export default ( stats ) => {
     if ( stats.paragraphs ) {
         return [ {
             image: PUZZLE,
-            messagePrefix: 'Editing approximately',
+            messagePrefix: message.message( 'paragraph-1' ),
             value: toReadable( Math.floor( stats.paragraphs ) ),
-            qualifier: 'paragraphs',
-            messageSuffix: 'of text!'
+            qualifier: message.message( 'paragraph-2' ),
+            messageSuffix: message.message( 'paragraph-3' )
         } ];
     } else {
         return [];

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run copy-assets && parcel build index.html",
     "generate-data": "node generateData.mjs",
-    "copy-assets": "cp -r src/assets/* dist",
+    "copy-assets": "cp -r src/assets/* dist && cp -r i18n dist/",
     "start": "npm run copy-assets && parcel index.html ",
     "test": "tsc"
   },

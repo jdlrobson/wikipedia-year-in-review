@@ -1,4 +1,6 @@
 import toReadable from "./toReadable";
+import message from '../message';
+
 const FRIENDSHIP = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Adapted_Wikipedia20symbol_friendship.svg',
 	width: 512,
@@ -21,25 +23,28 @@ export default ( stats ) => {
 		wasThanked = true;
 		pages = pages.concat( [
 			{
-				messagePrefix: 'You were appreciated by',
+				messagePrefix: message.message( 'appreciated-1' ),
 				image: FRIENDSHIP,
 				value: toReadable( stats.thankedCount ),
-				qualifier: 'editors'
+				qualifier: message.message( 'appreciated-2' )
 			}
 		] );
 	}
 	if ( stats.thanksCount > 0 ) {
 		pages = pages.concat( [
 			{
-				messagePrefix: wasThanked ? 'And you showed appreciation to' :
-					'You showed appreciation to',
+				messagePrefix: wasThanked ?
+					message.message( 'appreciated-to-1a' ) :
+					message.message( 'appreciated-to-1b' ),
 				image: COMMUNITY,
 				value: toReadable( stats.thanksCount ),
-				qualifier: 'other humans'
+				qualifier: wasThanked ?
+					message.message( 'appreciated-to-2a' ) :
+					message.message( 'appreciated-to-2b' )
 			},
 			{
-				messagePrefix: 'Thank you caring!',
-				messageSuffix: 'We appreciate you!'
+				messagePrefix: message.message( 'thanks-for-caring' ),
+				messageSuffix: message.message( 'we-appreciate-you' )
 			}
 		] );
 	}
@@ -49,7 +54,7 @@ export default ( stats ) => {
 				messagePrefix: `@${stats.topThanksTo[0].title}`,
 				//value: stats.topThanksTo[0].count,
 				//qualifier: 'User'
-				messageSuffix: 'was the user you thanked the most'
+				messageSuffix: message.message( 'thanked-most' )
 			}
 		] );
 	}
@@ -57,7 +62,7 @@ export default ( stats ) => {
 		pages = pages.concat( [
 			{
 				messagePrefix: `@${stats.topThanksFrom[0].user}`,
-				messageSuffix: 'was your biggest fan'
+				messageSuffix: message.message( 'thank-fan' )
 			}
 		] );
 	}

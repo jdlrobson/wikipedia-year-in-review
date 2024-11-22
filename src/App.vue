@@ -3,34 +3,33 @@
 	<page v-if="currentPage <= 0 && !activePage">
 		<img class="mainImg" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
 		<h1>Wikipedia</h1>
-		<h2>Year in Review</h2>
-		<p class="intro">Let's look back at all the good work you have been doing this year in helping build the best place on the Internet!</p>
-		<label>Your Wikimedia project:</label>
+		<h2>{{ $i18n( 'year-in-review', language ) }}</h2>
+		<p class="intro">{{ $i18n( 'intro', language ) }}</p>
+		<label>{{ $i18n( 'project-label', language ) }}</label>
 		<cdx-text-input required
 			pattern="[^\.]*\.(wikivoyage|wikinews|wikiversity|wikibooks|wikiquote|wiktionary|wikifunctions|wikisource|wikipedia|mediawiki|wikidata|wikimedia)\.org" type="text" v-model="project"></cdx-text-input>
 		<cdx-text-input required
-			placeholder="What's your username?"
+			:placeholder="$i18n( 'username-placeholder', language )"
 			pattern="^[^:]+$"
 			@keyup.enter="start"
 			type="text" v-model="username"></cdx-text-input>
 		<cdx-button :disabled="disableBtn" @click="start" action="progressive" weight="primary">
 			<cdx-icon class="nextIcon" :icon="nextIcon"></cdx-icon>
-			<span>Get started</span>
+			<span>{{ $i18n( 'get-started', language ) }}</span>
 		</cdx-button>
 		<div v-if="loading > 0">
 			<span v-for="i in Array(loading)" :key="`l-${i}`">✏️</span>
 			<div>Retrieving data for <span>{{  status }}</span> {{ previousYear }}.</div>
 		</div>
 		<cdx-message v-if="error" type="error">
-			<span v-if="errorMsg === 'share-error'">An unexpected error occurred during the share process.</span>
-			<span v-if="errorMsg === 'clipboard-error'">An unexpected error occurred while attempting to copy to the clipboard.</span>
-			<span v-else-if="errorMsg === 'username-disabled-error'">This username has too many edits.
-				Unfortunately it is not supported at the current time.</span>
-			<span v-else>An error occurred while trying to check that. Did you use the correct username?</span>
+			<span v-if="errorMsg === 'share-error'">{{ $i18n( 'error-share', language ) }}</span>
+			<span v-if="errorMsg === 'clipboard-error'">{{ $i18n( 'error-clipboard', language ) }}</span>
+			<span v-else-if="errorMsg === 'username-disabled-error'">{{ $i18n( 'error-toomanyedits', language ) }}</span>
+			<span v-else>{{ $i18n( 'error-generic', language ) }}</span>
 		</cdx-message>
 		<div class="yearSwitcher">
 			<cdx-select
-				placeholder="Select year"
+				:placeholder="$i18n( 'year-placeholder', language )"
 				:menu-items="lastFiveYears" :selected="previousYear" @update:selected="updateYear"></cdx-select>
 		</div>
 	</page>
@@ -55,15 +54,23 @@
 			<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
 		</cdx-button>
 		<share-box :stats="stats" :username="username" :project="project"></share-box>
-		<p>Thank you for viewing your year in review and for contributing to the sum of all human knowledge.</p>
-		<p class="happy">Happy {{ nextYear }}!</p>
+		<p>{{ $i18n( 'thanks-for-playing', language ) }}</p>
+		<p class="happy">{{ $i18n( 'hny', nextYear, language ) }}!</p>
 		<cdx-message v-if="feedback" type="success">{{ feedback }}</cdx-message>
-		<cdx-message v-if="error" type="error">An error occurred while trying to share.</cdx-message>
+		<cdx-message v-if="error" type="error">{{ $i18n( 'error-share', language ) }}</cdx-message>
 		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
 			<cdx-icon :icon="shareIcon"></cdx-icon>
-			<span>Share stats</span>
+			<span>{{ $i18n( 'share', language ) }}</span>
 		</cdx-button>
 	</page>
+
+	<div v-if="currentPage === -1">
+		{{ $i18n( 'language-label', language ) }}
+		<select id="languageSwitcher" name="language" @change="setLanguage">
+			<option value="en">{{ $i18n( 'language-en', language ) }}</option>
+			<option value="yoda">{{ $i18n( 'language-yoda', language ) }}</option>
+		</select>
+	</div>
 </div>
 </template>
 <script>
@@ -78,6 +85,7 @@ import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikime
 import '@wikimedia/codex';
 import { defineComponent } from 'vue';
 import ShareBox from './ShareBox.vue';
+import message from './message';
 
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
@@ -151,6 +159,12 @@ export default defineComponent( {
 		}
 	},
 	methods: {
+		setLanguage( ev ) {
+			const language = ev.target.value;
+			message.setLanguage( language ).then(() => {
+				this.language = language;
+			});
+		},
 		updateYear(y) {
 			this.previousYear = y;
 			this.nextYear = y + 1;
@@ -247,6 +261,7 @@ export default defineComponent( {
 	},
 	data() {
 		return {
+			language: 'en',
 			errorMsg: '',
 			previousYear: PREVIOUS_YEAR,
 			nextYear: YEAR,
@@ -277,7 +292,8 @@ export default defineComponent( {
 	align-items: center;
     min-height: 95vh;
     margin: auto;
-    display: flex
+    display: flex;
+	flex-flow: column;
 ;
 }
 .nextIcon {

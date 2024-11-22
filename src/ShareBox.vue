@@ -12,32 +12,40 @@
 	<div class="stats">
 		<stat-box
 			v-if="project === 'commons.wikimedia.org'"
-			:value="stats.fileUploads" label="file uploads"
+			:value="stats.fileUploads"
+			:label="$i18n( 'file-uploads' )"
 			:icon="uploadIcon"></stat-box>
 		<stat-box
 			v-else-if="project === 'www.wikidata.org'"
-			:value="stats.totalEdits" label="claims"
+			:value="stats.totalEdits"
+			:label="$i18n( 'claims' )"
 			:icon="wikidataIcon"></stat-box>
 		<stat-box
 			v-else
-			:value="stats.totalEdits" label="edits"
+			:value="stats.totalEdits"
+			:label="$i18n( 'edits' )"
 			:icon="editIcon"></stat-box>
-		<stat-box :value="stats.talkEdits" label="talk page edits"
+		<stat-box :value="stats.talkEdits"
+			:label="$i18n( 'talk-page-edits' )"
 			:icon="talkIcon"></stat-box>
-		<stat-box :value="stats.thanksCount" label="thanks"
+		<stat-box :value="stats.thanksCount"
+			:label="$i18n( 'thanks' )"
 			:icon="thankIcon"></stat-box>
-		<stat-box :value="stats.thankedCount" label="thanked"
+		<stat-box :value="stats.thankedCount"
+			:label="$i18n( 'thanked' )"
 			:icon="thankIcon"></stat-box>
-		<stat-box v-if="stats.templateEdits" :value="stats.templateEdits" label="template edits"
+		<stat-box v-if="stats.templateEdits" :value="stats.templateEdits"
+			:label="$i18n( 'template-edits' )"
 			:icon="templateIcon"></stat-box>
-		<stat-box v-if="stats.interfaceEdits" :value="stats.interfaceEdits" label="interface edits"
+		<stat-box v-if="stats.interfaceEdits" :value="stats.interfaceEdits"
+			:label="$i18n( 'interface-edits' )"
 			:icon="gadgetIcon"></stat-box>
 		<div class="sharebox-info-chips">
 			<cdx-info-chip v-for="note in notes" :title="note.tooltip">{{ note.label }}</cdx-info-chip>
 		</div>
 	</div>
 	<h3 class="year"><span>{{ previousYear }}</span></h3>
-	<footer>Generate your own Year in Review at <a :href="`https://${host}`">{{host}}</a>
+	<footer>{{ $i18n( 'generate-your-own' ) }} <a :href="`https://${host}`">{{host}}</a>
 		<div class="license-logo">
 			<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">
 				<img src="./Cc.logo.circle.svg.webp">
@@ -61,6 +69,7 @@ import {
 } from '@wikimedia/codex-icons';
 import { CdxInfoChip } from '@wikimedia/codex';
 import { getTimeslotNote, humanDay } from './facts/habitUtils';
+import message from './message';
 
 // @vue/component
 export default defineComponent( {
@@ -76,75 +85,74 @@ export default defineComponent( {
 			const notes = [
 				{
 					label: humanDay( topDay.day ),
-					tooltip: 'The day you were most likely to edit'
+					tooltip: message.message( 'badge-day-desc', topSlot.timespan )
 				},
 				{
 					label: getTimeslotNote( topSlot.timespan ),
-					tooltip: `The time you were most likely to edit was ${topSlot.timespan}`
+					tooltip: message.message( 'badge-timeslot-desc', topSlot.timespan )
 				}
 			];
 
 			if ( this.stats.fileUploads > 364 ) {
 				notes.push( {
 					label: 'archivist',
-					tooltip: 'You uploaded more file than there were days in the year'
+					tooltip: message.message( 'badge-archivist-desc' )
 				} );
 			}
 			if ( this.stats.pageEdits > 50 ) {
 				notes.push( {
 					label: 'proofreader',
-					tooltip: 'You proof read over 50 pages! Impressive!'
+					tooltip: message.message( 'badge-proofreader-desc' )
 				} );
 			}
 			if ( this.stats.templateEdits > 50 ) {
 				notes.push( {
 					label: 'template wizard',
-					tooltip: 'You edited more than 50 pages in the Module and Template namespace'
-
+					tooltip: message.message( 'badge-template-wizard-desc' )
 				} );
 			}
 			if ( this.stats.interfaceEdits > 20 ) {
 				notes.push( {
 					label: 'interface hero',
-					tooltip: 'You edited more than 20 pages in the MediaWiki namespace'
+					tooltip: message.message( 'badge-interface-hero-desc' )
 				} );
 			}
 			if ( this.stats.totalEdits > 1000000 ) {
 				notes.push( {
 					label: 'millionaires club',
-					tooltip: 'You edited more than a million times. Is that even possible!?'
+					tooltip: message.message( 'badge-1M-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 100000 ) {
 				notes.push( {
 					label: '100K club',
-					tooltip: 'You edited more than 1,000,000 times'
+					tooltip: message.message( 'badge-100k-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 10000 ) {
 				notes.push( {
 					label: '10K club',
-					tooltip: 'You edited more than 10,000 times'
+					tooltip: message.message( 'badge-10k-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 1000 ) {
 				notes.push( {
 					label: '1K club',
-					tooltip: 'You edited more than 1000 times'
+					tooltip: message.message( 'badge-1k-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 100 ) {
 				notes.push( {
 					label: '100 club',
-					tooltip: 'You edited more than 100 times'
+					tooltip: message.message( 'badge-100-desc' )
 				} );
 			}
 			if ( this.stats.talkEdits > 1000 ) {
 				notes.push( {
 					label: 'chatterbox',
-					tooltip: 'You edited talk pages more than 1000 times.'
+					tooltip: message.message( 'badge-chatterbox-desc' )
 				} );
 			}
 			if ( this.stats.thankedCount > 100 ) {
 				notes.push( {
 					label: 'appreciated',
-					tooltip: 'You were appreciated a significant amount of times. You are a pillar to your community!'
+					tooltip: message.message( 'badge-appreciated-desc' )
 				} );
 			}
 			return notes;
