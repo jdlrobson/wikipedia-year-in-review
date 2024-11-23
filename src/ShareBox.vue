@@ -44,7 +44,7 @@
 			<cdx-info-chip v-for="note in notes" :title="note.tooltip">{{ note.label }}</cdx-info-chip>
 		</div>
 	</div>
-	<h3 class="year"><span>{{ previousYear }}</span></h3>
+	<h3 class="year"><span>{{ stats.year - 1 }}</span></h3>
 	<footer>{{ $i18n( 'generate-your-own' ) }} <a :href="`https://${host}`">{{host}}</a>
 		<div class="license-logo">
 			<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">
