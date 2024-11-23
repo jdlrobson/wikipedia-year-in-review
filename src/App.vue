@@ -18,8 +18,9 @@
 			<span>{{ $i18n( 'get-started', language ) }}</span>
 		</cdx-button>
 		<div v-if="loading > 0">
-			<span v-for="i in Array(loading)" :key="`l-${i}`">✏️</span>
-			<div>Retrieving data for <span>{{  status }}</span> {{ previousYear }}.</div>
+			<div class="progressBar">
+				<div :style="`width: ${status * 200}px`"></div>
+			</div>
 		</div>
 		<cdx-message v-if="error" type="error">
 			<span v-if="errorMsg === 'share-error'">{{ $i18n( 'error-share', language ) }}</span>
@@ -247,7 +248,15 @@ export default defineComponent( {
 				this.loading = 0;
 			};
 			const statuschecker = setInterval(() => {
-				this.status = yir.getStatus()
+				const s = yir.getStatus();
+				const now = s.date;
+				if ( !now ) {
+					return;
+				}
+				const end = new Date( this.previousYear, 11, 31 );
+				const ONE_DAY = 1000 * 60 * 60 * 24;
+				const diff = ( end - now ) / ONE_DAY;
+				this.status = ( 365 - diff ) / 365;
 			}, 300);
 			yir( this.username, this.previousYear, this.project ).then((stats) => {
 				clearInterval( loader );
@@ -373,5 +382,16 @@ footer a {
 	width: 80%;
 	font-size: 14px;
 	text-align: left;
+}
+.progressBar {
+    width: 200px;
+    background: gray;
+    height: 20px;
+	margin: 0 0 8px;
+    border: solid 1px black;
+}
+.progressBar > div {
+	background: green;
+    height: 100%;
 }
 </style>

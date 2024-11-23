@@ -30,7 +30,9 @@ const pruneCache = () => {
     }
 };
 
-let status = '31st December';
+let status = {
+    text: '31st December'
+};
 /**
  * @param {string} url
  * @return {Promise<ApiRawResponse>}
@@ -123,7 +125,8 @@ const continueFetch = ( url, params, list, result = [], maxQueries = null, numQu
             const d = toDate( c.timestamp );
             const day = d.getDate();
             const suffix = getDateSuffix( day );
-            status = `${day}${suffix} ${toReadableMonth(c.timestamp)}`;
+            status.text = `${day}${suffix} ${toReadableMonth(c.timestamp)}`;
+            status.date = d;
         }
         if ( r.continue ) {
             Object.keys( r.continue ).forEach( ( key ) => {
