@@ -95,63 +95,63 @@ export default defineComponent( {
 
 			if ( this.stats.fileUploads > 364 ) {
 				notes.push( {
-					label: 'archivist',
+					label: message.message( 'badge-archivist' ),
 					tooltip: message.message( 'badge-archivist-desc' )
 				} );
 			}
 			if ( this.stats.pageEdits > 50 ) {
 				notes.push( {
-					label: 'proofreader',
+					label: message.message( 'badge-proofreader' ),
 					tooltip: message.message( 'badge-proofreader-desc' )
 				} );
 			}
 			if ( this.stats.templateEdits > 50 ) {
 				notes.push( {
-					label: 'template wizard',
+					label: message.message( 'badge-template-wizard' ),
 					tooltip: message.message( 'badge-template-wizard-desc' )
 				} );
 			}
 			if ( this.stats.interfaceEdits > 20 ) {
 				notes.push( {
-					label: 'interface hero',
+					label: message.message( 'badge-interface-hero' ),
 					tooltip: message.message( 'badge-interface-hero-desc' )
 				} );
 			}
 			if ( this.stats.totalEdits > 1000000 ) {
 				notes.push( {
-					label: 'millionaires club',
+					label: message.message( 'badge-1M' ),
 					tooltip: message.message( 'badge-1M-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 100000 ) {
 				notes.push( {
-					label: '100K club',
+					label: message.message( 'badge-100k' ),
 					tooltip: message.message( 'badge-100k-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 10000 ) {
 				notes.push( {
-					label: '10K club',
+					label: message.message( 'badge-10k' ),
 					tooltip: message.message( 'badge-10k-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 1000 ) {
 				notes.push( {
-					label: '1K club',
+					label: message.message( 'badge-1k' ),
 					tooltip: message.message( 'badge-1k-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 100 ) {
 				notes.push( {
-					label: '100 club',
+					label: message.message( 'badge-100' ),
 					tooltip: message.message( 'badge-100-desc' )
 				} );
 			}
 			if ( this.stats.talkEdits > 1000 ) {
 				notes.push( {
-					label: 'chatterbox',
+					label: message.message( 'badge-chatterbox' ),
 					tooltip: message.message( 'badge-chatterbox-desc' )
 				} );
 			}
 			if ( this.stats.thankedCount > 100 ) {
 				notes.push( {
-					label: 'appreciated',
+					label: message.message( 'badge-appreciated' ),
 					tooltip: message.message( 'badge-appreciated-desc' )
 				} );
 			}
