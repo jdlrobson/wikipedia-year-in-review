@@ -148,7 +148,7 @@ const continueFetch = ( url, params, list, result = [], maxQueries = null, numQu
                 }
             }
             return continueFetch(url, params, list, result, maxQueries, numQueries + 1 ).then( (/** @type ApiListObj[] */result2) => {
-                return result.concat( result2 ).filter( p => p );
+                return result2;
             } );
         } else {
             return Promise.resolve( result )
