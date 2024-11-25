@@ -97,5 +97,7 @@
     "badge-archivist-desc": "Tooltip, describes criteria to get {{msg-mw|badge-archivist}}.",
     "badge-timeslot-desc": "Tooltip that show. See {{msg-mw|badge-timeslot}}",
     "streak-prefix": "Combined with {{msg-mw|streak-suffix}} to capture an editing stream (e.g. days in a row you edited)",
-    "streak-suffix": "Combined with {{msg-mw|streak-prefix}} to capture an editing stream (e.g. days in a row you edited)"
+    "streak-suffix": "Combined with {{msg-mw|streak-prefix}} to capture an editing stream (e.g. days in a row you edited)",
+    "badge-streak": "badge label for someone who edits consistently",
+    "badge-streak-desc": "Tooltip, describes label of badge {{msg-mw|badge-streak}}"
 }

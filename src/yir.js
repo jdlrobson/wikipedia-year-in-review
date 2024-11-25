@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
 const DELAY = 300;
 
-const CACHE_VERSION = 2
+const CACHE_VERSION = 3;
 const CACHE_KEY = `cache-summaries-${CACHE_VERSION}`;
 let shortTermCache, summaryCache;
 // localStorage may not be available if running in Node.js

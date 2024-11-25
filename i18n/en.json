@@ -97,6 +97,9 @@
     "badge-archivist-desc": "You uploaded more file than there were days in the year",
     "badge-timeslot-desc": "The time you were most likely to edit was $1",
     "streak-prefix": "At one point this year you edited the project",
-    "streak-suffix": "consectutive days!"
+    "streak-suffix": "consecutive days!",
+    "longest-streak": "longest streak",
+    "badge-streak": "marathoner",
+    "badge-streak-desc": "A badge for editors who edited for more than 50 consecutive days."
 }
 

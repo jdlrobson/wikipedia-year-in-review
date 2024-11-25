@@ -34,6 +34,10 @@
 		<stat-box :value="stats.thankedCount"
 			:label="$i18n( 'thanked' )"
 			:icon="thankIcon"></stat-box>
+		<stat-box v-if="stats.streak.longestStreak > 0"
+			:value="stats.streak.longestStreak"
+			:label="$i18n( 'longest-streak' )"
+			:icon="streakIcon"></stat-box>
 		<stat-box v-if="stats.templateEdits" :value="stats.templateEdits"
 			:label="$i18n( 'template-edits' )"
 			:icon="templateIcon"></stat-box>
@@ -65,7 +69,8 @@ import {
 	cdxIconUpload,
 	cdxIconOngoingConversation,
 	cdxIconUserTalk,
-	cdxIconEdit
+	cdxIconEdit,
+	cdxIconPlay
 } from '@wikimedia/codex-icons';
 import { CdxInfoChip } from '@wikimedia/codex';
 import { getTimeslotNote, humanDay } from './facts/habitUtils';
@@ -155,6 +160,12 @@ export default defineComponent( {
 					tooltip: message.message( 'badge-appreciated-desc' )
 				} );
 			}
+			if ( this.stats.streak.longestStreak > 30 ) {
+				notes.push( {
+					label: message.message( 'badge-streak' ),
+					tooltip: message.message( 'badge-streak-desc' )
+				} );
+			}
 			return notes;
 		},
 		imageLogo() {
@@ -180,6 +191,10 @@ export default defineComponent( {
 		},
 		project: {
 			type: String
+		},
+		streakIcon: {
+			type: String,
+			default: cdxIconPlay
 		},
 		wikidataIcon: {
 			type: String,
