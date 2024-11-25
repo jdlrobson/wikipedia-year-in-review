@@ -11,13 +11,13 @@ const LIGHTNING = {
  * @return {YIRFact[]}
  */
 export default ( stats ) => {
-    const value = String( stats.streak.longestStreak );
-    if ( !value ) {
+    const streak = stats.streak.longestStreak;
+    if ( streak > 1 ) {
         return [];
     }
     return [ {
         messagePrefix: message.message( 'streak-prefix' ),
-        value,
+        value: String( streak ),
         qualifier: message.message( 'streak-days' ),
         image: LIGHTNING,
         messageSuffix: message.message( 'streak-suffix' ),
