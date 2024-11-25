@@ -310,19 +310,26 @@ const calculateStreak = ( contribs ) => {
 
     let currentStreak = 1;
     let longestStreak = 1;
+    let longestStreakStartDate = uniqueDays[0];
+    let streakStartDate = uniqueDays[0];
 
     for ( let i = 1; i < uniqueDays.length; i++ ) {
         const daysDiff =
             ( uniqueDays[i].getTime() - uniqueDays[i - 1].getTime() ) / ( 24 * 60 * 60 * 1000 ); // Difference in days
         if ( daysDiff === 1 ) {
             currentStreak++;
+            if ( currentStreak > longestStreak ) {
+                longestStreakStartDate = streakStartDate;
+            }
             longestStreak = Math.max( longestStreak, currentStreak );
         } else if ( daysDiff > 1 ) {
             currentStreak = 1; // Reset streak
+            streakStartDate = uniqueDays[i-1];
         }
     }
 
-    return { currentStreak, longestStreak };
+    console.log('streak debug', longestStreakStartDate);
+    return { currentStreak, longestStreak, longestStreakStartDate };
 };
 
 /**

@@ -44,6 +44,7 @@
  * @typedef {Object} YIRStreak
  * @property {number} currentStreak
  * @property {number} longestStreak
+ * @property {Date} [longestStreakStartDate]
  */
 /**
  * @typedef {Object} YIRStatsContribs
