@@ -339,7 +339,7 @@ const calculateStreak = ( contribs ) => {
 const summarize = ( contribs ) => {
     const articles = contribs.filter( ( c ) => c && c.ns === 0 );
     const fileUploads = contribs.filter( ( c ) => c && c.ns === 6 ).length;
-    const streak = calculateStreak( articles );
+    const streak = calculateStreak( contribs );
     const top = topArticles(articles);
     const contribDayofweek = contribs.filter((c)=>c).map((c) => {
         const t = new Date( c.timestamp );
