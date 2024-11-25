@@ -12,7 +12,7 @@ const LIGHTNING = {
  */
 export default ( stats ) => {
     const streak = stats.streak.longestStreak;
-    if ( streak > 1 ) {
+    if ( streak <= 1 ) {
         return [];
     }
     return [ {
