@@ -95,5 +95,7 @@
     "badge-day-desc": "Tooltip, describes label of badge which has day of week.",
     "badge-archivist": "badge label for someone who uploads lots of files",
     "badge-archivist-desc": "Tooltip, describes criteria to get {{msg-mw|badge-archivist}}.",
-    "badge-timeslot-desc": "Tooltip that show. See {{msg-mw|badge-timeslot}}"
+    "badge-timeslot-desc": "Tooltip that show. See {{msg-mw|badge-timeslot}}",
+    "streak-prefix": "Combined with {{msg-mw|streak-suffix}} to capture an editing stream (e.g. days in a row you edited)",
+    "streak-suffix": "Combined with {{msg-mw|streak-prefix}} to capture an editing stream (e.g. days in a row you edited)"
 }

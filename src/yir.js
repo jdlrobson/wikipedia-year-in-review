@@ -322,7 +322,6 @@ const calculateStreak = ( contribs ) => {
         }
     }
 
-    console.log( "Streak data calculated:", { currentStreak, longestStreak } );
     return { currentStreak, longestStreak };
 };
 
@@ -333,7 +332,7 @@ const calculateStreak = ( contribs ) => {
 const summarize = ( contribs ) => {
     const articles = contribs.filter( ( c ) => c && c.ns === 0 );
     const fileUploads = contribs.filter( ( c ) => c && c.ns === 6 ).length;
-    const streakData = calculateStreak( articles );
+    const streak = calculateStreak( articles );
     const top = topArticles(articles);
     const contribDayofweek = contribs.filter((c)=>c).map((c) => {
         const t = new Date( c.timestamp );
@@ -377,7 +376,7 @@ const summarize = ( contribs ) => {
             talkEdits: contribs.filter(
                 (/** @type {ApiListObj} */ c) => c && c.ns % 2 !== 0
             ).length,
-            streak: streakData
+            streak
         };
     });
 };

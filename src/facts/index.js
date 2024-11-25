@@ -6,6 +6,7 @@ import thanks from './thanks';
 import talk from './talk';
 import templates from './templates';
 import interfaces from './interface';
+import streak from './streak';
 
 /**
  * @param {YIRStats} stats
@@ -16,6 +17,7 @@ function facts( stats ) {
     const project = stats.project;
     let pages = [];
     pages.push( main( stats, year, project ) )
+    pages = pages.concat( streak( stats ) );
     pages = pages.concat( paragraphs( stats ) );
     pages = pages.concat( habits( stats ) );
     pages = pages.concat( topArticles( stats, project ) );

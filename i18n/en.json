@@ -95,6 +95,8 @@
     "badge-day-desc": "The day you were most likely to edit",
     "badge-archivist": "archivist",
     "badge-archivist-desc": "You uploaded more file than there were days in the year",
-    "badge-timeslot-desc": "The time you were most likely to edit was $1"
+    "badge-timeslot-desc": "The time you were most likely to edit was $1",
+    "streak-prefix": "At one point this year you edited the project",
+    "streak-suffix": "consectutive days!"
 }
 
