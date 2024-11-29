@@ -58,7 +58,7 @@
     "thanked": "Parameters:\n* $1 - number of times the user was thanked",
     "file-uploads": "Parameters:\n* $1 - a number",
     "claims": "Wikidata claims.\n\nParameters:\n* $1 - a number",
-	"edits": "Parameters:\n* $1 - a number",
+    "edits": "Parameters:\n* $1 - a number",
     "badge-chatterbox": "Label for badge for someone who talks a lot",
     "badge-chatterbox-desc": "Tooltip, describes criteria to get {{msg-wikimedia|wp-year-in-review-badge-chatterbox}}.",
     "badge-100": "Badge label for someone who edited over 100 times",
