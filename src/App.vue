@@ -31,7 +31,9 @@
 		<div class="yearSwitcher">
 			<cdx-select
 				:placeholder="$i18n( 'year-placeholder', language )"
-				:menu-items="lastFiveYears" :selected="previousYear" @update:selected="updateYear"></cdx-select>
+				:menu-items="lastFiveYears"
+				:selected="String(previousYear)"
+				@update:selected="updateYear"></cdx-select>
 		</div>
 	</page>
 	<page
@@ -68,8 +70,9 @@
 	<div v-if="currentPage === -1">
 		{{ $i18n( 'language-label', language ) }}
 		<select id="languageSwitcher" name="language" @change="setLanguage">
-			<option value="en">{{ $i18n( 'language-en', language ) }}</option>
-			<option value="yoda">{{ $i18n( 'language-yoda', language ) }}</option>
+			<option v-for="lang in supportedLanguages" :value="lang.code" :selected="lang.code === language">
+				{{ lang.label }}
+			</option>
 		</select>
 	</div>
 </div>
@@ -87,7 +90,7 @@ import '@wikimedia/codex';
 import { defineComponent } from 'vue';
 import ShareBox from './ShareBox.vue';
 import message from './message';
-
+import SUPPORTED_LANGUAGES from './LANGUAGES.json';
 const currentDate = ( new Date() );
 const MONTH = currentDate.getMonth();
 const CURRENT_YEAR = currentDate.getFullYear();
@@ -96,8 +99,10 @@ const START_MONTH = isLocalhost ? 10 : 11;
 const YEAR = MONTH === START_MONTH ? CURRENT_YEAR + 1 : CURRENT_YEAR;
 const PREVIOUS_YEAR = YEAR - 1;
 const LAST_FIVE = [ YEAR - 1, YEAR - 2, YEAR - 3, YEAR - 4, YEAR - 5 ].map( ( year ) => ( {
-	label: `${year}`, value: year
+	label: String( year ),
+	value: String( year )
 } ) );
+
 export default defineComponent( {
 	name: 'App',
 	components: {
@@ -110,6 +115,12 @@ export default defineComponent( {
 		CdxTextInput
 	},
 	computed: {
+		supportedLanguages() {
+			return SUPPORTED_LANGUAGES.map( ( code ) => ( {
+				code,
+				label: message.message( `language-${code}`, this.language )
+			} ) );
+		},
 		appStyle() {
 			const cp = this.currentPage;
 			const p = this.pages.length;

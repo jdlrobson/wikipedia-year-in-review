@@ -14,14 +14,7 @@ export default {
     },
     computed: {
         impactMessage() {
-            let valString = `${this.value}`;
-            if ( valString.length === 7 ) {
-                valString = `${ valString.slice( 0, 1 ) },${ valString.slice( 1, 4 ) },${ valString.slice( 4 ) }`;
-            } else if ( valString.length === 6 ) {
-                valString = `${ valString.slice( 0, 3 ) },${ valString.slice( 3 ) }`;
-            } else if ( valString.length === 5 ) {
-                valString = `${ valString.slice( 0, 2 ) },${ valString.slice( 2 ) }`;
-            }
+            let valString = message.convertNumber( this.value );
             return message.impactMessage( this.message, valString );
         }
     },

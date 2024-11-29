@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "npm run copy-assets && parcel build index.html",
+    "build": "npm run prebuild && parcel build index.html",
+    "prebuild": "npm run generate-languages && npm run copy-assets",
+    "generate-languages": "node generateLanguages.mjs",
     "generate-data": "node generateData.mjs",
     "copy-assets": "cp -r src/assets/* dist && cp -r i18n dist/",
-    "start": "npm run copy-assets && parcel index.html ",
+    "start": "npm run prebuild && parcel index.html ",
     "test": "tsc"
   },
   "type": "module",
