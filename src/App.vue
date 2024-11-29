@@ -68,7 +68,7 @@
 	<div v-if="currentPage === -1">
 		{{ $i18n( 'language-label', language ) }}
 		<select id="languageSwitcher" name="language" @change="setLanguage">
-			<option v-for="lang in supportedLanguages" :value="lang.code">
+			<option v-for="lang in supportedLanguages" :value="lang.code" :selected="lang.code === language">
 				{{ lang.label }}
 			</option>
 		</select>
