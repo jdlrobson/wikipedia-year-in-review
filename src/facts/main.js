@@ -2,9 +2,9 @@ import toReadable from "./toReadable";
 import message from '../message';
 
 const WIKIPEDIA = {
-	source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
-	width: 512,
-	height: 401
+    source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
+    width: 512,
+    height: 401
 };
 
 /**
@@ -14,19 +14,15 @@ const WIKIPEDIA = {
  * @return {YIRFact}
  */
 export default ( stats, year, project ) => {
-    let contribs, qualifier, messagePrefix, messageSuffix;
+    let contribs, messagePrefix, messageSuffix;
     switch( project ) {
         case 'commons.wikimedia.org':
             contribs = stats.fileUploads;
-            qualifier = message.message( 'files' );
-            messagePrefix = message.message( 'you-uploaded' );
-            messageSuffix = message.message( 'across-project' );
+            impactMessage = message.impactMessage( 'you-uploaded-impact', toReadable( contribs ) );
             break;
         default:
             contribs = stats.totalEdits;
-            qualifier = message.message( 'edits' );
-            messagePrefix = message.message( 'you-made' );
-            messageSuffix = message.message( 'across-project' );
+            impactMessage = message.impactMessage( 'you-made-impact', toReadable( contribs ) );
             break;
     }
     if ( contribs ) {
@@ -35,18 +31,13 @@ export default ( stats, year, project ) => {
             default:
                 return {
                     image: WIKIPEDIA,
-                    messagePrefix,
-                    value: toReadable( contribs  ),
-                    qualifier,
-                    messageSuffix
+                    impactMessage,
                 };
         }
     } else {
         return {
             image: WIKIPEDIA,
-            messagePrefix: message.message( 'no-contributions' ),
-            qualifier: year,
-            messageSuffix: message.message( 'next-year' ),
+            impactMessage: message.impactMessage( 'no-contributions-impact', year ),
         };
     }
 };

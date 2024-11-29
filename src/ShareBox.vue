@@ -13,43 +13,44 @@
 		<stat-box
 			v-if="project === 'commons.wikimedia.org'"
 			:value="stats.fileUploads"
-			:label="$i18n( 'file-uploads' )"
+			message="file-uploads"
 			:icon="uploadIcon"></stat-box>
 		<stat-box
 			v-else-if="project === 'www.wikidata.org'"
 			:value="stats.totalEdits"
-			:label="$i18n( 'claims' )"
+			message="claims"
 			:icon="wikidataIcon"></stat-box>
 		<stat-box
 			v-else
 			:value="stats.totalEdits"
-			:label="$i18n( 'edits' )"
+			message="edits"
 			:icon="editIcon"></stat-box>
 		<stat-box :value="stats.talkEdits"
-			:label="$i18n( 'talk-page-edits' )"
+			message="talk-page-edits"
 			:icon="talkIcon"></stat-box>
 		<stat-box :value="stats.thanksCount"
-			:label="$i18n( 'thanks' )"
+			message="thanks"
 			:icon="thankIcon"></stat-box>
 		<stat-box :value="stats.thankedCount"
-			:label="$i18n( 'thanked' )"
+			message="thanked"
 			:icon="thankIcon"></stat-box>
 		<stat-box v-if="stats.streak.longestStreak > 0"
 			:value="stats.streak.longestStreak"
-			:label="$i18n( 'longest-streak' )"
+			message="longest-streak"
 			:icon="streakIcon"></stat-box>
 		<stat-box v-if="stats.templateEdits" :value="stats.templateEdits"
-			:label="$i18n( 'template-edits' )"
+			message="template-edits"
 			:icon="templateIcon"></stat-box>
 		<stat-box v-if="stats.interfaceEdits" :value="stats.interfaceEdits"
-			:label="$i18n( 'interface-edits' )"
+			message="interface-edits"
 			:icon="gadgetIcon"></stat-box>
 		<div class="sharebox-info-chips">
 			<cdx-info-chip v-for="note in notes" :title="note.tooltip">{{ note.label }}</cdx-info-chip>
 		</div>
 	</div>
 	<h3 class="year"><span>{{ stats.year - 1 }}</span></h3>
-	<footer>{{ $i18n( 'generate-your-own' ) }} <a :href="`https://${host}`">{{host}}</a>
+	<footer>
+		<span v-html="$i18n( 'generate-your-own', `<a href='https://${host}'>${host}</a>` )"></span>
 		<div class="license-logo">
 			<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">
 				<img src="./Cc.logo.circle.svg.webp">

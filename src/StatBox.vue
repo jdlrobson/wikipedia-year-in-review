@@ -1,37 +1,36 @@
 <template>
 <div class="statbox">
     <cdx-icon :icon="icon"></cdx-icon>
-    <span>{{ valueFormatted }}</span>
-    <span class="statbox-label">{{ label }}</span>
+    <span class="statbox-label" v-html="impactMessage"></span>
 </div>
 </template>
 <script>
 import { CdxIcon } from '@wikimedia/codex';
+import message from './message';
 export default {
     name: 'StatBox',
     components: {
         CdxIcon
     },
     computed: {
-        valueFormatted() {
+        impactMessage() {
             let valString = `${this.value}`;
             if ( valString.length === 7 ) {
-                return `${ valString.slice( 0, 1 ) },${ valString.slice( 1, 4 ) },${ valString.slice( 4 ) }`;
+                valString = `${ valString.slice( 0, 1 ) },${ valString.slice( 1, 4 ) },${ valString.slice( 4 ) }`;
             } else if ( valString.length === 6 ) {
-                return `${ valString.slice( 0, 3 ) },${ valString.slice( 3 ) }`;
+                valString = `${ valString.slice( 0, 3 ) },${ valString.slice( 3 ) }`;
             } else if ( valString.length === 5 ) {
-                return `${ valString.slice( 0, 2 ) },${ valString.slice( 2 ) }`;
-            } else {
-                return valString;
+                valString = `${ valString.slice( 0, 2 ) },${ valString.slice( 2 ) }`;
             }
+            return message.impactMessage( this.message, valString );
         }
     },
     props: {
         icon: String|Object,
         value: {
-            type: Number
+            type: Number,
         },
-        label: {
+        message: {
             type: String
         }
     }
@@ -51,8 +50,14 @@ export default {
     display: block;
     text-align: left;
 }
-.statbox-label {
+span.statbox-label {
+    display: flex;
+    flex-direction: column;
     font-size: 0.75rem;
+}
+.statbox-label strong {
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 .statbox .cdx-icon {
     position: absolute;

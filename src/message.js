@@ -12,6 +12,11 @@ function message( key, ...args ) {
     return val;
 }
 
+function impactMessage( key, ...args ) {
+    args[ 0 ] = `<strong>${args[ 0 ]}</strong>`;
+    return message( key, ...args );
+}
+
 function setLanguage( languageCode ) {
     return new Promise( ( resolve ) => {
         fetch( `/i18n/${languageCode}.json` )
@@ -25,5 +30,6 @@ function setLanguage( languageCode ) {
 
 export default {
     setLanguage,
-    message
+    message,
+    impactMessage
 };

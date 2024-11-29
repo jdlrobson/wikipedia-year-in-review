@@ -19,15 +19,13 @@ export default ( stats, project ) => {
 		let topTitle = stats.top5[0].title;
 		return [
 			{
-				messagePrefix: message.message( 'you-made-contributions-to' ),
-				image: stats.thumbs[0],
-				messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(project, topTitle)}">${topTitle}</a>]]`
+				messageSuffix: message.message( 'you-made-contributions-to-impact', `<p>[[<a class="wikiLink" href="${wikiUrl(project, topTitle)}">${topTitle}</a>]]</p>` ),
+				image: stats.thumbs[0]
 			},
 			...stats.top5.slice(1).map((t, i) => {
 				return {
 					image: stats.thumbs[i+1],
-					messagePrefix: message.message( 'and' ),
-					messageSuffix: `[[<a class="wikiLink" href="${wikiUrl(project, t.title)}">${t.title}</a>]]`
+					messageSuffix: message.message( 'and-impact', `<p>[[<a class="wikiLink" href="${wikiUrl(project, t.title)}">${t.title}</a>]]</p>` ),
 				};
 			} )
 		];

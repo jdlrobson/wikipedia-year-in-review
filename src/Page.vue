@@ -2,10 +2,10 @@
 <div class="page">
     <div class="main">
         <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
+        <p class="messageFlex" v-html="impactMessage" :class="class"></p>
         <p v-if="messagePrefix">{{messagePrefix}}</p>
-        <p class="message">
+        <p v-if="value" class="message">
             <strong v-if="value" :class="class">{{ value }}</strong>
-            <span>{{ qualifier}}</span>
         </p>
         <p class="subtitle" v-if="messageSuffix"  v-html="messageSuffix"></p>
     </div>
@@ -20,9 +20,9 @@ export default {
     props: {
         image: Object,
         class: String,
+        impactMessage: String,
         messageSuffix: String,
         messagePrefix: String,
-        qualifier: String,
         value: String
     },
     data() {
@@ -58,7 +58,8 @@ p {
     font-size: 1rem;
     margin: 1rem;
 }
-.main .message {
+.main .message,
+.messageFlex >>> strong {
     font-family: serif;
     display: block;
 }
@@ -67,7 +68,11 @@ p {
     margin-top: -18px;
     font-family: sans-serif;
 }
-.main strong {
+.main .messageFlex {
+	display: flex;
+	flex-direction: column;
+}
+.main >>> strong {
     font-weight: bold;
     font-size: 5rem;
 }
@@ -78,19 +83,21 @@ img {
     margin-bottom: 10px;
 }
 
-.main strong.smaller {
+.main >>> .smaller strong,
+.main >>> strong.smaller {
     font-size: 3.8rem;
 }
 @media ( min-width: 1000px ) {
     .page {
         padding: 20px;
     }
-    .main strong {
+    .main >>> strong {
         font-weight: bold;
         font-size: 10rem;
     }
 
-    .main strong.smaller {
+    .main >>> .smaller strong,
+	.main >>> strong.smaller {
         font-size: 8rem;
     }
 }
@@ -130,7 +137,8 @@ p {
     .page {
         font-size: 1rem;
     }
-    .main strong.smaller {
+	.main >>> .smaller strong,
+    .main >>> strong.smaller {
         font-size: 2rem;
     }
 }

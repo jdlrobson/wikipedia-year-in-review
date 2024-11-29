@@ -13,10 +13,8 @@ const DATA = {
 export default ( stats ) => {
 	if ( stats.templateEdits > 0 ) {
 		return [ {
-			messagePrefix: message.message( 'template-1' ),
-			image: DATA,
-			value: toReadable( stats.templateEdits ),
-			qualifier: message.message( 'template-2' )
+			impactMessage: message.impactMessage( 'template-impact', toReadable( stats.templateEdits ) ),
+			image: DATA
 		} ];
 	} else {
 		return [];

@@ -14,11 +14,8 @@ const MEETING = {
 export default ( stats ) => {
 	if ( stats.talkEdits > 0 ) {
 		return [ {
-			messagePrefix: message.message( 'talk-1' ),
-			image: MEETING,
-			value: toReadable( stats.talkEdits ),
-			qualifier: message.message( 'talk-2' ),
-			messageSuffix: message.message( 'talk-3' )
+			impactMessage: message.impactMessage( 'talk-impact', toReadable( stats.talkEdits ) ),
+			image: MEETING
 		} ];
 	} else {
 		return [];
