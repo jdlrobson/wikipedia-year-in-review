@@ -7,6 +7,7 @@
 </template>
 <script>
 import { CdxIcon } from '@wikimedia/codex';
+import message from './message';
 export default {
     name: 'StatBox',
     components: {
@@ -14,16 +15,7 @@ export default {
     },
     computed: {
         valueFormatted() {
-            let valString = `${this.value}`;
-            if ( valString.length === 7 ) {
-                return `${ valString.slice( 0, 1 ) },${ valString.slice( 1, 4 ) },${ valString.slice( 4 ) }`;
-            } else if ( valString.length === 6 ) {
-                return `${ valString.slice( 0, 3 ) },${ valString.slice( 3 ) }`;
-            } else if ( valString.length === 5 ) {
-                return `${ valString.slice( 0, 2 ) },${ valString.slice( 2 ) }`;
-            } else {
-                return valString;
-            }
+            return message.convertNumber( this.value );
         }
     },
     props: {
