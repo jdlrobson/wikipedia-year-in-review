@@ -14,7 +14,7 @@ const WIKIPEDIA = {
  * @return {YIRFact}
  */
 export default ( stats, year, project ) => {
-    let contribs, impactMessage, messagePrefix, messageSuffix;
+    let contribs, impactMessage;
     switch( project ) {
         case 'commons.wikimedia.org':
             contribs = stats.fileUploads;
