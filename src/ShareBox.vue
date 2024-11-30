@@ -294,4 +294,7 @@ footer {
 footer a {
 	display: inline;
 }
+.sharebox-info-chips {
+	width: 100%;
+}
 </style>
