@@ -31,6 +31,7 @@ function generateForProjectAndYear( year, project ) {
     const index = fs.readFileSync(  `${BASE_DIR}/index.json` );
     const usernames = JSON.parse( index );
     usernames.forEach( ( /** @type string */ username ) => {
+        console.log(`Generating /${year}/${project}/${username}`)
         if ( currentYear === year ) {
             const userPath = `${BASE_DIR}/${ encodeURIComponent( username.replace(/ /g, '_') ) }.json`;
             const localResults = fs.existsSync( userPath ) ?
@@ -50,11 +51,9 @@ function generateForProjectAndYear( year, project ) {
                 }
         } else {
             const userPath = `${BASE_DIR}/${ encodeURIComponent( username.replace(/ /g, '_') ) }.summary.json`;
-            if ( !fs.existsSync( userPath ) ) {
-                yir( username, year, project ).then( ( result ) => {
-                    fs.writeFileSync( userPath, JSON.stringify( summaryWithStreak ) );
-                } );
-            }
+            yir( username, year, project ).then( ( result ) => {
+                fs.writeFileSync( userPath, JSON.stringify( result ) );
+            } );
         }
     } );
 }
