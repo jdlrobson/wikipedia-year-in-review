@@ -2,7 +2,7 @@
 <div class="page">
     <div class="main">
         <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
-        <p class="messageFlex" v-html="impactMessage" :class="class"></p>
+        <p v-if="impactMessage" v-html="impactMessage" :class="class" class="impactMessage"></p>
         <p v-if="messagePrefix">{{messagePrefix}}</p>
         <p v-if="value" class="message">
             <strong v-if="value" :class="class">{{ value }}</strong>
@@ -34,7 +34,7 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style>
 .page {
     max-width: 800px;
     width: 80%;
@@ -59,20 +59,23 @@ p {
     margin: 1rem;
 }
 .main .message,
-.messageFlex >>> strong {
+.impactMessage .highlight {
     font-family: serif;
     display: block;
+	margin: -18px;
+}
+.impactMessage strong {
+	display: block;
+	font-weight: bold;
+	margin: 1rem;
+	padding-top: 1rem;
 }
 .main span {
     display: block;
     margin-top: -18px;
     font-family: sans-serif;
 }
-.main .messageFlex {
-	display: flex;
-	flex-direction: column;
-}
-.main >>> strong {
+.main .highlight {
     font-weight: bold;
     font-size: 5rem;
 }
@@ -83,21 +86,21 @@ img {
     margin-bottom: 10px;
 }
 
-.main >>> .smaller strong,
-.main >>> strong.smaller {
+.main .smaller .highlight,
+.main strong.smaller {
     font-size: 3.8rem;
 }
 @media ( min-width: 1000px ) {
     .page {
         padding: 20px;
     }
-    .main >>> strong {
+    .main .highlight {
         font-weight: bold;
         font-size: 10rem;
     }
 
-    .main >>> .smaller strong,
-	.main >>> strong.smaller {
+    .main .smaller .highlight,
+	.main strong.smaller {
         font-size: 8rem;
     }
 }
@@ -137,8 +140,8 @@ p {
     .page {
         font-size: 1rem;
     }
-	.main >>> .smaller strong,
-    .main >>> strong.smaller {
+	.main .smaller .highlight,
+    .main strong.smaller {
         font-size: 2rem;
     }
 }

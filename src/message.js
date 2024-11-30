@@ -16,7 +16,7 @@ function message( key, ...args ) {
 }
 
 function impactMessage( key, ...args ) {
-    args[ 0 ] = `<strong>${args[ 0 ]}</strong>`;
+    args[ 0 ] = `<span class="highlight">${args[ 0 ]}</span>`;
     return message( key, ...args );
 }
 

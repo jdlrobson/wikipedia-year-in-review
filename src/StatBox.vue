@@ -48,7 +48,7 @@ span.statbox-label {
     flex-direction: column;
     font-size: 0.75rem;
 }
-.statbox-label strong {
+.statbox-label .highlight {
     font-size: 1.25rem;
     font-weight: 700;
 }
