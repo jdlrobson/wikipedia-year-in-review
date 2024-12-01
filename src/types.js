@@ -24,9 +24,9 @@
 /**
  * @typedef {Object} YIRFact
  * @property {YIRImage} [image]
+ * @property {string} [impactMessage]
  * @property {string} [messagePrefix]
  * @property {string} [messageSuffix]
- * @property {string|number} [qualifier]
  * @property {string} [class]
  * @property {string} [value]
  */

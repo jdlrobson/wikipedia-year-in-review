@@ -14,10 +14,8 @@ const CHEMISTRY = {
 export default ( stats ) => {
 	if ( stats.interfaceEdits > 0 ) {
 		return [ {
-			messagePrefix: message.message( 'gadget-edits-1' ),
-			image: CHEMISTRY,
-			value: toReadable( stats.interfaceEdits ),
-			qualifier: message.message( 'gadget-edits-2' )
+			impactMessage: message.impactMessage( 'gadget-edits-impact', toReadable( stats.interfaceEdits ) ),
+			image: CHEMISTRY
 		} ];
 	} else {
 		return [];

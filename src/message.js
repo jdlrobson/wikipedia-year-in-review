@@ -15,6 +15,11 @@ function message( key, ...args ) {
     return val;
 }
 
+function impactMessage( key, ...args ) {
+    args[ 0 ] = `<span class="highlight">${args[ 0 ]}</span>`;
+    return message( key, ...args );
+}
+
 function getLanguage() {
     return langCode;
 }
@@ -52,5 +57,6 @@ function setLanguage( languageCode ) {
 export default {
     convertNumber,
     setLanguage,
-    message
+    message,
+    impactMessage
 };

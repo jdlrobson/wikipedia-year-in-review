@@ -1,8 +1,7 @@
 <template>
 <div class="statbox">
     <cdx-icon :icon="icon"></cdx-icon>
-    <span>{{ valueFormatted }}</span>
-    <span class="statbox-label">{{ label }}</span>
+    <span class="statbox-label" v-html="impactMessage"></span>
 </div>
 </template>
 <script>
@@ -14,16 +13,17 @@ export default {
         CdxIcon
     },
     computed: {
-        valueFormatted() {
-            return message.convertNumber( this.value );
+        impactMessage() {
+            let valString = message.convertNumber( this.value );
+            return message.impactMessage( this.message, valString );
         }
     },
     props: {
         icon: String|Object,
         value: {
-            type: Number
+            type: Number,
         },
-        label: {
+        message: {
             type: String
         }
     }
@@ -43,8 +43,14 @@ export default {
     display: block;
     text-align: left;
 }
-.statbox-label {
+span.statbox-label {
+    display: flex;
+    flex-direction: column;
     font-size: 0.75rem;
+}
+.statbox-label .highlight {
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 .statbox .cdx-icon {
     position: absolute;

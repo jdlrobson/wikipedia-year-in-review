@@ -23,24 +23,18 @@ export default ( stats ) => {
 		wasThanked = true;
 		pages = pages.concat( [
 			{
-				messagePrefix: message.message( 'appreciated-1' ),
+				impactMessage: message.impactMessage( 'appreciated-impact', toReadable( stats.thankedCount ) ),
 				image: FRIENDSHIP,
-				value: toReadable( stats.thankedCount ),
-				qualifier: message.message( 'appreciated-2' )
 			}
 		] );
 	}
 	if ( stats.thanksCount > 0 ) {
 		pages = pages.concat( [
 			{
-				messagePrefix: wasThanked ?
-					message.message( 'appreciated-to-1a' ) :
-					message.message( 'appreciated-to-1b' ),
+				impactMessage: wasThanked ?
+					message.impactMessage( 'appreciated-to-a', toReadable( stats.thanksCount ) ) :
+					message.impactMessage( 'appreciated-to-b', toReadable( stats.thanksCount ) ),
 				image: COMMUNITY,
-				value: toReadable( stats.thanksCount ),
-				qualifier: wasThanked ?
-					message.message( 'appreciated-to-2a' ) :
-					message.message( 'appreciated-to-2b' )
 			},
 			{
 				messagePrefix: message.message( 'thanks-for-caring' ),
@@ -51,18 +45,14 @@ export default ( stats ) => {
 	if ( stats.topThanksTo.length  ) {
 		pages = pages.concat( [
 			{
-				messagePrefix: `@${stats.topThanksTo[0].title}`,
-				//value: stats.topThanksTo[0].count,
-				//qualifier: 'User'
-				messageSuffix: message.message( 'thanked-most' )
+				messageSuffix: message.message( 'thanked-most-impact', `@${stats.topThanksTo[0].title}` )
 			}
 		] );
 	}
 	if ( stats.topThanksFrom.length ) {
 		pages = pages.concat( [
 			{
-				messagePrefix: `@${stats.topThanksFrom[0].user}`,
-				messageSuffix: message.message( 'thank-fan' )
+				messageSuffix: message.message( 'thank-fan-impact', `@${stats.topThanksFrom[0].user}` )
 			}
 		] );
 	}
