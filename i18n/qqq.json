@@ -104,5 +104,9 @@
     "streak-prefix": "Combined with {{msg-mw|streak-suffix}} to capture an editing stream (e.g. days in a row you edited)",
     "streak-suffix": "Combined with {{msg-mw|streak-prefix}} to capture an editing stream (e.g. days in a row you edited)",
     "badge-streak": "badge label for someone who edits consistently",
-    "badge-streak-desc": "Tooltip, describes label of badge {{msg-mw|badge-streak}}"
+    "badge-streak-desc": "Tooltip, describes label of badge {{msg-mw|badge-streak}}",
+	"language-he": "Language label for: Hebrew",
+    "language-ko": "Language label for:Korean",
+    "language-nb": "Language label for:Norwegian Bokmål",
+    "language-zh-hans": "Language label for: Chinese (Han simplified script)"
 }

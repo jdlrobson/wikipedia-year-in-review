@@ -100,6 +100,10 @@
     "streak-suffix": "consecutive days!",
     "longest-streak": "longest streak",
     "badge-streak": "marathoner",
-    "badge-streak-desc": "A badge for editors who edited for more than 50 consecutive days."
+    "badge-streak-desc": "A badge for editors who edited for more than 50 consecutive days.",
+    "language-he": "Hebrew",
+    "language-ko": "Korean",
+    "language-nb": "Norwegian Bokmål",
+    "language-zh-hans": "Chinese (Han simplified script)"
 }
 
