@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Suleiman the Magnificent Television",
+			"Ykhwong"
+		]
+	},
+	"username-placeholder": "사용자 이름은 무엇입니까?",
+	"project-label": "내 위키미디어 프로젝트:",
+	"get-started": "시작하기",
+	"error-share": "공유 과정 중에 예기치 않은 오류가 발생했습니다.",
+	"error-clipboard": "클립보드에 복사하려고 할 때 예상치 못한 오류가 발생했습니다.",
+	"error-generic": "확인하는 과정에서 오류가 발생했습니다. 올바른 사용자 이름을 사용하셨나요?",
+	"year-placeholder": "연도 선택",
+	"language-en": "영어",
+	"language-label": "언어 변경",
+	"files": "파일",
+	"edited-most-day-edit-total": "(편집 $1개)",
+	"day-0": "일요일",
+	"day-1": "월요일",
+	"day-2": "화요일",
+	"day-3": "수요일",
+	"day-4": "목요일",
+	"day-5": "금요일",
+	"day-6": "토요일",
+	"gadget-edits-1": "소도구와 인터페이스 메시지를 편집했습니다",
+	"thanks-for-caring": "관심을 가져주셔서 고맙습니다!",
+	"we-appreciate-you": "감사합니다!",
+	"interface-edits": "인터페이스 편집",
+	"badge-chatterbox-desc": "1000번 이상 토론 페이지를 편집했습니다.",
+	"badge-100-desc": "100번 이상 편집했습니다",
+	"badge-1k-desc": "1000번 이상 편집했습니다",
+	"badge-10k-desc": "10,000번 이상 편집했습니다",
+	"badge-100k-desc": "100,000번 이상 편집했습니다",
+	"badge-1M-desc": "당신은 백만 번 이상 편집했습니다. 이게 가능했다니 믿기지가 않네요!?",
+	"badge-template-wizard": "틀 마법사"
+}
