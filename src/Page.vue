@@ -1,11 +1,15 @@
 <template>
 <div class="page">
-    <div class="main">
+    <div v-if="message" class="main">
+        <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
+        <p v-html="message" class="message-text"></p>
+    </div>
+    <div v-else class="main">
         <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
         <p v-if="messagePrefix">{{messagePrefix}}</p>
         <p class="message">
             <strong v-if="value" :class="class">{{ value }}</strong>
-            <span>{{ qualifier}}</span>
+            <span>{{ qualifier }}</span>
         </p>
         <p class="subtitle" v-if="messageSuffix"  v-html="messageSuffix"></p>
     </div>
@@ -22,6 +26,7 @@ export default {
         class: String,
         messageSuffix: String,
         messagePrefix: String,
+        message: String,
         qualifier: String,
         value: String
     },
@@ -34,7 +39,7 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style>
 .page {
     max-width: 800px;
     width: 80%;
@@ -71,6 +76,15 @@ p {
     font-weight: bold;
     font-size: 5rem;
 }
+.main .message-text strong {
+    display: block;
+    margin: 1rem 0 0;
+}
+.main .message-text strong:last-child,
+.main .message-text span:last-child {
+    margin-bottom: 1rem;
+}
+
 img {
     width: auto;
 	max-height: 20vh;

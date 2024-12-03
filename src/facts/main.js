@@ -1,5 +1,6 @@
 import toReadable from "./toReadable";
 import message from '../message';
+import { toFactMessage, toFactMessageLegacy } from "./toFactMessage";
 
 const WIKIPEDIA = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
@@ -14,19 +15,24 @@ const WIKIPEDIA = {
  * @return {YIRFact}
  */
 export default ( stats, year, project ) => {
-    let contribs, qualifier, messagePrefix, messageSuffix;
+    let contribs, messageText, value;
     switch( project ) {
         case 'commons.wikimedia.org':
+            value = toReadable( contribs );
             contribs = stats.fileUploads;
-            qualifier = message.message( 'files' );
-            messagePrefix = message.message( 'you-uploaded' );
-            messageSuffix = message.message( 'across-project' );
-            break;
+            if ( message.exists( 'files-you-uploaded' ) ) {
+                messageText = toFactMessage( 'files-you-uploaded', value )
+            } else {
+                messageText = toFactMessageLegacy( 'you-uploaded', value, 'files', 'across-project' );
+            }
         default:
             contribs = stats.totalEdits;
-            qualifier = message.message( 'edits' );
-            messagePrefix = message.message( 'you-made' );
-            messageSuffix = message.message( 'across-project' );
+            value = toReadable( contribs );
+            if ( message.exists( 'edits-you-made' ) ) {
+                messageText = toFactMessage( 'edits-you-made', value )
+            } else {
+                messageText = toFactMessageLegacy( 'you-made', value, 'edits', 'across-project' );
+            }
             break;
     }
     if ( contribs ) {
@@ -35,18 +41,15 @@ export default ( stats, year, project ) => {
             default:
                 return {
                     image: WIKIPEDIA,
-                    messagePrefix,
-                    value: toReadable( contribs  ),
-                    qualifier,
-                    messageSuffix
+                    message: messageText
                 };
         }
     } else {
         return {
             image: WIKIPEDIA,
-            messagePrefix: message.message( 'no-contributions' ),
-            qualifier: year,
-            messageSuffix: message.message( 'next-year' ),
+            message: message.exists( 'no-contributions-this-year' ) ?
+                toFactMessage( 'no-contributions-this-year', year ) :
+                toFactMessageLegacy( 'no-contributions', year, 'next-year' )
         };
     }
 };

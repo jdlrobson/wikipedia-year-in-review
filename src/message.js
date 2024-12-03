@@ -49,7 +49,46 @@ function setLanguage( languageCode ) {
     } )
 }
 
+/**
+ * @param {Element} doc
+ */
+const cleanHTML = ( doc ) => {
+    let scripts = doc.querySelectorAll('script');
+    for (let script of scripts) {
+        script.remove();
+    }
+    // remove all attributes except href.
+    Array.from( doc.querySelectorAll('*') )
+        .filter((node)=>node.attributes.length)
+        .forEach( ( node )=> {
+            Array.from( node.attributes )
+                .filter( ( attr ) => [ 'href' ].indexOf( attr.name ) === -1 )
+                .forEach( (attr) => node.removeAttribute( attr.name ) )
+        } );
+};
+
+/**
+ * @param {string} html
+ * @return {string}
+ */
+function sanitize( html ) {
+    let parser = new DOMParser();
+    let doc = parser.parseFromString( html, 'text/html');
+    cleanHTML( doc );
+    return doc.body.innerHTML;
+}
+
+/**
+ * @param {string} key
+ * @return {boolean}
+ */
+function exists( key ) {
+    return messages[key] !== undefined;
+}
+
 export default {
+    exists,
+    sanitize,
     convertNumber,
     setLanguage,
     message

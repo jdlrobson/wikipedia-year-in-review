@@ -39,6 +39,7 @@
 	<page
 			v-if="activePage"
 		:messagePrefix="activePage.messagePrefix"
+		:message="activePage.message"
 		:value="activePage.value"
 		:image="activePage.image"
 		:class="activePage.class"
