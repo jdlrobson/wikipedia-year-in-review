@@ -1,5 +1,5 @@
 import toReadable from "./toReadable";
-import message from '../message';
+import {  toFactMessageLegacy } from "./toFactMessage";
 
 const PUZZLE = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/6/65/WP20Symbols_puzzleglobe1.svg',
@@ -15,10 +15,12 @@ export default ( stats ) => {
     if ( stats.paragraphs ) {
         return [ {
             image: PUZZLE,
-            messagePrefix: message.message( 'paragraph-1' ),
-            value: toReadable( Math.floor( stats.paragraphs ) ),
-            qualifier: message.message( 'paragraph-2' ),
-            messageSuffix: message.message( 'paragraph-3' )
+            message: toFactMessageLegacy(
+                'paragraph-1',
+                toReadable( Math.floor( stats.paragraphs ) ),
+                'paragraph-2',
+                'paragraph-3'
+            )
         } ];
     } else {
         return [];
