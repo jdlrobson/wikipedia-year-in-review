@@ -69,13 +69,16 @@ p {
 }
 .main span {
     display: block;
-    margin-top: -18px;
     font-family: sans-serif;
+}
+.main strong ~ span {
+    margin-top: -18px;
 }
 .main strong {
     font-weight: bold;
     font-size: 5rem;
 }
+
 .main .message-text strong {
     display: block;
     margin: 1rem 0 0;
