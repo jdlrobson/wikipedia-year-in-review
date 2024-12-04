@@ -97,7 +97,7 @@ const MONTH = currentDate.getMonth();
 const CURRENT_YEAR = currentDate.getFullYear();
 const isLocalhost = location.host.indexOf('localhost') > -1;
 const START_MONTH = isLocalhost ? 10 : 11;
-const YEAR = MONTH === START_MONTH ? CURRENT_YEAR + 1 : CURRENT_YEAR;
+const YEAR = MONTH >= START_MONTH ? CURRENT_YEAR + 1 : CURRENT_YEAR;
 const PREVIOUS_YEAR = YEAR - 1;
 const LAST_FIVE = [ YEAR - 1, YEAR - 2, YEAR - 3, YEAR - 4, YEAR - 5 ].map( ( year ) => ( {
 	label: String( year ),
