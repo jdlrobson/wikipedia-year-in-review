@@ -24,17 +24,15 @@ export default ( stats ) => {
         return [];
     }
     return [ {
-        messagePrefix: message.message( 'you-made' ),
-        value: toReadable( stats.articleEdits ),
-        qualifier: message.message( 'edits' ),
-        image: PEN_PAPER,
-        messageSuffix: message.message( 'num-articles', toReadable(stats.articlesNumber) ),
+        message: `${ message.message( 'you-made' ) } <strong>${ toReadable( stats.articleEdits )
+}</strong> ${ message.message( 'edits' ) } ${ message.message( 'num-articles', toReadable( stats.articlesNumber ) ) }`,
+        image: PEN_PAPER
     },
     {
-        messagePrefix: message.message( 'edited-most-day' ),
+        message: `${ message.message( 'edited-most-day' ) } <strong>${
+            humanDay( topDay.day )
+}</strong> ${ message.message( 'edited-most-day-edit-total', topDay.count ) }`,
         class: 'smaller',
         image: PUZZLE_COLLAB,
-        value: humanDay( topDay.day ),
-        messageSuffix: message.message( 'edited-most-day-edit-total', topDay.count ),
-    }, timeofday( stats.hourofweek )];
+    }, timeofday( stats.hourofweek ) ];
 }
