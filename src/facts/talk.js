@@ -1,5 +1,5 @@
 import toReadable from "./toReadable";
-import { toFactMessageLegacy } from "./toFactMessage";
+import { toFactMessage } from "./toFactMessage";
 
 const MEETING = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/f/f9/Adapted_Wikipedia20symbol_meeting.svg',
@@ -14,11 +14,9 @@ const MEETING = {
 export default ( stats ) => {
 	if ( stats.talkEdits > 0 ) {
 		return [ {
-			message: toFactMessageLegacy(
-				'talk-1',
-				toReadable( stats.talkEdits ),
-				'talk-2',
-				'talk-3'
+			message: toFactMessage(
+				'talk-message',
+				toReadable( stats.talkEdits )
 			),
 			image: MEETING
 		} ];

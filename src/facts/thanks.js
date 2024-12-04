@@ -1,5 +1,6 @@
 import toReadable from "./toReadable";
 import message from '../message';
+import { toFactMessage } from "./toFactMessage";
 
 const FRIENDSHIP = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/7/72/Adapted_Wikipedia20symbol_friendship.svg',
@@ -23,24 +24,25 @@ export default ( stats ) => {
 		wasThanked = true;
 		pages = pages.concat( [
 			{
-				message: `${ message.message( 'appreciated-1' ) } <strong>${ toReadable( stats.thankedCount )
-}</strong> <span>${ message.message( 'appreciated-2' ) }</span>`,
+				message: toFactMessage(
+					'appreciated-message',
+					toReadable( stats.thankedCount )
+				),
 				image: FRIENDSHIP
 			}
 		] );
 	}
 	if ( stats.thanksCount > 0 ) {
-		const messagePrefix = wasThanked ?
-			message.message( 'appreciated-to-1a' ) :
-			message.message( 'appreciated-to-1b' );
-		const qualifier = wasThanked ?
-			message.message( 'appreciated-to-2a' ) :
-			message.message( 'appreciated-to-2b' );
+		const messageKey = wasThanked ?
+			'appreciated-message-1a' :
+			'appreciated-message-1b';
 		pages = pages.concat( [
 			{
 				image: COMMUNITY,
-				message: `${ messagePrefix } <strong>${ toReadable( stats.thanksCount )
-}</strong> <span>${qualifier}</span>`
+				message: toFactMessage(
+					messageKey,
+					toReadable( stats.thanksCount )
+				)
 			},
 			{
 				message: `<span>${ message.message( 'thanks-for-caring' )

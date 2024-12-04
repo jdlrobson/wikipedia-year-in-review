@@ -299,7 +299,7 @@ export default defineComponent( {
 				totalEdits: 0
 			},
 			project: 'en.wikipedia.org',
-			username: ''
+			username: 'Jdlrobson'
 		}
 	}
 } );

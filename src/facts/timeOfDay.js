@@ -3,8 +3,8 @@ const PUZZLE_COLLAB = {
 	width: 512,
 	height: 401
 };
-import message from '../message';
 import { getTimeslotNote } from './habitUtils';
+import { toFactMessage } from "./toFactMessage";
 
 /**
  * @param {YIRTimeSlot[]} hours
@@ -14,7 +14,11 @@ export default ( hours ) => {
     const value = hours[0].timespan;
     
     return {
-        message: `${ message.message('most-edited-time' ) } <strong>${ value }</strong> ${ getTimeslotNote( value ) }`,
+        message: toFactMessage(
+            'most-edited-time-sleep',
+            value,
+            getTimeslotNote( value )
+        ),
         class: 'smaller',
         image: PUZZLE_COLLAB
     };

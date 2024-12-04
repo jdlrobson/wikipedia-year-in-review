@@ -1,5 +1,5 @@
 import toReadable from "./toReadable";
-import message from '../message';
+import { toFactMessage } from "./toFactMessage";
 
 const CHEMISTRY = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Adapted_Wikipedia20symbols_chemistry_w.svg',
@@ -14,8 +14,10 @@ const CHEMISTRY = {
 export default ( stats ) => {
 	if ( stats.interfaceEdits > 0 ) {
 		return [ {
-			message: `${ message.message( 'gadget-edits-1' ) }<strong>${ toReadable( stats.interfaceEdits )
-}</strong> <span>${ message.message( 'gadget-edits-2' ) }</span>`,
+			message: toFactMessage(
+				'gadget-message',
+				toReadable( stats.interfaceEdits )
+			),
 			image: CHEMISTRY
 		} ];
 	} else {

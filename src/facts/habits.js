@@ -1,7 +1,7 @@
 import toReadable from "./toReadable";
 import timeofday from './timeOfDay';
 import { humanDay } from './habitUtils';
-import message from '../message';
+import { toFactMessage } from "./toFactMessage";
 
 const PUZZLE_COLLAB = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/Adapted_Wikipedia20symbol_collaboration.svg',
@@ -24,14 +24,19 @@ export default ( stats ) => {
         return [];
     }
     return [ {
-        message: `${ message.message( 'you-made' ) } <strong>${ toReadable( stats.articleEdits )
-}</strong> ${ message.message( 'edits' ) } ${ message.message( 'num-articles', toReadable( stats.articlesNumber ) ) }`,
+        message: toFactMessage(
+            'you-made-edits-num-articles',
+            toReadable( stats.articleEdits ),
+            toReadable( stats.articlesNumber )
+        ),
         image: PEN_PAPER
     },
     {
-        message: `${ message.message( 'edited-most-day' ) } <strong>${
-            humanDay( topDay.day )
-}</strong> ${ message.message( 'edited-most-day-edit-total', topDay.count ) }`,
+        message: toFactMessage(
+            'edited-most-day-total',
+            humanDay( topDay.day ),
+            topDay.count
+        ),
         class: 'smaller',
         image: PUZZLE_COLLAB,
     }, timeofday( stats.hourofweek ) ];

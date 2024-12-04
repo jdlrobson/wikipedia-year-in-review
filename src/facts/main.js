@@ -20,19 +20,11 @@ export default ( stats, year, project ) => {
         case 'commons.wikimedia.org':
             contribs = stats.fileUploads;
             value = toReadable( contribs );
-            if ( message.exists( 'files-you-uploaded' ) ) {
-                messageText = toFactMessage( 'files-you-uploaded', value )
-            } else {
-                messageText = toFactMessageLegacy( 'you-uploaded', value, 'files', 'across-project' );
-            }
+            messageText = toFactMessage( 'files-you-uploaded', value );
         default:
             contribs = stats.totalEdits;
             value = toReadable( contribs );
-            if ( message.exists( 'edits-you-made' ) ) {
-                messageText = toFactMessage( 'edits-you-made', value )
-            } else {
-                messageText = toFactMessageLegacy( 'you-made', value, 'edits', 'across-project' );
-            }
+            messageText = toFactMessage( 'edits-you-made', value );
             break;
     }
     if ( contribs ) {
@@ -47,9 +39,7 @@ export default ( stats, year, project ) => {
     } else {
         return {
             image: WIKIPEDIA,
-            message: message.exists( 'no-contributions-this-year' ) ?
-                toFactMessage( 'no-contributions-this-year', year ) :
-                toFactMessageLegacy( 'no-contributions', String( year ), 'next-year' )
+            message: toFactMessage( 'no-contributions-this-year', year )
         };
     }
 };
