@@ -94,7 +94,7 @@ img {
     background-size: cover;
     margin-bottom: 10px;
 }
-
+.main .smaller strong,
 .main strong.smaller {
     font-size: 3.8rem;
 }
@@ -107,6 +107,7 @@ img {
         font-size: 10rem;
     }
 
+    .main .smaller strong,
     .main strong.smaller {
         font-size: 8rem;
     }
@@ -147,6 +148,7 @@ p {
     .page {
         font-size: 1rem;
     }
+    .main .smaller strong,
     .main strong.smaller {
         font-size: 2rem;
     }
