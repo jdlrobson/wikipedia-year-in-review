@@ -54,6 +54,43 @@ function convertNumber( num ) {
 }
 
 /**
+ * @return {boolean}
+ */
+function isRTL() {
+    return [
+        'aeb_arab',
+        'arc',
+        'ar',
+        'arz',
+        'azb',
+        'bcc',
+        'bgn',
+        'bqi',
+        'ckb',
+        'dv',
+        'fa',
+        'glk',
+        'he',
+        'khw',
+        'kk_cn',
+        'kk_arab',
+        'ks_arab',
+        'ku_arab',
+        'lki',
+        'lrc',
+        'luz',
+        'mzn',
+        'pnb',
+        'ps',
+        'sd',
+        'sdh',
+        'skr_arab',
+        'ug_arab',
+        'ur',
+        'yi'
+    ].indexOf( langCode ) > -1
+}
+/**
  * 
  * @param {string} languageCode
  * @return {Promise<boolean>}
@@ -116,9 +153,11 @@ function exists( key ) {
 }
 
 export default {
+    isRTL,
     exists,
     sanitize,
     convertNumber,
+    getLanguage,
     setLanguage,
     message
 };

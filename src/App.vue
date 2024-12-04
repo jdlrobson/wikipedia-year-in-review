@@ -1,5 +1,5 @@
 <template>
-<div class="app-wrapper" :style="appStyle">
+<div class="app-wrapper" :style="appStyle" :lang="language" :dir="languageDirection">
 	<page v-if="currentPage <= 0 && !activePage">
 		<img class="mainImg" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
 		<h1>Wikipedia</h1>
@@ -173,6 +173,7 @@ export default defineComponent( {
 			window.location.search = `?uselang=${language}`;
 			message.setLanguage( language ).then(() => {
 				this.language = language;
+				this.languageDirection = message.isRTL() ? 'rtl' : 'ltr';
 			});
 		},
 		updateYear(y) {
@@ -279,7 +280,8 @@ export default defineComponent( {
 	},
 	data() {
 		return {
-			language: navigator.language || 'en',
+			language: message.getLanguage(),
+			languageDirection: message.isRTL() ? 'rtl' : 'ltr',
 			errorMsg: '',
 			previousYear: PREVIOUS_YEAR,
 			nextYear: YEAR,
