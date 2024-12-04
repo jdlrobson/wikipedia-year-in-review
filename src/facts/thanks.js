@@ -23,46 +23,42 @@ export default ( stats ) => {
 		wasThanked = true;
 		pages = pages.concat( [
 			{
-				messagePrefix: message.message( 'appreciated-1' ),
-				image: FRIENDSHIP,
-				value: toReadable( stats.thankedCount ),
-				qualifier: message.message( 'appreciated-2' )
+				message: `${ message.message( 'appreciated-1' ) } <strong>${ toReadable( stats.thankedCount )
+}</strong> <span>${ message.message( 'appreciated-2' ) }</span>`,
+				image: FRIENDSHIP
 			}
 		] );
 	}
 	if ( stats.thanksCount > 0 ) {
+		const messagePrefix = wasThanked ?
+			message.message( 'appreciated-to-1a' ) :
+			message.message( 'appreciated-to-1b' );
+		const qualifier = wasThanked ?
+			message.message( 'appreciated-to-2a' ) :
+			message.message( 'appreciated-to-2b' );
 		pages = pages.concat( [
 			{
-				messagePrefix: wasThanked ?
-					message.message( 'appreciated-to-1a' ) :
-					message.message( 'appreciated-to-1b' ),
 				image: COMMUNITY,
-				value: toReadable( stats.thanksCount ),
-				qualifier: wasThanked ?
-					message.message( 'appreciated-to-2a' ) :
-					message.message( 'appreciated-to-2b' )
+				message: `${ messagePrefix } <strong>${ toReadable( stats.thanksCount )
+}</strong> <span>${qualifier}</span>`
 			},
 			{
-				messagePrefix: message.message( 'thanks-for-caring' ),
-				messageSuffix: message.message( 'we-appreciate-you' )
+				message: `<span>${ message.message( 'thanks-for-caring' )
+}</span> ${ message.message( 'we-appreciate-you' ) }`
 			}
 		] );
 	}
 	if ( stats.topThanksTo.length  ) {
 		pages = pages.concat( [
 			{
-				messagePrefix: `@${stats.topThanksTo[0].title}`,
-				//value: stats.topThanksTo[0].count,
-				//qualifier: 'User'
-				messageSuffix: message.message( 'thanked-most' )
+				message: `<span>@${stats.topThanksTo[0].title}</span> ${ message.message( 'thanked-most' ) }`
 			}
 		] );
 	}
 	if ( stats.topThanksFrom.length ) {
 		pages = pages.concat( [
 			{
-				messagePrefix: `@${stats.topThanksFrom[0].user}`,
-				messageSuffix: message.message( 'thank-fan' )
+				message: `<span>@${stats.topThanksFrom[0].user}</span> ${message.message( 'thank-fan' ) }`
 			}
 		] );
 	}
