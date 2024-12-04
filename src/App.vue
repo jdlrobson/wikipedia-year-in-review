@@ -282,7 +282,7 @@ export default defineComponent( {
 	},
 	data() {
 		return {
-			language: 'en',
+			language: navigator.language || 'en',
 			errorMsg: '',
 			previousYear: PREVIOUS_YEAR,
 			nextYear: YEAR,

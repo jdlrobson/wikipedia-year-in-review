@@ -43,6 +43,10 @@ function setLanguage( languageCode ) {
             messages = Object.assign( {}, json );
             resolve( true );
         }, () => {
+            // if the language code has a dash try without.
+            if ( languageCode.indexOf( '-' ) > -1 ) {
+                return setLanguage( languageCode.split( '-' )[ 0 ] ).then( () => resolve( true ) );
+            }
             messages = {};
             resolve( true );
         } )
