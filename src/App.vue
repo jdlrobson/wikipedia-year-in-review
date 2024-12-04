@@ -170,6 +170,7 @@ export default defineComponent( {
 	methods: {
 		setLanguage( ev ) {
 			const language = ev.target.value;
+			window.location.search = `?uselang=${language}`;
 			message.setLanguage( language ).then(() => {
 				this.language = language;
 			});
