@@ -38,13 +38,9 @@
 	</page>
 	<page
 			v-if="activePage"
-		:messagePrefix="activePage.messagePrefix"
 		:message="activePage.message"
-		:value="activePage.value"
 		:image="activePage.image"
-		:class="activePage.class"
-		:qualifier="activePage.qualifier"
-		:messageSuffix="activePage.messageSuffix">
+		:class="activePage.class">
 		<cdx-button @click="decrementPage" v-if="currentPage > 0" weight="primary" class="previous" aria-label="previous">
 			<cdx-icon class="previousIcon" :icon="nextIcon"></cdx-icon>
 		</cdx-button>

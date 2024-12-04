@@ -1,17 +1,8 @@
 <template>
 <div class="page">
-    <div v-if="message" class="main">
+    <div class="main">
         <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
-        <p v-html="message" class="message-text"></p>
-    </div>
-    <div v-else class="main">
-        <img v-if="image" :src="image.source" :width="image.width" :height="image.height">
-        <p v-if="messagePrefix">{{messagePrefix}}</p>
-        <p class="message">
-            <strong v-if="value" :class="class">{{ value }}</strong>
-            <span>{{ qualifier }}</span>
-        </p>
-        <p class="subtitle" v-if="messageSuffix"  v-html="messageSuffix"></p>
+        <p v-html="message" class="message-text" :class="class"></p>
     </div>
     <div class="text">
         <slot></slot>
@@ -24,11 +15,7 @@ export default {
     props: {
         image: Object,
         class: String,
-        messageSuffix: String,
-        messagePrefix: String,
-        message: String,
-        qualifier: String,
-        value: String
+        message: String
     },
     data() {
         return {
