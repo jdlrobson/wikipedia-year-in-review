@@ -3,7 +3,7 @@ import i18n from './i18n';
 import App from './src/App.vue';
 import message from './src/message';
 
-const language = navigator.language;
+const language = new URLSearchParams( location.search ).get( 'uselang' ) || navigator.language;
 
 new Promise( ( resolve ) => {
     if ( language === 'en' || language === 'en-us' ) {

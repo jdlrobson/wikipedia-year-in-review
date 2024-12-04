@@ -11,10 +11,14 @@ let messages = Object.assign( {}, en );
  */
 function message( key, ...args ) {
     let val = messages[ key ];
-    if ( val === undefined ) {
-        val = en[ key ] || `«${key}»`;
+    const qqx = `«${key}»`;
+    if ( langCode === 'qqx' ) {
+        return qqx;
     }
-    if ( val.indexOf('$') > -1 ) {
+    if ( val === undefined ) {
+        val = en[ key ] || qqx;
+    }
+    if ( val.indexOf('$') > -1 && langCode !== 'qqx' ) {
         args.forEach( ( replacement, i ) => {
             val = val.replace( new RegExp( '\\$' + ( i + 1 ), 'g' ), replacement );
         } )
