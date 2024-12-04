@@ -35,14 +35,21 @@ function getLanguage() {
  * @return {string}
  */
 function convertNumber( num ) {
-    const formatter = new Intl.NumberFormat( getLanguage(), {
+    /** @type Intl.NumberFormatOptions */
+    const formatterOptions = {
 		style: 'decimal',
         // @ts-ignore
         notation: num > 1000 ? 'compact' : 'standard',
         compactDisplay: 'short',
 		minimumFractionDigits: 0,
 		maximumFractionDigits: 1
-	} );
+	};
+    let formatter;
+    try {
+        formatter = new Intl.NumberFormat( getLanguage(), formatterOptions );
+    } catch ( e ) {
+        formatter = new Intl.NumberFormat( 'en', formatterOptions );
+    }
     return formatter.format( num );
 }
 

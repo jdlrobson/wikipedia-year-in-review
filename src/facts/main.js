@@ -1,6 +1,5 @@
 import toReadable from "./toReadable";
-import message from '../message';
-import { toFactMessage, toFactMessageLegacy } from "./toFactMessage";
+import { toFactMessage } from "./toFactMessage";
 
 const WIKIPEDIA = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg',
