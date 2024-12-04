@@ -1,5 +1,6 @@
 import toReadable from "./toReadable";
 import message from '../message';
+
 const DATA = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Adapted_Wikipedia20symbols_data_w.svg',
 	width: 512,
@@ -13,10 +14,9 @@ const DATA = {
 export default ( stats ) => {
 	if ( stats.templateEdits > 0 ) {
 		return [ {
-			messagePrefix: message.message( 'template-1' ),
-			image: DATA,
-			value: toReadable( stats.templateEdits ),
-			qualifier: message.message( 'template-2' )
+			message: `${ message.message( 'template-1' ) }<strong>${ toReadable( stats.templateEdits )
+}</strong> <span>${ message.message( 'template-2' ) }</span>`,
+			image: DATA
 		} ];
 	} else {
 		return [];
