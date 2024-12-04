@@ -14,10 +14,8 @@ export default ( hours ) => {
     const value = hours[0].timespan;
     
     return {
-        messagePrefix: message.message( 'most-edited-time' ),
+        message: `${ message.message('most-edited-time' ) } <strong>${ value }</strong> ${ getTimeslotNote( value ) }`,
         class: 'smaller',
-        image: PUZZLE_COLLAB,
-        value,
-        messageSuffix: getTimeslotNote( value )
+        image: PUZZLE_COLLAB
     };
 };
