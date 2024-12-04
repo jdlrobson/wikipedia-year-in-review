@@ -1,5 +1,6 @@
 import message from '../message';
 import toReadable from './toReadable';
+import {  toFactMessageLegacy } from "./toFactMessage";
 const LIGHTNING = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/5/56/WP20Symbols_2019_dosangriff.png',
 	width: 512,
@@ -16,9 +17,11 @@ export default ( stats ) => {
         return [];
     }
     return [ {
-        messagePrefix: message.message( 'streak-prefix' ),
-        value: toReadable( streak ),
-        image: LIGHTNING,
-        messageSuffix: message.message( 'streak-suffix' ),
+        message: toFactMessageLegacy(
+            'streak-prefix',
+            toReadable( streak ),
+            'streak-suffix'
+        ),
+        image: LIGHTNING
     } ];
 }
