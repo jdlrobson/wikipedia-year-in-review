@@ -111,5 +111,17 @@
 	"language-he": "Language label for: Hebrew",
     "language-ko": "Language label for:Korean",
     "language-nb": "Language label for:Norwegian Bokmål",
-    "language-zh-hans": "Language label for: Chinese (Han simplified script)"
+    "language-zh-hans": "Language label for: Chinese (Han simplified script)",
+    "you-made-edits-across-project": "Message celebrating total edits. Parameters: $1 number of total edits.",
+    "streak-message": "Message celebrating streak. Parameters: $1 number of days of streak.",
+    "paragraph-message": "Message celebrating paragraphs edited. Parameters: $1 number of paragraphs (approximate).",
+    "you-made-edits-num-articles": "Message celebrating number of different articles edited. Parameters: $1 number of total edits; $2 unique articles edited",
+    "edited-most-day-total": "Message celebrating day of editing. Parameters: $1 day of week; $2 - total edits",
+    "most-edited-time-sleep": "Message celebrating time of editing. Parameters: $1 a timeslot, $2 - description of time (e.g. {{mw-msg|time-afternoon}})",
+    "talk-message": "Message celebrating talk edits. Parameters: $1 total talk page edits.",
+    "template-message": "Message celebrating talk edits. Parameters: $1 total template edits.",
+    "gadget-message": "Message celebrating gadget edits. Parameters: $1 total MediaWiki namespace edits.",
+    "appreciated-message": "Message celebrating being thanked. Parameters: $1 total number of different humans that thanked you.",
+    "appreciated-message-1a": "Identical to {{msg-mw|appreciated-message-1b}} but can append 'and' to join it with {{msg-mw|appreciated-message}}",
+    "appreciated-message-1b": "Message celebrating thanks. Parameters: $1 total number of different humans that you thanked."
 }

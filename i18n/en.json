@@ -107,6 +107,18 @@
     "language-he": "Hebrew",
     "language-ko": "Korean",
     "language-nb": "Norwegian Bokmål",
-    "language-zh-hans": "Chinese (Han simplified script)"
+    "language-zh-hans": "Chinese (Han simplified script)",
+    "you-made-edits-across-project": "You made <strong>$1</strong> <span>edits</span> across the project",
+    "streak-message": "At one point this year you edited the project<strong>$1</strong>consecutive days!",
+    "paragraph-message": "Editing approximately <strong>$1</strong> <span>paragraphs</span>of text!",
+    "you-made-edits-num-articles": "You made <strong>$1</strong> edits in $2 different articles",
+    "edited-most-day-total": "You edited the most on <strong>$1</strong> ($2 edits)",
+    "most-edited-time-sleep": "Most editing occurs between <strong>$1</strong> $2",
+    "talk-message": "You contributed <strong>$1</strong> <span>times</span> to discussions.",
+    "template-message": "You edited templates <strong>$1</strong> <span>times</span>",
+    "gadget-message": "You edited gadgets and interface messages <strong>$1</strong> <span>times</span>",
+    "appreciated-message": "You were appreciated by <strong>$1</strong> <span>editors</span>",
+    "appreciated-message-1a": "And you showed appreciation to <strong>$1</strong> <span>other humans</span>",
+    "appreciated-message-1b": "You showed appreciation to <strong>$1</strong> <span>other humans</span>"
 }
 
