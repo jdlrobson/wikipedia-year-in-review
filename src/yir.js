@@ -30,7 +30,11 @@ const pruneCache = () => {
     }
 };
 
+/**
+ * @type YIRStatus
+ */
 let status = {
+    date: null,
     text: '31st December'
 };
 /**

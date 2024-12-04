@@ -1,7 +1,14 @@
+// @ts-ignore
 import en from '../i18n/en.json';
 
 let langCode = 'en';
 let messages = Object.assign( {}, en );
+
+/**
+ * @param {string} key 
+ * @param  {...any} args 
+ * @returns 
+ */
 function message( key, ...args ) {
     let val = messages[ key ];
     if ( val === undefined ) {
@@ -26,6 +33,7 @@ function getLanguage() {
 function convertNumber( num ) {
     const formatter = new Intl.NumberFormat( getLanguage(), {
 		style: 'decimal',
+        // @ts-ignore
         notation: num > 1000 ? 'compact' : 'standard',
         compactDisplay: 'short',
 		minimumFractionDigits: 0,
@@ -34,18 +42,24 @@ function convertNumber( num ) {
     return formatter.format( num );
 }
 
+/**
+ * 
+ * @param {string} languageCode
+ * @return {Promise<boolean>}
+ */
 function setLanguage( languageCode ) {
     langCode = languageCode;
     return new Promise( ( resolve ) => {
         fetch( `/i18n/${languageCode}.json` )
-        .then( ( r ) => r.json(), () => resolve( {} ) )
+        .then( ( r ) => r.json(), () => resolve( true ) )
         .then( ( json ) => {
             messages = Object.assign( {}, json );
             resolve( true );
         }, () => {
             // if the language code has a dash try without.
             if ( languageCode.indexOf( '-' ) > -1 ) {
-                return setLanguage( languageCode.split( '-' )[ 0 ] ).then( () => resolve( true ) );
+                setLanguage( languageCode.split( '-' )[ 0 ] )
+                    .then( () => resolve( true ) );
             }
             messages = {};
             resolve( true );
@@ -54,7 +68,7 @@ function setLanguage( languageCode ) {
 }
 
 /**
- * @param {Element} doc
+ * @param {Document} doc
  */
 const cleanHTML = ( doc ) => {
     let scripts = doc.querySelectorAll('script');

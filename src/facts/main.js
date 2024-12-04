@@ -18,8 +18,8 @@ export default ( stats, year, project ) => {
     let contribs, messageText, value;
     switch( project ) {
         case 'commons.wikimedia.org':
-            value = toReadable( contribs );
             contribs = stats.fileUploads;
+            value = toReadable( contribs );
             if ( message.exists( 'files-you-uploaded' ) ) {
                 messageText = toFactMessage( 'files-you-uploaded', value )
             } else {
@@ -49,7 +49,7 @@ export default ( stats, year, project ) => {
             image: WIKIPEDIA,
             message: message.exists( 'no-contributions-this-year' ) ?
                 toFactMessage( 'no-contributions-this-year', year ) :
-                toFactMessageLegacy( 'no-contributions', year, 'next-year' )
+                toFactMessageLegacy( 'no-contributions', String( year ), 'next-year' )
         };
     }
 };

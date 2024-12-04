@@ -1,5 +1,5 @@
 import toReadable from "./toReadable";
-import {  toFactMessageLegacy } from "./toFactMessage";
+import { toFactMessageLegacy } from "./toFactMessage";
 
 const PUZZLE = {
 	source: 'https://upload.wikimedia.org/wikipedia/commons/6/65/WP20Symbols_puzzleglobe1.svg',

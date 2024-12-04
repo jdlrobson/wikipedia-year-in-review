@@ -1,4 +1,3 @@
-import message from '../message';
 import toReadable from './toReadable';
 import {  toFactMessageLegacy } from "./toFactMessage";
 const LIGHTNING = {

@@ -5,6 +5,11 @@
  * @property {number} height
  */
 /**
+ * @typedef {Object} YIRStatus
+ * @property {string} text
+ * @property {null|Date} date
+ */
+/**
  * @typedef {Object} YIRPage
  * @property {string} title
  * @property {number} count
