@@ -33,8 +33,7 @@ export default {
     data() {
         return {
             pages: [],
-            // Jevansen - extreme example
-            username: 'TheDJ'
+            username: ''
         }
     }
 };
