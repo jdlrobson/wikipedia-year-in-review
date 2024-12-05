@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+		"authors": [
+			"Jon Robson"
+		]
+	},
     "intro": "Look back at all the good work you have been doing this year in helping build the best place on the internet let! Yes, hrrrm.",
     "year-in-review": "Review of year",
     "username-placeholder": "Your username what is?",
@@ -77,7 +82,7 @@
     "badge-1k-desc": "You edited more than 1000 times",
     "badge-10k-desc": "You edited more than 10,000 times",
     "badge-100k-desc": "You edited more than 1,000,000 times",
-    "badge-1M-desc": "You edited more than a million times. Is that even possible!?",
+    "badge-1m-desc": "You edited more than a million times. Is that even possible!?",
     "badge-appreciated-desc": "You were appreciated a significant amount of times. You are a pillar to your community!",
     "badge-proofreader-desc": "You proof read over 50 pages! Impressive!",
     "badge-template-wizard-desc": "You edited more than 50 pages in the Module and Template namespace",

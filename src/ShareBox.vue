@@ -124,8 +124,8 @@ export default defineComponent( {
 			}
 			if ( this.stats.totalEdits > 1000000 ) {
 				notes.push( {
-					label: message.message( 'badge-1M' ),
-					tooltip: message.message( 'badge-1M-desc' )
+					label: message.message( 'badge-1m' ),
+					tooltip: message.message( 'badge-1m-desc' )
 				} );
 			} else if ( this.stats.totalEdits > 100000 ) {
 				notes.push( {
