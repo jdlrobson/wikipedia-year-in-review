@@ -4,6 +4,8 @@
 			"Amire80"
 		]
 	},
+    "text-shared": "Notification that text has been copied to the user clipboard for pasting.",
+    "image-shared": "Notification that image has been copied to the user clipboard for pasting.",
     "intro": "Introduce the reader to the experience and what they can learn.",
     "year-in-review": "Title of page",
     "username-placeholder": "Placeholder text for username input element.",

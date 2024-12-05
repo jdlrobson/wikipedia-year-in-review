@@ -189,12 +189,12 @@ export default defineComponent( {
 							'image/png': blob
 						})
 					]);
-					msg = 'An image has been shared to your clipboard.';
+					msg = message.message( 'image-shared' );
 				} catch (error) {
 					// pass.
 					try {
 						navigator.clipboard.writeText( toText( this.stats ) );
-						msg = 'Text has been shared to your clipboard.';
+						msg = message.message( 'text-shared' );
 					} catch (error) {
 						this.errorMsg = 'clipboard-error';
 					}
