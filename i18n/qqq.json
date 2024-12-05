@@ -123,5 +123,17 @@
     "gadget-message": "Message celebrating gadget edits. Parameters: $1 total MediaWiki namespace edits.",
     "appreciated-message": "Message celebrating being thanked. Parameters: $1 total number of different humans that thanked you.",
     "appreciated-message-1a": "Identical to {{msg-mw|appreciated-message-1b}} but can append 'and' to join it with {{msg-mw|appreciated-message}}",
-    "appreciated-message-1b": "Message celebrating thanks. Parameters: $1 total number of different humans that you thanked."
+    "appreciated-message-1b": "Message celebrating thanks. Parameters: $1 total number of different humans that you thanked.",
+    "language-az": "Language label.",
+    "language-pa": "Language label.",
+    "language-fi": "Language label.",
+    "language-tr": "Language label.",
+    "language-bn": "Language label.",
+    "language-skr-arab": "Language label.",
+    "language-sr-ec": "Language label.",
+    "language-it": "Language label.",
+    "language-ru": "Language label.",
+    "language-es": "Language label.",
+    "language-lb": "Language label.",
+    "language-mk": "Language label."
 }
