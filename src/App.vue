@@ -2,7 +2,7 @@
 <div class="app-wrapper" :style="appStyle" :lang="language" :dir="languageDirection">
 	<page v-if="currentPage <= 0 && !activePage">
 		<img class="mainImg" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/WP20Symbols_MediaWiki.svg" width="512" height="401">
-		<h1>Wikipedia</h1>
+		<h1>{{ $i18n( titleProjectMessage, language ) }}</h1>
 		<h2>{{ $i18n( 'year-in-review', language ) }}</h2>
 		<p class="intro">{{ $i18n( 'intro', language ) }}</p>
 		<label>{{ $i18n( 'project-label', language ) }}</label>
@@ -99,7 +99,21 @@ const LAST_FIVE = [ YEAR - 1, YEAR - 2, YEAR - 3, YEAR - 4, YEAR - 5 ].map( ( ye
 	label: String( year ),
 	value: String( year )
 } ) );
-
+const SUPPORTED_PROJECTS = [
+	'wikipedia',
+	'commons',
+	'wikisource',
+	'wiktionary',
+	'wikifunctions',
+	'wikidata',
+	'wikivoyage',
+	'wikinews',
+	'wikiversity',
+	'wikibooks',
+	'wikiquote',
+	'mediawiki',
+	'wikimedia'
+];
 export default defineComponent( {
 	name: 'App',
 	components: {
@@ -278,8 +292,21 @@ export default defineComponent( {
 			}, err );
 		}
 	},
+	mounted() {
+		setInterval( () => {
+			const project = SUPPORTED_PROJECTS[
+				Math.floor( Math.random() * SUPPORTED_LANGUAGES.length )
+			];
+			if ( project ) {
+				this.$nextTick( () => {
+					this.titleProjectMessage = `project-${ project }`;
+				} );
+			}
+		}, 700 );
+	},
 	data() {
 		return {
+			titleProjectMessage: 'project-wikipedia',
 			language: message.getLanguage(),
 			languageDirection: message.isRTL() ? 'rtl' : 'ltr',
 			errorMsg: '',
