@@ -283,13 +283,16 @@ const thankedSummary = ( username, year, project ) => {
 
 /**
  * @param {string[]} titles
+ * @param {string} project
  * @return {Promise<YIRImage[]>}
  */
-const addThumbs = ( titles ) => {
+const addThumbs = ( titles, project ) => {
     return Promise.all(
         titles.map(
-            ( t ) => fetch( `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(t)}`)
-                .then((r) => r.json())
+            ( t ) => fetch( `https://${ project }/api/rest_v1/page/summary/${encodeURIComponent(t)}`)
+                .then((r) => r.json(), () => {
+                    return Promise.resolve();
+                })
                 .then((p)=>p.thumbnail)
         )
     );
@@ -338,9 +341,10 @@ const calculateStreak = ( contribs ) => {
 
 /**
  * @param {ApiListObj[]} contribs
+ * @param {string} project
  * @return {Promise<YIRStatsContribs>}
  */
-const summarize = ( contribs ) => {
+const summarize = ( contribs, project ) => {
     const articles = contribs.filter( ( c ) => c && c.ns === 0 );
     const fileUploads = contribs.filter( ( c ) => c && c.ns === 6 ).length;
     const streak = calculateStreak( contribs );
@@ -361,7 +365,7 @@ const summarize = ( contribs ) => {
         return a + s;
     }, 0 );
     const top5 = top.slice( 0, 5 );
-    return addThumbs(top5.map((t) => t.title)).then((thumbs) => {
+    return addThumbs(top5.map((t) => t.title), project).then((thumbs) => {
         const dayofweek = topDays( contribDayofweek );
         const hourofweek = topHours( contribDayofweek );
         return {
@@ -454,7 +458,7 @@ const contributionsFetch = ( username, year, project ) => {
             return resumeContributionsFetch( username, year, project, result );
         } )
         .then( (/** @type {ApiListObj[]} */r ) => {
-            return summarize( r );
+            return summarize( r, project);
         } );
 
 };
