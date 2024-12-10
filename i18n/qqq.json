@@ -20,6 +20,7 @@
 	"intro": "Introduce the reader to the experience and what they can learn.",
 	"text-shared": "Notification that text has been copied to the user clipboard for pasting.",
 	"image-shared": "Notification that image has been copied to the user clipboard for pasting.",
+	"language-ar": "Language label.",
 	"language-nl": "Language label.",
 	"language-fr": "Language label.",
 	"language-az": "Language label.",
