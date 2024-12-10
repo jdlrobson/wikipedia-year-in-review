@@ -105,5 +105,18 @@
 	"streak-suffix": "ימים רצופים!",
 	"longest-streak": "הרצף הכי ארוך",
 	"badge-streak": "רק מרתון",
-	"badge-streak-desc": "סמל לעורכים שערכו יותר מ־50 ימים רצופים"
+	"badge-streak-desc": "סמל לעורכים שערכו יותר מ־50 ימים רצופים",
+	"you-made-edits-across-project": "עשית<strong>$1</strong><span>עריכות</span>לאורך המיזם",
+	"streak-message": "בנקודה מסוימת השנה ערכת את המיזם למשך<strong>$1</strong>ימים רצופים!",
+	"paragraph-message": "ערכת בערך<strong>$1</strong><span>פסקאות</span>של טקסט!",
+	"talk-message": "תרמת<strong>$1</strong><span>פעמים</span>לדיונים.",
+	"template-message": "ערכת תבניות<strong>$1</strong> <span>פעמים</span>",
+	"gadget-message": "ערכת גאדג׳טים והודעות מערכת<strong>$1</strong> <span>פעמים</span>",
+	"appreciated-message": "שמעת „תודה” מ־ <strong>$1</strong> <span>עורכים</span>",
+	"appreciated-message-1a": "אמרת „תודה” ל־ <strong>$1</strong> <span>אנשים אחרים</span>",
+	"appreciated-message-1b": "אמרת „תודה” ל־ <strong>$1</strong> <span>אנשים אחרים</span>",
+	"you-made-edits-num-articles": "עשית <strong>$1</strong> עריכות ב־$2 ערכים שונים",
+	"edited-most-day-total": "ערכת הכי הרבה ב־ <strong>$1</strong> ($2 עריכות)",
+	"most-edited-time-sleep": "רוב העריכה מתרחשת בין <strong>$1</strong> $2"
+
 }

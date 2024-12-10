@@ -70,5 +70,12 @@
 	"language-he": "хебрејски",
 	"language-ko": "корејски",
 	"language-nb": "норвешки (книжевен)",
-	"language-zh-hans": "упростен кинески"
+	"language-zh-hans": "упростен кинески",
+	"you-made-edits-across-project": "Направивте<strong>$1</strong><span>уредувања</span>ширум проектот",
+	"paragraph-message": "Editing approximately<strong>$1</strong><span>paragraphs</span>of text!",
+	"talk-message": "Придонесовте<strong>$1</strong><span>пати</span>во разговори.",
+	"template-message": "Уредивте предлошки<strong>$1</strong> <span>пати</span>",
+	"appreciated-message": "Бевте испочитувани од <strong>$1</strong> <span>уредници</span>",
+	"appreciated-message-1a": "Испочитувавте <strong>$1</strong> <span>други луѓе</span>",
+	"appreciated-message-1b": "Искажавте почит кон <strong>$1</strong> <span>други луѓе</span>"
 }

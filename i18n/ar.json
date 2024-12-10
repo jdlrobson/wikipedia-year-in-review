@@ -107,5 +107,17 @@
 	"badge-streak-desc": "شارة للمحررين الذين قاموا بالتحرير لمدة تزيد عن 50 يومًا متتاليًا.",
 	"language-he": "العبرية",
 	"language-ko": "الكورية",
-	"language-zh-hans": "الصينية المبسطة"
+	"language-zh-hans": "الصينية المبسطة",
+	"you-made-edits-across-project": "You made<strong>$1</strong><span>التعديلات</span>على مستوى المشروع",
+	"streak-message": "At one point this year you edited the project<strong>$1</strong>أيام متتالية!",
+	"paragraph-message": "تحرير تقريباً<strong>$1</strong><span>فقرات</span>من النص!",
+	"talk-message": "لقد ساهمت<strong>$1</strong><span>مرات</span>to discussions.",
+	"template-message": "لقد قمت بتحرير القوالب<strong>$1</strong> <span>مرات</span>",
+	"gadget-message": "لقد قمت بتحرير الأدوات ورسائل الواجهة<strong>$1</strong> <span>مرات</span>",
+	"appreciated-message": "لقد تم تقديرك من قبل <strong>$1</strong> <span>المحررون</span>",
+	"appreciated-message-1a": "وأظهرت تقديرك ل <strong>$1</strong> <span>البشر الآخرين</span>",
+	"appreciated-message-1b": "لقد أظهرت تقديرًا ل <strong>$1</strong> <span>البشر الآخرين</span>",
+	"you-made-edits-num-articles": "You made <strong>$1</strong> التعديلات في $2 مقالات مختلفة",
+	"edited-most-day-total": "You edited the most on <strong>$1</strong> ($2 تعديل)",
+	"most-edited-time-sleep": "Most editing occurs between <strong>$1</strong> $2"
 }
