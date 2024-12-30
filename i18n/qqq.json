@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"Ата"
 		]
 	},
 	"project-wikipedia": "Project name. Used as title.",
@@ -45,18 +46,18 @@
 	"error-generic": "Error if bad username given",
 	"year-placeholder": "Placeholder for year dropdown",
 	"thanks-for-playing": "Shown at end of tool.",
-	"thanks": "Shown on stats page at end for sharing",
+	"thanks": "Shown on stats page at end after the number of thanks",
 	"hny": "Wishes reader a happy year ahead. Parameter $1: year after this one.",
 	"share": "Label for share button",
 	"language-en": "Label for English language",
 	"language-yoda": "Label for English language in Yoda (Star Wars) speak",
 	"language-label": "Label for language switcher",
-	"you-made-contributions-to": "Prefix about number of contributions user made e.g. 'You contributed 20 times!'",
+	"you-made-contributions-to": "followed by the name of the article, e.g. \"You made contributions to <nowiki>[[Title]]</nowiki>\"",
 	"and": "appears between links to pages editor edited",
 	"edits-you-made": "Message describing number of edits to project. Please retain HTML markup. Parameter $1 is formatted number of edits.",
 	"files-you-uploaded": "Message describing number of file uploads to project. Please retain HTML markup. Parameter $1 is formatted number of edits.",
-	"files": "word for file uploads",
-	"edits": "verb for editing",
+	"files": "word for file uploads\n\nIt goes after the number of uploads on the final summary page of Year in Review.",
+	"edits": "word for edits\n\nIt goes after the number of edits on the final summary page of Year in Review.",
 	"no-contributions-this-year": "Message shown if editor has 0 edits. Parameter $1: number representing next year",
 	"no-contributions": "Shown when no contributions found. Appears before the number of the next year.",
 	"next-year": "appears after {{msg-mw|no-contributions}} and the next year.",
@@ -83,7 +84,7 @@
 	"interface-edits": "shown after a number representing edits to MediaWiki namespace. Always non-zero.",
 	"template-edits": "shown after a number representing edits to Module or Template namespace. Always non-zero.",
 	"talk-page-edits": "shown after a number representing edits to talk namespace",
-	"thanked": "verb for thanked",
+	"thanked": "verb for thanked\n\nIt goes after the number of times a user was thanked on the final summary page of Year in Review.",
 	"file-uploads": "file uploads",
 	"claims": "Refers to claims on Wikidata. See [[:d:Wikidata:Glossary#Claim]]. Should be consistent with the word \"claim\" in the \"Wikibase - Lib\" MediaWiki extension, e.g. {{msg-mw|Wikibase-entity-summary-wbcreateclaim-create}}.",
 	"badge-chatterbox": "label for badge for someone who talks a lot",
