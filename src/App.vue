@@ -55,7 +55,7 @@
 		</cdx-button>
 		<share-box :stats="stats" :username="username" :project="project"></share-box>
 		<p>{{ $i18n( 'thanks-for-playing', language ) }}</p>
-		<p class="happy">{{ $i18n( 'hny', nextYear, language ) }}!</p>
+		<p class="happy">{{ $i18n( 'hny', nextYear, language ) }}</p>
 		<cdx-message v-if="feedback" type="success">{{ feedback }}</cdx-message>
 		<cdx-message v-if="error" type="error">{{ $i18n( 'error-share', language ) }}</cdx-message>
 		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
