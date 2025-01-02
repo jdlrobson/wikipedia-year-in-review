@@ -12,7 +12,7 @@ const PUZZLE = {
  * @return {YIRFact[]}
  */
 export default ( stats ) => {
-    if ( stats.paragraphs ) {
+    if ( stats.paragraphs && stats.project !== 'commons.wikimedia.org' ) {
         return [ {
             image: PUZZLE,
             message: toFactMessage(

@@ -20,6 +20,7 @@ export default ( stats, year, project ) => {
             contribs = stats.fileUploads;
             value = toReadable( contribs );
             messageText = toFactMessage( 'files-you-uploaded', value );
+            break;
         default:
             contribs = stats.totalEdits;
             value = toReadable( contribs );
