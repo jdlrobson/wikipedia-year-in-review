@@ -4,6 +4,7 @@
 			"Beta16"
 		]
 	},
+	"share-to-clipboard": "Condividi immagine negli appunti",
 	"project-wikipedia": "Wikipedia",
 	"project-commons": "Commons",
 	"project-wikisource": "Wikisource",
@@ -36,6 +37,11 @@
 	"language-mk": "Macedone",
 	"badge-archivist-desc": "Hai caricato più file di quanti giorni ci siano in un anno",
 	"language-he": "Ebraico",
+	"language-id": "Indonesiano",
+	"language-pl": "Polacco",
+	"language-sv": "Svedese",
+	"language-uk": "Ucraino",
+	"language-zh-hant": "Cinese (tradizionale)",
 	"language-ko": "Coreano",
 	"language-nb": "Norvegese Bokmål",
 	"language-zh-hans": "Cinese semplificato"

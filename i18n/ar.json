@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cigaryno",
 			"Hhaboh162002",
 			"Meno25",
 			"Mohammed Qays"
@@ -116,6 +117,11 @@
 	"badge-streak": "عدّاء",
 	"badge-streak-desc": "شارة للمحررين الذين قاموا بالتحرير لمدة تزيد عن 50 يومًا متتاليًا.",
 	"language-he": "العبرية",
+	"language-id": "الأندونيسية",
+	"language-pl": "البولندية",
+	"language-sv": "السويدية",
+	"language-uk": "الأوكرانية",
+	"language-zh-hant": "الصينية (التقليدية)",
 	"language-ko": "الكورية",
 	"language-nb": "النرويجية (بوكمال)",
 	"language-zh-hans": "الصينية المبسطة",

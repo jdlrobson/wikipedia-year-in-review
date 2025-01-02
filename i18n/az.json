@@ -4,6 +4,7 @@
 			"Nemoralis"
 		]
 	},
+	"share-to-clipboard": "Şəkli mübadilə buferinə kopyala",
 	"project-wikipedia": "Vikipediya",
 	"project-commons": "Vikianbar",
 	"project-wikisource": "Vikimənbə",
@@ -114,6 +115,11 @@
 	"badge-streak": "marafonçu",
 	"badge-streak-desc": "Ardıcıl 50 gündən çox redaktə edən redaktorlar üçün döş nişanı.",
 	"language-he": "İvrit",
+	"language-id": "İndoneziya",
+	"language-pl": "Polyakca",
+	"language-sv": "İsveçcə",
+	"language-uk": "Ukraynca",
+	"language-zh-hant": "Çincə (Ənənəvi)",
 	"language-ko": "Koreya",
 	"language-nb": "Norveç Bokmal",
 	"language-zh-hans": "Sadələşdirilmiş Çin dili",

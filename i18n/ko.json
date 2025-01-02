@@ -5,6 +5,7 @@
 			"Ykhwong"
 		]
 	},
+	"share-to-clipboard": "이미지를 클립보드에 공유",
 	"project-wikipedia": "위키백과",
 	"project-commons": "공용",
 	"project-wikisource": "위키문헌",
@@ -65,6 +66,11 @@
 	"badge-1m-desc": "당신은 백만 번 이상 편집했습니다. 이게 가능했다니 믿기지가 않네요!?",
 	"badge-template-wizard": "틀 마법사",
 	"language-he": "히브리어",
+	"language-id": "인도네시아어",
+	"language-pl": "폴란드어",
+	"language-sv": "스웨덴어",
+	"language-uk": "우크라이나어",
+	"language-zh-hant": "중국어 (정체)",
 	"language-ko": "한국어",
 	"language-zh-hans": "중국어 간체"
 }
