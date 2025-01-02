@@ -5,6 +5,7 @@
 			"Ата"
 		]
 	},
+    "share-to-clipboard": "Shown to older browsers who do not support native sharing.",
 	"project-wikipedia": "Project name. Used as title.",
 	"project-commons": "Project name. Used as title.",
 	"project-wikisource": "Project name. Used as title.",

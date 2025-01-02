@@ -60,7 +60,8 @@
 		<cdx-message v-if="error" type="error">{{ $i18n( 'error-share', language ) }}</cdx-message>
 		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
 			<cdx-icon :icon="shareIcon"></cdx-icon>
-			<span>{{ $i18n( 'share', language ) }}</span>
+			<span v-if="navigatorShareable">{{ $i18n( 'share', language ) }}</span>
+			<span v-else>{{ $i18n( 'share-to-clipboard', language ) }}</span>
 		</cdx-button>
 	</page>
 
@@ -164,6 +165,10 @@ export default defineComponent( {
 			type: Array,
 			default: LAST_FIVE
 		},
+		navigatorShareable: {
+			type: Boolean,
+			default: navigator.share !== undefined
+		},
 		shareable: {
 			type: Boolean,
 			default: navigator.clipboard !== undefined || navigator.share !== undefined
@@ -195,24 +200,26 @@ export default defineComponent( {
 			this.nextYear = y + 1;
 		},
 		shareIt() {
-			const share = (blob) => {
+			const share = async (blob) => {
 				let msg = '';
-				try {
-					navigator.clipboard.write([
-						new ClipboardItem({
-							'image/png': blob
-						})
-					]);
-					msg = message.message( 'image-shared' );
-				} catch (error) {
-					// pass.
+				const clipboardShare = async ( blob ) => {
 					try {
-						navigator.clipboard.writeText( toText( this.stats ) );
-						msg = message.message( 'text-shared' );
+						await navigator.clipboard.write([
+							new ClipboardItem({
+								'image/png': blob
+							})
+						]);
+						msg = message.message( 'image-shared' );
 					} catch (error) {
-						this.errorMsg = 'clipboard-error';
+						// pass.
+						try {
+							await navigator.clipboard.writeText( toText( this.stats ) );
+							msg = message.message( 'text-shared' );
+						} catch (error) {
+							this.errorMsg = 'clipboard-error';
+						}
 					}
-				}
+				};
 				if ( navigator.share ) {
 					const file = new File([blob], 'share.png', blob)
 					if ( navigator.canShare( { files: [ file ] } ) ) {
@@ -228,6 +235,7 @@ export default defineComponent( {
 						});
 					}
 				}
+				await clipboardShare( msg );
 				return msg ? Promise.resolve( msg ) : Promise.reject();
 			}
 			this.error = false;
