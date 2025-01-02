@@ -58,6 +58,7 @@
 		<p class="happy">{{ $i18n( 'hny', nextYear, language ) }}</p>
 		<cdx-message v-if="feedback" type="success">{{ feedback }}</cdx-message>
 		<cdx-message v-if="error" type="error">{{ $i18n( 'error-share', language ) }}</cdx-message>
+		<img v-if="shareImg" :src="shareImg">
 		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
 			<cdx-icon :icon="shareIcon"></cdx-icon>
 			<span v-if="navigatorShareable">{{ $i18n( 'share', language ) }}</span>
@@ -241,11 +242,20 @@ export default defineComponent( {
 			this.error = false;
 			this.feedback = '';
 			const node = document.getElementById( 'statBox' );
+			async function blobToBase64(blob) {
+				return new Promise((resolve, _) => {
+					const reader = new FileReader();
+					reader.onloadend = () => resolve(reader.result);
+					reader.readAsDataURL(blob);
+				});
+			}
 			htmlToImage.toBlob(node)
 				.then((blob) => {
-					share(blob).then(( msg ) => {					
+					share(blob).then( async ( msg ) => {
 						this.feedback = msg;
 						this.error = false;
+						const base64 = await blobToBase64( blob );
+						this.shareImg = base64;
 					}, (err) => {
 						this.errorMsg = 'share-error';
 						this.error = true;
@@ -314,6 +324,7 @@ export default defineComponent( {
 	},
 	data() {
 		return {
+			shareImg: null,
 			titleProjectMessage: 'project-wikipedia',
 			language: message.getLanguage(),
 			languageDirection: message.isRTL() ? 'rtl' : 'ltr',
