@@ -280,7 +280,7 @@ export default defineComponent( {
 			const loader = setInterval( () => {
 				this.loading++;
 			}, 1000 );
-			const err = ( err ) => {
+			const err = ( errObj ) => {
 				if ( err.toString().indexOf( 'TOOMANYEDITS' ) > -1 ) {
 					this.errorMsg = 'username-disabled-error';
 				}
@@ -300,7 +300,7 @@ export default defineComponent( {
 				const diff = ( end - now ) / ONE_DAY;
 				this.status = ( 365 - diff ) / 365;
 			}, 300);
-			yir( this.username, this.previousYear, this.project ).then((stats) => {
+			yir( this.username, parseInt( this.previousYear, 10 ), this.project ).then((stats) => {
 				clearInterval( loader );
 				clearInterval( statuschecker );
 				this.loading = 0;
