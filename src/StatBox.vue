@@ -38,6 +38,7 @@ export default {
     border-radius: 5px;
     padding-left: 40px;
     position: relative;
+    margin-bottom: 20px;
 }
 .statbox span {
     display: block;

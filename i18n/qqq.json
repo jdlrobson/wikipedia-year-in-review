@@ -45,6 +45,7 @@
 	"error-clipboard": "Error that occurs if for some reason cannot access clipboard.",
 	"error-toomanyedits": "The tool is restricted for editors with really high edit counts. This shows if they are detected.",
 	"error-generic": "Error if bad username given",
+	"save-image": "Label for button for downloading as image",
 	"year-placeholder": "Placeholder for year dropdown",
 	"thanks-for-playing": "Shown at end of tool.",
 	"thanks": "Shown on stats page at end after the number of thanks",

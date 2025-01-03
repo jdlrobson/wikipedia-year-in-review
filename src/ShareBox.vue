@@ -1,5 +1,5 @@
 <template>
-<div class="sharebox" id="statBox">
+<div class="sharebox" id="statBox"><div>
 	<h2>
 		<strong>@{{ username }}</strong>
 	</h2>
@@ -57,7 +57,7 @@
 			</a>
 		</div>
 	</footer>
-</div>
+</div></div>
 </template>
 <script>
 import StatBox from './StatBox.vue';
@@ -259,9 +259,10 @@ footer a {
 	font-size: 0.7em;
     color: #ccc;
 }
-.sharebox {
+.sharebox > div {
 	border-radius: 15px;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	background: #14866d;
 	padding: 20px 8px;
 	color: white;

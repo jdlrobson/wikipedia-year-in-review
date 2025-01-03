@@ -56,9 +56,10 @@
 		<share-box :stats="stats" :username="username" :project="project"></share-box>
 		<p>{{ $i18n( 'thanks-for-playing', language ) }}</p>
 		<p class="happy">{{ $i18n( 'hny', nextYear, language ) }}</p>
+		<a v-if="shareImg" :href="shareImg" class="download-link"
+			download>{{ $i18n( 'save-image', language ) }}</a>
 		<cdx-message v-if="feedback" type="success">{{ feedback }}</cdx-message>
 		<cdx-message v-if="error" type="error">{{ $i18n( 'error-share', language ) }}</cdx-message>
-		<img v-if="shareImg" :src="shareImg">
 		<cdx-button v-if="shareable" @click="shareIt" action="progressive" weight="primary">
 			<cdx-icon :icon="shareIcon"></cdx-icon>
 			<span v-if="navigatorShareable">{{ $i18n( 'share', language ) }}</span>
@@ -242,20 +243,11 @@ export default defineComponent( {
 			this.error = false;
 			this.feedback = '';
 			const node = document.getElementById( 'statBox' );
-			async function blobToBase64(blob) {
-				return new Promise((resolve, _) => {
-					const reader = new FileReader();
-					reader.onloadend = () => resolve(reader.result);
-					reader.readAsDataURL(blob);
-				});
-			}
 			htmlToImage.toBlob(node)
 				.then((blob) => {
 					share(blob).then( async ( msg ) => {
 						this.feedback = msg;
 						this.error = false;
-						const base64 = await blobToBase64( blob );
-						this.shareImg = base64;
 					}, (err) => {
 						this.errorMsg = 'share-error';
 						this.error = true;
@@ -308,6 +300,15 @@ export default defineComponent( {
 				this.pages = facts( stats );
 				this.activePage = this.pages[this.currentPage];
 			}, err );
+		}
+	},
+	updated() {
+		if ( this.pages.length && this.currentPage >= this.pages.length && !this.shareImg ) {
+			const node = document.getElementById( 'statBox' );
+			htmlToImage.toBlob(node)
+				.then((blob) => {
+					this.shareImg = URL.createObjectURL( blob );
+				} );
 		}
 	},
 	mounted() {
@@ -450,5 +451,8 @@ footer a {
 .progressBar > div {
 	background: green;
     height: 100%;
+}
+.download-link {
+	font-size: 1rem;
 }
 </style>
