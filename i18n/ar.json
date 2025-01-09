@@ -7,6 +7,7 @@
 			"Mohammed Qays"
 		]
 	},
+	"share-to-clipboard": "مشاركة الصورة إلى الحافظة",
 	"project-wikipedia": "ويكيبيديا",
 	"project-commons": "كومنز",
 	"project-wikisource": "ويكي مصدر",
@@ -38,6 +39,7 @@
 	"language-es": "الإسبانية",
 	"language-lb": "اللوكسمبورغية",
 	"language-mk": "المقدونية",
+	"language-ur": "الأردية",
 	"year-in-review": "مراجعة العام",
 	"username-placeholder": "ما اسم المستخدم الخاص بك؟",
 	"project-label": "مشروع ويكيميديا الخاص بك:",
@@ -47,6 +49,7 @@
 	"error-toomanyedits": "اسم المستخدم هذا أجرى عدد كبير من التعديلات، للأسف هذا الأمر غير مدعوم في الوقت الحالي.",
 	"error-generic": "حدث خطأ أثناء محاولة التحقق من ذلك. هل استخدمت اسم المستخدم الصحيح؟",
 	"year-placeholder": "حدد السنة",
+	"save-image": "تنزيل كصورة",
 	"thanks-for-playing": "نشكرك على استعراض عامك الخاص وعلى المساهمة في مجموع المعرفة البشرية.",
 	"thanks": "شكراً",
 	"hny": "$1 سعيد!",

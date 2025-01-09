@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"CanonNi",
+			"Cookai1205",
 			"ItMarki",
 			"TFX202X",
 			"魔琴"
@@ -21,8 +22,8 @@
 	"project-mediawiki": "MediaWiki",
 	"project-wikimedia": "维基媒体",
 	"intro": "我们回顾一下您今年为互联网最自由的百科全书贡献了什么！",
-	"text-shared": "文本已保存至您的剪贴板。",
-	"image-shared": "图像已保存至您的剪贴板。",
+	"text-shared": "文字已复制到您的剪贴板。",
+	"image-shared": "图片已复制到您的剪贴板。",
 	"language-ar": "阿拉伯语",
 	"language-nl": "荷兰语",
 	"language-fr": "法语",
@@ -79,7 +80,7 @@
 	"time-evening": "活跃于傍晚",
 	"thanks-for-caring": "谢谢您对别人的鼓励！",
 	"we-appreciate-you": "我们感谢您！",
-	"thank-fan": "是您最大的粉丝",
+	"thank-fan": "是您的头号粉丝",
 	"thanked-most": "是你最感谢的用户",
 	"share-text": "以下是$1年我为维基百科作的贡献！编辑$2笔，讨论$3次，感谢$4次，收到感谢$5次 #wikipediaYIR",
 	"generate-your-own": "生成您自己的年度回顾：",

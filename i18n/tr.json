@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hedda",
 			"Jelican9",
 			"İmmortalance"
 		]
 	},
+	"share-to-clipboard": "Resmi panoda paylaş",
 	"project-wikipedia": "Vikipedi",
 	"project-commons": "Commons",
 	"project-wikisource": "Vikikaynak",
@@ -36,6 +38,7 @@
 	"language-es": "İspanyolca",
 	"language-lb": "Lüksemburgca",
 	"language-mk": "Makedonca",
+	"language-ur": "Urduca",
 	"year-in-review": "Yılın Değerlendirmesi",
 	"username-placeholder": "Kullanıcı adınız nedir?",
 	"project-label": "Wikimedia projeniz:",
@@ -45,6 +48,7 @@
 	"error-toomanyedits": "Bu kullanıcı adında çok fazla düzenleme var. Maalesef şu anda desteklenmiyor.",
 	"error-generic": "Bunu denetlemeye çalışırken bir hata meydana geldi. Doğru kullanıcı adını mı kullandınız?",
 	"year-placeholder": "Yıl seçiniz",
+	"save-image": "Resim olarak indir",
 	"thanks-for-playing": "Yılınızı gözden geçirdiğiniz ve tüm insanlığın bilgisinin toplamına katkıda bulunduğunuz için teşekkür ederiz.",
 	"thanks": "Teşekkürler",
 	"hny": "Mutlu $1!",

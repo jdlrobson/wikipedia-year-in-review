@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"ABPMAB",
 			"Jeroen N",
 			"McDutchie",
 			"Sjoerddebruin"
 		]
 	},
+	"share-to-clipboard": "Afbeelding delen naar klembord",
 	"project-wikipedia": "Wikipedia",
 	"project-commons": "Commons",
 	"project-wikisource": "Wikisource",
@@ -37,6 +39,7 @@
 	"language-es": "Spaans",
 	"language-lb": "Luxemburgs",
 	"language-mk": "Macedonisch",
+	"language-ur": "Urdu",
 	"year-in-review": "Jaaroverzicht",
 	"username-placeholder": "Wat is je gebruikersnaam?",
 	"project-label": "Jouw Wikimedia-project:",
@@ -46,6 +49,7 @@
 	"error-toomanyedits": "Deze gebruikersnaam heeft te veel bewerkingen. Helaas wordt dit momenteel niet ondersteund.",
 	"error-generic": "Er is een fout opgetreden bij het controleren hiervan. Heb je de juiste gebruikersnaam gebruikt?",
 	"year-placeholder": "Jaar selecteren",
+	"save-image": "Downloaden als afbeelding",
 	"thanks-for-playing": "Bedankt voor het bekijken van uw jaaroverzicht en uw bijdragen aan de som van alle menselijke kennis.",
 	"thanks": "bedankjes verstuurd",
 	"hny": "Gelukkig $1!",
