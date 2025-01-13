@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Blahma",
-			"MasterStudioCZ"
+			"MasterStudioCZ",
+			"Segoulas"
 		]
 	},
 	"share-to-clipboard": "Zkopírovat obrázek do schránky",
@@ -35,9 +36,9 @@
 	"language-it": "Italština",
 	"language-ru": "Ruština",
 	"language-es": "Španělština",
-	"language-lb": "Lucemburština",
-	"language-mk": "Makedonština",
-	"language-ur": "Urdština",
+	"language-lb": "lucemburština",
+	"language-mk": "makedonština",
+	"language-ur": "urdština",
 	"year-in-review": "Rok v přehledu",
 	"username-placeholder": "Jaké je vaše uživatelské jméno?",
 	"project-label": "Projekt Wikimedia:",
@@ -88,7 +89,7 @@
 	"template-edits": "editací šablon",
 	"talk-page-edits": "editací diskuzí",
 	"thanked": "poděkování (poslaných)",
-	"file-uploads": "nahraných souborů",
+	"file-uploads": "nahrané soubory",
 	"claims": "vytvořených tvrzení",
 	"badge-chatterbox": "mluvka",
 	"badge-chatterbox-desc": "Diskusní stránky jste editovali více než 1000krát.",
