@@ -4,10 +4,11 @@
 			"Cigaryno",
 			"Hhaboh162002",
 			"Meno25",
-			"Mohammed Qays"
+			"Mohammed Qays",
+			"XIDME"
 		]
 	},
-	"share-to-clipboard": "مشاركة الصورة إلى الحافظة",
+	"share-to-clipboard": "شارك الصورة إلى الحافظة",
 	"project-wikipedia": "ويكيبيديا",
 	"project-commons": "كومنز",
 	"project-wikisource": "ويكي مصدر",
@@ -42,7 +43,7 @@
 	"language-ur": "الأردية",
 	"year-in-review": "مراجعة العام",
 	"username-placeholder": "ما اسم المستخدم الخاص بك؟",
-	"project-label": "مشروع ويكيميديا الخاص بك:",
+	"project-label": "مشروعك على ويكيميديا:",
 	"get-started": "ابدأ",
 	"error-share": "حدث خطأ غير متوقع أثناء عملية المشاركة.",
 	"error-clipboard": "حدث خطأ غير متوقع أثناء محاولة النسخ إلى الحافظة.",
@@ -91,8 +92,8 @@
 	"talk-page-edits": "تعديلات صفحة المناقشة",
 	"thanked": "شكرك",
 	"file-uploads": "تحميل الملفات",
-	"claims": "البيان",
-	"badge-chatterbox": "ثرثار",
+	"claims": "المطالبات",
+	"badge-chatterbox": "صندوق المحادثة",
 	"badge-chatterbox-desc": "لقد قمت بتعديل صفحات النقاش أكثر من 1000 مرة.",
 	"badge-100": "نادي 100",
 	"badge-100-desc": "لقد أجريت تعديلات أكثر من 100 مرة",
