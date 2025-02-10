@@ -3,11 +3,13 @@
 		"authors": [
 			"CanonNi",
 			"Cookai1205",
+			"GuoPC",
 			"ItMarki",
 			"TFX202X",
 			"魔琴"
 		]
 	},
+	"share-to-clipboard": "将图像复制到剪贴板",
 	"project-wikipedia": "维基百科",
 	"project-commons": "维基共享资源",
 	"project-wikisource": "维基文库",
@@ -39,6 +41,7 @@
 	"language-es": "西班牙语",
 	"language-lb": "卢森堡语",
 	"language-mk": "马其顿语",
+	"language-ur": "乌尔都语",
 	"year-in-review": "年度回顾",
 	"username-placeholder": "您的用户名是什么？",
 	"project-label": "您的维基媒体项目：",
@@ -48,6 +51,7 @@
 	"error-toomanyedits": "此用户编辑次数太多，现不支持，十分抱歉。",
 	"error-generic": "检查时发生错误，您确定用户名正确吗？",
 	"year-placeholder": "选择年份",
+	"save-image": "下载为图像",
 	"thanks-for-playing": "感谢您回顾自己的一年，也感谢您对人类知识的总和作出的贡献。",
 	"thanks": "送出感谢",
 	"hny": "祝您$1年快乐！",
