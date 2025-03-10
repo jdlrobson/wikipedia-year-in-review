@@ -29,6 +29,7 @@
 	"language-es": "Spuenesch",
 	"language-lb": "Lëtzebuergesch",
 	"language-mk": "Mazedonesch",
+	"year-in-review": "Joresréckbléck",
 	"username-placeholder": "Wat ass Äre Benotzernumm?",
 	"project-label": "Äre Wikimedia-Projet:",
 	"year-placeholder": "Joer eraussichen",
@@ -39,6 +40,7 @@
 	"language-label": "Sprooch wiesselen",
 	"files": "Fichieren",
 	"edits": "Ännerungen",
+	"generate-your-own": "Generéiert Ären eegene Joresréckbléck ënner",
 	"longest-streak": "längste Laf",
 	"language-he": "Hebräesch",
 	"language-id": "Indoneesesch",
@@ -46,5 +48,6 @@
 	"language-sv": "Schweedesch",
 	"language-uk": "Ukrainesch",
 	"language-zh-hant": "Chineesesch (Traditionell)",
-	"language-ko": "Koreanesch"
+	"language-ko": "Koreanesch",
+	"language-zh-hans": "Vereinfacht Chineesesch"
 }
