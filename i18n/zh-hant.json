@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Cookai1205",
+			"Kly",
 			"魔琴"
 		]
 	},
@@ -114,7 +115,7 @@
 	"badge-archivist": "檔案行家",
 	"badge-archivist-desc": "您上傳的檔案數量超過了全年的天數",
 	"badge-timeslot-desc": "一天中編輯最多的時段是$1",
-	"longest-streak": "最長連勝",
+	"longest-streak": "最長連續編輯天數",
 	"badge-streak": "兀兀窮年",
 	"badge-streak-desc": "連續編輯至少50天可獲此徽章。",
 	"language-he": "希伯來語",
