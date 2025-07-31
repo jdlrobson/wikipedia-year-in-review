@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ACheJu",
 			"Eduardoaddad"
 		]
 	},
@@ -83,5 +84,6 @@
 	"language-zh-hant": "Chinês (tradicional)",
 	"language-ko": "Coreano",
 	"language-nb": "Bokmål norueguês",
-	"language-zh-hans": "Chinês simplificado"
+	"language-zh-hans": "Chinês simplificado",
+	"appreciated-message-1b": "Você demonstrou apreço por <strong>$1</strong> <span>outros humanos</span>"
 }
