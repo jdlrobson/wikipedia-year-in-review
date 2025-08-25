@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Yupik"
 		]
 	},
+	"project-wikidata": "Wikidata",
 	"intro": "La oss ta en titt på alt arbeidet du har lagt ned i kunnskapsdugnaden i løpet av året som har gått!",
 	"year-in-review": "Årskavalkade",
 	"username-placeholder": "Hva er brukernavnet ditt?",
