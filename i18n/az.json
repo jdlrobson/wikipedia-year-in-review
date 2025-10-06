@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Gadir",
 			"Nemoralis"
 		]
 	},
@@ -16,7 +17,7 @@
 	"project-wikiversity": "Vikiversitet",
 	"project-wikibooks": "Vikikitab",
 	"project-wikiquote": "Vikisitat",
-	"project-mediawiki": "MediaViki",
+	"project-mediawiki": "MediaWiki",
 	"project-wikimedia": "Vikimedia",
 	"intro": "Gəlin bu il İnternetdə ən yaxşı saytın qurulmasına kömək etmək üçün etdiyiniz bütün yaxşı işlərə nəzər salaq!",
 	"text-shared": "Mətn mübadilə buferinə köçürüldü.",
@@ -108,7 +109,7 @@
 	"badge-template-wizard": "şablon sehrbazı",
 	"badge-template-wizard-desc": "Siz Modul və Şablon ad fəzasında 50-dən çox səhifəni redaktə etmisiniz",
 	"badge-interface-hero": "interfeys qəhrəmanı",
-	"badge-interface-hero-desc": "Siz MediaViki ad fəzasında 20-dən çox səhifəni redaktə etmisiniz",
+	"badge-interface-hero-desc": "Siz MediaWiki ad fəzasında 20-dən çox səhifəni redaktə etmisiniz",
 	"badge-day-desc": "Ən çox redaktə etdiyiniz gün",
 	"badge-archivist": "arxivçi",
 	"badge-archivist-desc": "Bir ildə olan gün sayından daha çox fayl yükləmisiniz",
