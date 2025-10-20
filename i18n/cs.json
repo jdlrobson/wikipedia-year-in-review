@@ -3,6 +3,7 @@
 		"authors": [
 			"Blahma",
 			"MasterStudioCZ",
+			"SaldırganSincap",
 			"Segoulas"
 		]
 	},
@@ -133,7 +134,7 @@
 	"you-made-edits-num-articles": "Provedli jste <strong>$1</strong> úprav v $2 různých článcích",
 	"edited-most-day-total": "Nejvíce jste editovali v: <strong>$1</strong> ($2 editací)",
 	"most-edited-time-sleep": "Většina editací se odehrála v rozmezí <strong>$1</strong> $2",
-	"talk-message": "Do diskuzí jste přispěli <strong>$1<strong><span>krát</span>.",
+	"talk-message": "Do diskuzí jste přispěli <strong>$1</strong><span>krát</span>.",
 	"template-message": "Šablony jste upravili <strong>$1</strong><span>krát</span>",
 	"gadget-message": "Udělátka a zprávy rozhraní jste upravili <strong>$1</strong><span>krát</span>",
 	"appreciated-message": "Poděkovalo vám <strong>$1</strong> různých <span>redaktorů</span>",
