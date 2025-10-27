@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"ACheJu",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"Leosls"
 		]
 	},
 	"share-to-clipboard": "Compartilhar imagem na área de transferência",
@@ -59,6 +60,8 @@
 	"and": "e",
 	"files": "arquivos",
 	"edits": "edições",
+	"no-contributions": "Você não editou este projeto este ano, mas...",
+	"next-year": "É mais um ano para contribuir para o conjunto de todo o conhecimento humano!",
 	"day-0": "Domingos",
 	"day-1": "Segundas-feira",
 	"day-2": "Terças-feira",
@@ -68,12 +71,16 @@
 	"day-6": "Sábados",
 	"time-afternoon": "Editor da tarde",
 	"time-morning": "editor matinal",
+	"time-lunch": "editor da hora do almoço",
+	"time-sleep": "editor antes de dormir",
 	"time-night": "editor noturno",
+	"time-early": "editor inicial",
 	"time-evening": "editor noturno",
 	"thanks-for-caring": "Obrigado pela preocupação!",
 	"we-appreciate-you": "Agradecemos a sua preferência!",
 	"thank-fan": "era seu maior fã",
 	"thanked-most": "foi o usuário que você mais agradeceu",
+	"generate-your-own": "Crie sua própria revisão anual em",
 	"interface-edits": "edições da interface",
 	"template-edits": "edições da predefinição",
 	"talk-page-edits": "edições de página de discussão",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"SaldırganSincap",
 			"شاه زمان پټان"
 		]
 	},
@@ -104,7 +105,7 @@
 	"badge-1m-desc": "تاسو له ميليون ډېر سمونونه کړي دي. ايا دا شوني دي؟",
 	"badge-appreciated": "ستايل شوی",
 	"badge-appreciated-desc": "تاسو ډېر ځله وستايل شوئ. تاسو د خپلې ټولنې ستن ياست!",
-	"badge-proofreader": "کره‌کتونکی",
+	"badge-proofreader": "لوست‌ارزوونکی",
 	"badge-proofreader-desc": "تاسو د ۵۰ څخه ډېرو مخونه کره کتنه کړې! په زړه پورې!",
 	"badge-template-wizard": "کينډۍ کوډگر",
 	"badge-template-wizard-desc": "تاسو په چلنوال او کينډۍ نوم‌تشيال کې له ۵۰ ډېر مخونه سم کړي دي",
@@ -136,6 +137,6 @@
 	"template-message": "تاسو <strong>$1</strong> <span>ځله</span> کينډۍ سمې کړې دي",
 	"gadget-message": "تاسو <strong>$1</strong> <span>ځله</span> الې او مخبڼې پيغامونه \n سم کړي دي",
 	"appreciated-message": "تاسو د <strong>$1</strong> <span>سمونگرانو</span> له خوا وستايل شوئ",
-	"appreciated-message-1a": "او تاسو د <strong>$1</strong> <span>نورو وگړو</span ستاينه وکړه",
-	"appreciated-message-1b": "تاسو د <strong>$1</strong> <span>نورو وگړو</span ستاينه وکړه"
+	"appreciated-message-1a": "او تاسو د <strong>$1</strong> <span>نورو وگړو</span> ستاينه وکړه",
+	"appreciated-message-1b": "تاسو د <strong>$1</strong> <span>نورو وگړو</span> ستاينه وکړه"
 }

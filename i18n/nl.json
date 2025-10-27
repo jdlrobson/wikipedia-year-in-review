@@ -4,6 +4,7 @@
 			"ABPMAB",
 			"Jeroen N",
 			"McDutchie",
+			"SaldırganSincap",
 			"Sjoerddebruin"
 		]
 	},
@@ -132,7 +133,7 @@
 	"streak-message": "Op een gegeven moment dit jaar heb je het project op <strong>$1</strong> opeenvolgende dagen bewerkt!",
 	"paragraph-message": "Je hebt ongeveer <strong>$1</strong> <span>alinea's</span> aan tekst bewerkt!",
 	"you-made-edits-num-articles": "Je hebt <strong>$1</strong> bewerkingen uitgevoerd in $2 verschillende artikelen",
-	"edited-most-day-total": "Je hebt het meeste bijgedragen op <strong>$1</strong ($2 bewerkingen)",
+	"edited-most-day-total": "Je hebt het meeste bijgedragen op <strong>$1</strong> ($2 bewerkingen)",
 	"most-edited-time-sleep": "De meeste bewerkingen vonden plaats tussen <strong>$1</strong> $2",
 	"talk-message": "Je hebt <strong>$1</strong> <span>keer</span> bijgedragen aan discussies.",
 	"template-message": "Je hebt <strong>$1</strong> <span>keer sjablonen bewerkt</span>",

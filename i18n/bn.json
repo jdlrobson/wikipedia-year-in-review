@@ -3,6 +3,7 @@
 		"authors": [
 			"Ishtiak Abdullah",
 			"Nahian",
+			"SaldırganSincap",
 			"আফতাবুজ্জামান"
 		]
 	},
@@ -129,7 +130,7 @@
 	"talk-message": "আপনি আলোচনায় <strong>$1</strong> <span>বার</span> অবদান রেখেছেন।",
 	"template-message": "আপনি <strong>$1</strong> <span>বার</span> টেমপ্লেট সম্পাদনা করেছেন",
 	"gadget-message": "আপনি গ্যাজেট এবং ইন্টারফেস বার্তা <strong>$1</strong> <span>বার</span> সম্পাদনা করেছেন৷",
-	"appreciated-message": "আপনি <strong>$1</strong> <spanজন সম্পাদকদের</span> দ্বারা প্রশংসিত হয়েছেন",
+	"appreciated-message": "আপনি <strong>$1</strong> <span>জন সম্পাদকদের</span> দ্বারা প্রশংসিত হয়েছেন",
 	"appreciated-message-1a": "আর আপনি <strong>$1</strong> <span>জন অন্য মানুষের</span> প্রতি কৃতজ্ঞতা প্রকাশ করেছেন।",
 	"appreciated-message-1b": "আপনি <strong>$1</strong> <span>জন অন্য মানুষের</span> প্রতি কৃতজ্ঞতা প্রকাশ করেছেন।"
 }
