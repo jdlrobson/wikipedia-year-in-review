@@ -282,18 +282,32 @@ const thankedSummary = ( username, year, project ) => {
 };
 
 /**
+ * Check if a project supports the REST API for page summaries.
+ * Only Wikipedia and Wikivoyage projects support this API.
+ * @param {string} project
+ * @return {boolean}
+ */
+const supportsRestApi = ( project ) => {
+    return project.includes( 'wikipedia.org' ) || project.includes( 'wikivoyage.org' );
+};
+
+/**
  * @param {string[]} titles
  * @param {string} project
  * @return {Promise<YIRImage[]>}
  */
 const addThumbs = ( titles, project ) => {
+    // Skip thumbnail fetching for projects that don't support the REST API
+    if ( !supportsRestApi( project ) ) {
+        return Promise.resolve( titles.map( () => undefined ) );
+    }
     return Promise.all(
         titles.map(
             ( t ) => fetch( `https://${ project }/api/rest_v1/page/summary/${encodeURIComponent(t)}`)
                 .then((r) => r.json(), () => {
                     return Promise.resolve();
                 })
-                .then((p)=>p.thumbnail)
+                .then((p) => p && p.thumbnail)
         )
     );
 }
