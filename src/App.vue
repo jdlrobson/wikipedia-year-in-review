@@ -26,7 +26,7 @@
 			<span v-if="errorMsg === 'share-error'">{{ $i18n( 'error-share', language ) }}</span>
 			<span v-if="errorMsg === 'clipboard-error'">{{ $i18n( 'error-clipboard', language ) }}</span>
 			<span v-else-if="errorMsg === 'username-disabled-error'">{{ $i18n( 'error-toomanyedits', language ) }}</span>
-			<span v-else>{{ $i18n( 'error-generic', language ) }}</span>
+			<span v-else>{{ $i18n( 'error-generic', errorMsg ) }}</span>
 		</cdx-message>
 		<div class="yearSwitcher">
 			<cdx-select
@@ -87,6 +87,7 @@ import yir from './yir.js';
 import Page from './Page.vue';
 import { CdxButton, CdxIcon, CdxTextInput, CdxMessage, CdxSelect } from '@wikimedia/codex';
 import '@wikimedia/codex';
+const DEV_MODE = location.host.split(':')[0] === 'localhost';
 import { defineComponent } from 'vue';
 import ShareBox from './ShareBox.vue';
 import message from './message';
@@ -273,8 +274,14 @@ export default defineComponent( {
 				this.loading++;
 			}, 1000 );
 			const err = ( errObj ) => {
-				if ( err.toString().indexOf( 'TOOMANYEDITS' ) > -1 ) {
+				const errString = errObj.toString();
+				if ( errString.indexOf( 'TOOMANYEDITS' ) > -1 ) {
 					this.errorMsg = 'username-disabled-error';
+				} else {
+					this.errorMsg = errString;
+					if ( DEV_MODE ) {
+						console.error( errString );
+					}
 				}
 				this.error = true;
 				this.currentPage = -1;

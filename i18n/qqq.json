@@ -47,7 +47,7 @@
 	"error-share": "Error that occurs during the share process.",
 	"error-clipboard": "Error that occurs if for some reason cannot access clipboard.",
 	"error-toomanyedits": "The tool is restricted for editors with really high edit counts. This shows if they are detected.",
-	"error-generic": "Error if bad username given",
+	"error-generic": "Unknown error. $1 is the error.",
 	"year-placeholder": "Placeholder for year dropdown",
 	"save-image": "Label for button for downloading as image",
 	"thanks-for-playing": "Shown at end of tool.",

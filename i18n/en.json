@@ -46,7 +46,7 @@
     "error-share": "An unexpected error occurred during the share process.",
     "error-clipboard": "An unexpected error occurred while attempting to copy to the clipboard.",
     "error-toomanyedits": "This username has too many edits. Unfortunately it is not supported at the current time.",
-    "error-generic": "An error occurred while trying to check that. Did you use the correct username?",
+    "error-generic": "An error occurred while trying to check that: $1.",
     "year-placeholder": "Select year",
     "save-image": "Download as image",
     "thanks-for-playing": "Thank you for viewing your year in review and for contributing to the sum of all human knowledge.",
