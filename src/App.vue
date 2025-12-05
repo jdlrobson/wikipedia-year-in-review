@@ -200,7 +200,7 @@ export default defineComponent( {
 		},
 		updateYear(y) {
 			this.previousYear = y;
-			this.nextYear = y + 1;
+			this.nextYear = parseInt( y, 10 ) + 1;
 		},
 		shareIt() {
 			const share = async (blob) => {
