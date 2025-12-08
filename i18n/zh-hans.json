@@ -49,7 +49,7 @@
 	"error-share": "分享过程中发生意外错误。",
 	"error-clipboard": "尝试复制到剪贴板时发生意外错误。",
 	"error-toomanyedits": "此用户编辑次数太多，现不支持，十分抱歉。",
-	"error-generic": "检查时发生错误，您确定用户名正确吗？",
+	"error-generic": "检查时发生错误：$1。",
 	"year-placeholder": "选择年份",
 	"save-image": "下载为图像",
 	"thanks-for-playing": "感谢您回顾自己的一年，也感谢您对人类知识的总和作出的贡献。",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Eihel",
 			"Jon Harald Søby",
 			"Stjn",
 			"Ата"
@@ -58,7 +59,7 @@
 	"language-yoda": "Label for English language in Yoda (Star Wars) speak",
 	"language-label": "Label for language switcher",
 	"you-made-contributions-to": "followed by the name of the article, e.g. \"You made contributions to <nowiki>[[Title]]</nowiki>\"",
-	"and": "appears between links to pages editor edited",
+	"and": "appears between links to pages editor edited<br />\n&#x26A0; Contains a space at the end of \"and\" to separate words that need to be reproduced in the translation for proper formatting. &#x26A0;",
 	"edits-you-made": "Message describing number of edits to project. Please retain HTML markup. Parameter $1 is formatted number of edits.",
 	"files-you-uploaded": "Message describing number of file uploads to project. Please retain HTML markup. Parameter $1 is formatted number of edits.",
 	"files": "word for file uploads\n\nIt goes after the number of uploads on the final summary page of Year in Review.",

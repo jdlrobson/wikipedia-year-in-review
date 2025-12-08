@@ -57,7 +57,7 @@
 	"language-yoda": "Yoda",
 	"language-label": "Changer de langue",
 	"you-made-contributions-to": "Vous avez contribué à",
-	"and": "et",
+	"and": "et&#x20;",
 	"edits-you-made": "Vous avez fait <strong>$1</strong> <span>modifications</span> sur l’ensemble du projet.",
 	"files-you-uploaded": "Vous avez importé <strong>$1</strong> <span>fichiers</span> sur l’ensemble du projet.",
 	"files": "fichiers",

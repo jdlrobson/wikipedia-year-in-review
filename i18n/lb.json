@@ -44,7 +44,7 @@
 	"error-share": "Beim Deelen ass en onerwaarte Feeler geschitt.",
 	"error-clipboard": "Beim Versuch an den Tëschespäicher ze kopéieren ass en onerwaarte Feeler geschitt.",
 	"error-toomanyedits": "Dëse Benotzernumm huet ze vill Ännerungen. Leider gëtt dat am Moment nach net ënnerstëtzt.",
-	"error-generic": "Beim Versuch dat z'iwwerpréiwen ass e Feeler geschitt. Sidd Dir sécher, datt Dir de richtege Benotzernumm aginn hutt?",
+	"error-generic": "Beim Versuch dat z'iwwerpréiwen ass e Feeler geschitt: $1.",
 	"year-placeholder": "Joer eraussichen",
 	"save-image": "Als Bild eroflueden",
 	"thanks-for-playing": "Merci, datt Dir Iech Äre Joresréckbléck ugekuckt hutt an datt Dir zur Zomm vum gesamte mënschleche Wësse bäidrot.",

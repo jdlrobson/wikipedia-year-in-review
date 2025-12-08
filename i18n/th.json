@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Thailand2763"
+		]
+	},
+	"project-wikipedia": "วิกิพีเดีย",
+	"project-commons": "คอมมอนส์",
+	"project-wikisource": "วิกิซอร์ซ",
+	"project-wiktionary": "วิกิพจนานุกรม",
+	"project-wikifunctions": "วิกิฟังก์ชัน",
+	"project-wikidata": "วิกิสนเทศ",
+	"project-wikivoyage": "วิกิท่องเที่ยว",
+	"project-wikinews": "วิกิข่าว",
+	"project-wikiversity": "วิกิวิทยาลัย",
+	"project-wikibooks": "วิกิตำรา",
+	"project-wikiquote": "วิกิคำคม",
+	"project-mediawiki": "มีเดียวิกิ",
+	"project-wikimedia": "วิกิมีเดีย",
+	"language-ar": "อาหรับ",
+	"language-nl": "ดัตช์",
+	"language-fr": "ฝรั่งเศส",
+	"language-az": "อาเซอรี",
+	"language-pa": "ปัญจาบ",
+	"language-fi": "ฟินแลนด์",
+	"language-tr": "ตุรกี",
+	"language-bn": "เบงกอล",
+	"language-skr-arab": "ซะราอีกี (อักษรอาหรับ)",
+	"language-it": "อิตาลี",
+	"language-ru": "รัสเซีย",
+	"language-es": "สเปน",
+	"language-lb": "ลักเซมเบิร์ก",
+	"language-mk": "มาซิโดเนีย",
+	"language-ur": "อูรดู",
+	"save-image": "ดาวน์โหลดเป็นรูปภาพ",
+	"and": "และ",
+	"language-id": "อินโดนีเซีย",
+	"language-pl": "โปแลนด์",
+	"language-sv": "สวีเดน",
+	"language-uk": "ยูเครน",
+	"language-ko": "เกาหลี"
+}
