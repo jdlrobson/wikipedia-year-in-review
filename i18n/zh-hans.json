@@ -5,6 +5,7 @@
 			"Cookai1205",
 			"GuoPC",
 			"ItMarki",
+			"PexEric",
 			"TFX202X",
 			"魔琴"
 		]
@@ -23,8 +24,8 @@
 	"project-wikiquote": "维基语录",
 	"project-mediawiki": "MediaWiki",
 	"project-wikimedia": "维基媒体",
-	"intro": "我们回顾一下您今年为互联网最自由的百科全书贡献了什么！",
-	"text-shared": "文字已复制到您的剪贴板。",
+	"intro": "让我们一起回顾您今年为互联网构筑自由百科全书所做的卓越贡献！",
+	"text-shared": "文本已复制到您的剪贴板。",
 	"image-shared": "图片已复制到您的剪贴板。",
 	"language-ar": "阿拉伯语",
 	"language-nl": "荷兰语",
@@ -118,7 +119,7 @@
 	"badge-archivist": "能工巧匠",
 	"badge-archivist-desc": "您上传的文件数量超过了全年的天数",
 	"badge-timeslot-desc": "一天中编辑最多的时段是$1",
-	"longest-streak": "最长连胜",
+	"longest-streak": "最长连续编辑天数",
 	"badge-streak": "兀兀穷年",
 	"badge-streak-desc": "连续编辑至少50天可获此徽章。",
 	"language-he": "希伯来语",

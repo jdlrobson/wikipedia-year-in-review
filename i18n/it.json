@@ -46,7 +46,7 @@
 	"error-share": "Si è verificato un errore imprevisto durante il processo di condivisione.",
 	"error-clipboard": "Si è verificato un errore imprevisto nel tentativo di copia negli appunti.",
 	"error-toomanyedits": "Questo nome utente ha troppe modifiche. Purtroppo in questo momento non è supportato.",
-	"error-generic": "Si è verificato un errore durante il tentativo di verifica. Hai utilizzato il nome utente corretto?",
+	"error-generic": "Si è verificato un errore durante il tentativo di verifica: $1",
 	"year-placeholder": "Seleziona anno",
 	"save-image": "Scarica come immagine",
 	"thanks-for-playing": "Grazie per aver visto il tuo Anno in rassegna e per aver contribuito alla somma di tutta la conoscenza umana.",
