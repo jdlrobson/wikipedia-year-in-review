@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Penyuwangi",
 			"Rachmat04"
 		]
 	},
@@ -67,13 +68,13 @@
 	"day-4": "Kamis",
 	"day-5": "Jumat",
 	"day-6": "Sabtu",
-	"time-afternoon": "editor sore hari",
-	"time-morning": "editor pagi hari",
-	"time-lunch": "editor waktu makan siang",
-	"time-sleep": "editor sebelum tidur",
-	"time-night": "editor malam hari",
-	"time-early": "editor subuh hari",
-	"time-evening": "editor malam hari",
+	"time-afternoon": "penyunting sore",
+	"time-morning": "penyunting pagi",
+	"time-lunch": "penyunting waktu makan siang",
+	"time-sleep": "penyunting sebelum waktu tidur",
+	"time-night": "penyunting malam",
+	"time-early": "penyunting subuh",
+	"time-evening": "penyunting petang",
 	"thanks-for-caring": "Terima kasih atas perhatiannya!",
 	"we-appreciate-you": "Kami menghargai Anda.",
 	"thank-fan": "adalah penggemar terbesar Anda",
