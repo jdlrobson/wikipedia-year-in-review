@@ -5,6 +5,7 @@
 			"Rachmat04"
 		]
 	},
+	"share-to-clipboard": "Simpan gambar ke papan klip",
 	"project-wikipedia": "Wikipedia",
 	"project-commons": "Commons",
 	"project-wikisource": "Wikisource",
@@ -36,6 +37,7 @@
 	"language-es": "bahasa Spanyol",
 	"language-lb": "bahasa Luksemburg",
 	"language-mk": "bahasa Makedonia",
+	"language-ur": "bahasa Urdu",
 	"year-in-review": "Ulasan Tahunan",
 	"username-placeholder": "Apa nama pengguna Anda?",
 	"project-label": "Proyek Wikimedia Anda:",
@@ -43,8 +45,9 @@
 	"error-share": "Terjadi kesalahan tak terduga selama proses berbagi.",
 	"error-clipboard": "Terjadi kesalahan tak terduga saat mencoba menyalin ke papan klip.",
 	"error-toomanyedits": "Nama pengguna ini memiliki terlalu banyak suntingan. Sayangnya, fitur ini tidak dapat digunakan saat ini.",
-	"error-generic": "Terjadi kesalahan saat mencoba memeriksanya. Apakah Anda memasukkan nama pengguna yang benar?",
+	"error-generic": "Terjadi galat saat mencoba memeriksa: $1.",
 	"year-placeholder": "Pilih tahun",
+	"save-image": "Unduh sebagai gambar",
 	"thanks-for-playing": "Terima kasih telah mengunjungi ulasan tahunan Anda dan telah berkontribusi pada kumpulan pengetahuan para insan.",
 	"thanks": "terima kasih",
 	"hny": "Selamat $1!",
@@ -88,5 +91,13 @@
 	"file-uploads": "unggahan berkas",
 	"claims": "klaim",
 	"badge-chatterbox": "kotak obrolan",
-	"badge-chatterbox-desc": "Anda menyunting halaman pembicaraan lebih dari 1.000 kali."
+	"badge-chatterbox-desc": "Anda menyunting halaman pembicaraan lebih dari 1.000 kali.",
+	"badge-100": "klub 100",
+	"badge-100-desc": "Anda sudah menyunting lebih dari 100 kali",
+	"badge-1k": "Klub 1K",
+	"badge-1k-desc": "Anda sudah menyunting lebih dari 1.000 kali",
+	"badge-10k": "Klub 10K",
+	"badge-10k-desc": "Anda sudah menyunting lebih dari 10.000 kali",
+	"badge-100k": "Klub 100K",
+	"badge-100k-desc": "Anda sudah menyunting lebih dari 100.000 kali"
 }

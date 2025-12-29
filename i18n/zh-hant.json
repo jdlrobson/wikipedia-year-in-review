@@ -46,7 +46,7 @@
 	"error-share": "分享過程中發生意外錯誤。",
 	"error-clipboard": "嘗試複製到剪貼簿時發生意外錯誤。",
 	"error-toomanyedits": "此使用者編輯次數太多，現不支援，十分抱歉。",
-	"error-generic": "檢查時發生錯誤，您確定使用者名稱正確嗎？",
+	"error-generic": "檢查時發生錯誤：$1。",
 	"year-placeholder": "選擇年份",
 	"save-image": "下載為圖片",
 	"thanks-for-playing": "感謝您回顧自己的一年，也感謝您對人類知識的總和的貢獻。",
