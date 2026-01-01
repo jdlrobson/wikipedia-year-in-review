@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sabelöga"
+			"Ainali",
+			"Sabelöga",
+			"Stefan2255"
 		]
 	},
 	"share-to-clipboard": "Dela till urklipp",
@@ -44,7 +46,7 @@
 	"error-share": "Ett oväntat fel inträffade under delningen.",
 	"error-clipboard": "Ett oväntat fel inträffade vid försöket att kopiera till urklipp.",
 	"error-toomanyedits": "Det här användarnamnet har för många redigeringar. Tyvärr stöds det inte för närvarande.",
-	"error-generic": "Ett fel uppstod när du försökte kontrollera det. Använde du rätt användarnamn?",
+	"error-generic": "Ett fel uppstod när försöket att kontrollera att: $1.",
 	"year-placeholder": "Välj år",
 	"save-image": "Ladda ner som bild",
 	"thanks-for-playing": "Tack för att du tittade på din årsöversikt och för att du bidragit till summan av all mänsklig kunskap.",
@@ -71,7 +73,7 @@
 	"day-5": "fredagar",
 	"day-6": "lördagar",
 	"time-afternoon": "eftermiddagsredigerare",
-	"time-morning": "morgonsredigeare",
+	"time-morning": "morgonredigerare",
 	"time-lunch": "lunchtidsredigerare",
 	"time-sleep": "innan läggdags-redigerare",
 	"time-night": "nattredigerare",
