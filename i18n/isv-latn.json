@@ -43,7 +43,7 @@
 	"error-share": "Podčas procesa kopirovanja došlo k neočekyvanoj pogrěšky.",
 	"error-clipboard": "Pri probě kopirovanja v bufer obměna došlo do neočekyvanoj pogrěšky.",
 	"error-toomanyedits": "Tuto koristničsko ime imaje prěmnogo pravok. Na žalost, v tutom momentu generovanje obzora jest nemožno.",
-	"error-generic": "Pri prověrkě došlo k pogrěškě. Jeste li vvedli pravilno koristničsko ime?",
+	"error-generic": "Pri prověrkě došlo k pogrěškě: $1.",
 	"year-placeholder": "Izberite god",
 	"save-image": "Daunlodovati kako obrazok",
 	"thanks-for-playing": "Hvala vam za progleděnje svojego obzora goda, a takože za vaš vklad v suvkupnost vsego člověčskogo znanja.",
