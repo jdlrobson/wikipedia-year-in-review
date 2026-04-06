@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"ChocolateLemon"
+		]
+	},
+	"share-to-clipboard": "Зургийг түр санах ойд хуваалцах",
+	"project-wikipedia": "Википедиа",
+	"project-commons": "Коммонс",
+	"project-wikisource": "Викисурвалж",
+	"project-wiktionary": "Вики Толь Бичиг",
+	"project-wikifunctions": "Вики Функцууд",
+	"project-wikidata": "Викидата",
+	"project-wikivoyage": "Вики-аялал",
+	"project-wikinews": "Вики мэдээ",
+	"project-wikiversity": "Вики Их Сургууль",
+	"project-wikibooks": "ВикиНом",
+	"project-wikiquote": "ВикиЭшлэл",
+	"project-mediawiki": "Медиавики",
+	"project-wikimedia": "Викимедиа",
+	"intro": "Интернет дэх хамгийн шилдэг газрыг бий болгохын тулд энэ жил таны хийсэн бүх амжилт бүтээлийг эргэн харцгаая!",
+	"text-shared": "Бичвэрийг таны түр санах ойд хуваалцсан.",
+	"image-shared": "Зургийг таны түр санах самбар луу илгээсэн.",
+	"language-ar": "Араб",
+	"language-nl": "Нидерланд",
+	"language-fr": "Франц",
+	"language-az": "Азербайжан",
+	"language-fi": "Фин",
+	"language-tr": "Турк",
+	"language-sr-ec": "Серб (Кирилл бичиг)",
+	"language-it": "Итали",
+	"language-ru": "Орос",
+	"language-es": "Испани",
+	"language-lb": "Люксембург",
+	"language-mk": "Македон",
+	"language-ur": "Урду",
+	"year-in-review": "Жилийн тойм",
+	"username-placeholder": "Таны хэрэглэгчийн нэр юу вэ?",
+	"project-label": "Таны Викимедиа төсөл:",
+	"get-started": "Эхлэх",
+	"error-share": "Хуваалцах үйл явцад гэнэтийн алдаа гарлаа.",
+	"error-clipboard": "Түр санах самбар луу хуулах үед гэнэтийн алдаа гарлаа."
+}
