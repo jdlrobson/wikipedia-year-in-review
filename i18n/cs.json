@@ -4,7 +4,8 @@
 			"Blahma",
 			"MasterStudioCZ",
 			"SaldırganSincap",
-			"Segoulas"
+			"Segoulas",
+			"WikipedistaOndra"
 		]
 	},
 	"share-to-clipboard": "Zkopírovat obrázek do schránky",
@@ -47,7 +48,7 @@
 	"error-share": "Během procesu sdílení došlo k neočekávané chybě.",
 	"error-clipboard": "Při pokusu o kopírování do schránky došlo k neočekávané chybě.",
 	"error-toomanyedits": "Toto uživatelské jméno je zodpovědné za příliš mnoho editací. V současné době bohužel není podporováno.",
-	"error-generic": "Při pokusu o kontrolu došlo k chybě. Použili jste správné uživatelské jméno?",
+	"error-generic": "Při pokusu o kontrolu došlo k chybě: $1",
 	"year-placeholder": "Vyberte rok",
 	"save-image": "Stáhnout jako obrázek",
 	"thanks-for-playing": "Děkujeme, že jste si prohlédli svůj rok v přehledu a že jste přispěli k souhrnu veškerého lidského poznání.",
