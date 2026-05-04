@@ -3,6 +3,7 @@
 		"authors": [
 			"Hedda",
 			"Jelican9",
+			"Nabbegat",
 			"İmmortalance"
 		]
 	},
@@ -31,7 +32,7 @@
 	"language-fi": "Fince",
 	"language-tr": "Türkçe",
 	"language-bn": "Bengalce",
-	"language-skr-arab": "Saraiki (Arapça yazı)",
+	"language-skr-arab": "Saraiki (Arapça alfabesi)",
 	"language-sr-ec": "Sırpça (Kiril alfabesi)",
 	"language-it": "İtalyanca",
 	"language-ru": "Rusça",
@@ -50,7 +51,7 @@
 	"year-placeholder": "Yıl seçiniz",
 	"save-image": "Resim olarak indir",
 	"thanks-for-playing": "Yılınızı gözden geçirdiğiniz ve tüm insanlığın bilgisinin toplamına katkıda bulunduğunuz için teşekkür ederiz.",
-	"thanks": "Teşekkürler",
+	"thanks": "teşekkürler",
 	"hny": "Mutlu $1!",
 	"share": "İstatistikleri paylaş",
 	"language-en": "İngilizce",
@@ -82,7 +83,7 @@
 	"thanks-for-caring": "İlginize teşekkür ederim!",
 	"we-appreciate-you": "Sizi takdir ediyoruz!",
 	"thank-fan": "senin en büyük hayranındı",
-	"thanked-most": "En çok teşekkür ettiğin kullanıcıydı.",
+	"thanked-most": "en çok teşekkür ettiğin kullanıcıydı.",
 	"share-text": "İşte Wikipedia'ya $1 katkılarım! Düzenlemeler: $2 , Tartışmalar: $3 , Teşekkürler: $4 , Teşekkür Edilen: $5 #wikipediaYIR",
 	"generate-your-own": "Kendi Yıl İncelemenizi şu adreste oluşturun:",
 	"interface-edits": "arayüz düzenlemeleri",
@@ -104,7 +105,7 @@
 	"badge-1m": "milyonerler kulübü",
 	"badge-1m-desc": "Bir milyondan fazla düzenleme yaptın. Bu mümkün mü!?",
 	"badge-appreciated": "teşekkür alındı",
-	"badge-appreciated-desc": "Çok defa takdir ettiniz. Topluluğunuzun bir sütunusun!",
+	"badge-appreciated-desc": "Size çok defa teşekkür edildi. Topluluğunuzun bir sütunusunuz!",
 	"badge-proofreader": "düzeltmen",
 	"badge-proofreader-desc": "50 sayfadan fazla düzeltme yaptın! - Etkileyici!",
 	"badge-template-wizard": "şablon sihirbazı",
