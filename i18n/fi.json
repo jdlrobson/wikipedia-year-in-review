@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Samoasambia"
+			"Samoasambia",
+			"Wikipeedikko"
 		]
 	},
 	"share-to-clipboard": "Kopioi kuva leikepöydälle",
@@ -18,6 +19,7 @@
 	"project-wikiquote": "Wikisitaatit",
 	"project-mediawiki": "MediaWiki",
 	"project-wikimedia": "Wikimedia",
+	"intro": "Katsotaan, mitä kaikkea hyvää olet saanut aikaan tänä vuonna auttamalla internetin parhaan sivuston kehittämisessä!",
 	"text-shared": "Teksti on kopioitu leikepöydällesi.",
 	"image-shared": "Kuva on kopioitu leikepöydällesi.",
 	"language-ar": "arabia",
@@ -43,7 +45,7 @@
 	"error-share": "Jakamisprosessin aikana tapahtui odottamaton virhe.",
 	"error-clipboard": "Leikepöydälle kopioinnissa tapahtui odottamaton virhe.",
 	"error-toomanyedits": "Tämä käyttäjänimi on tehnyt liian monta muokkausta. Valitettavasti sitä ei tällä hetkellä tueta.",
-	"error-generic": "Tarkistuksessa tapahtui virhe. Käytitkö oikeaa käyttäjänimeä?",
+	"error-generic": "Tietoja tarkistettaessa tapahtui seuraava virhe: $1.",
 	"year-placeholder": "Valitse vuosi",
 	"save-image": "Lataa kuvana",
 	"thanks-for-playing": "Kiitos, kun katsoit vuosikatsauksesi ja kiitos panoksestasi ihmiskunnan tietämykseen.",
