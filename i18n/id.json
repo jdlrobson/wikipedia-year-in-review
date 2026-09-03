@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bennylin",
 			"Penyuwangi",
 			"Rachmat04"
 		]
@@ -41,7 +42,7 @@
 	"year-in-review": "Ulasan Tahunan",
 	"username-placeholder": "Apa nama pengguna Anda?",
 	"project-label": "Proyek Wikimedia Anda:",
-	"get-started": "Mulai",
+	"get-started": "Memulai",
 	"error-share": "Terjadi galat tak terduga selama proses berbagi.",
 	"error-clipboard": "Terjadi galat tak terduga saat mencoba menyalin ke papan klip.",
 	"error-toomanyedits": "Nama pengguna ini memiliki terlalu banyak suntingan. Sayangnya, fitur ini tidak dapat digunakan saat ini.",
