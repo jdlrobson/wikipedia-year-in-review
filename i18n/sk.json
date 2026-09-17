@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Spider 001757",
 			"Wizzard"
 		]
 	},
@@ -9,7 +10,7 @@
 	"project-commons": "Commons",
 	"project-wikisource": "Wikizdroje",
 	"project-wiktionary": "Wikislovník",
-	"project-wikifunctions": "Wikifunctions",
+	"project-wikifunctions": "Wikifunkcie",
 	"project-wikidata": "Wikidáta",
 	"project-wikivoyage": "Wikicesty",
 	"project-wikinews": "Wikisprávy",
